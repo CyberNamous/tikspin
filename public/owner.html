@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"><meta name="referrer" content="no-referrer"><meta name="color-scheme" content="dark"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https:; base-uri 'none'; form-action 'none'; object-src 'none'"><title>Supervisor station | TikSpin</title><style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#121b2d;--panel2:#1a2640;--text:#f1f5ff;--muted:#b7c5df;--line:#354461;--accent:#65efdb;--ink:#081b1a;--danger:#ffb8b8;--good:#9ff3c1;--radius:1rem;font:100%/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);min-width:0}main{width:min(94%,76rem);margin:0 auto;padding:2rem 0 4rem}header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.75rem}h1,h2,h3,p{overflow-wrap:anywhere}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.12;margin:.2rem 0 .7rem;letter-spacing:-.045em}h2{font-size:1.35rem;margin:0 0 1rem}h3{font-size:1.05rem;margin:0 0 .4rem}p{margin:.5rem 0 1rem}.eyebrow{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700}.muted,small{color:var(--muted)}a{color:var(--accent);text-underline-offset:.2rem}button,input,textarea,select{font:inherit}button,a.button{display:inline-flex;justify-content:center;align-items:center;gap:.4rem;max-width:100%;white-space:normal;overflow-wrap:anywhere;padding:.75rem 1.1rem;border: .0625rem solid transparent;border-radius:.65rem;background:var(--accent);color:var(--ink);font-weight:750;cursor:pointer;text-decoration:none;text-align:center}button.secondary,a.secondary{background:var(--panel2);color:var(--text);border-color:var(--line)}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:.18rem solid var(--accent);outline-offset:.2rem}input:not([type=radio]),textarea,select{width:100%;min-width:0;padding:.78rem .9rem;color:var(--text);background:var(--bg);border:.0625rem solid var(--line);border-radius:.6rem}input[type=radio]{accent-color:var(--accent);width:1.1rem;height:1.1rem;flex-shrink:0}textarea{resize:vertical;min-height:7rem}label{display:grid;gap:.4rem;min-width:0;font-size:.93rem}form{display:grid;gap:1rem;min-width:0}fieldset{min-width:0;border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem;margin:0}legend{padding:0 .5rem}.panel{width:100%;min-width:0;padding:clamp(1rem,3vw,1.75rem);background:var(--panel);border:.0625rem solid var(--line);border-radius:var(--radius);margin-bottom:1.25rem}.narrow{max-width:42rem;margin-left:auto;margin-right:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:1.25rem;align-items:start}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1rem}.stack{display:grid;gap:1rem}.row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}.row>*{min-width:0}.grow{flex:1 1 12rem}.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}.tabs a{padding:.65rem .9rem;border:.0625rem solid var(--line);border-radius:.6rem;text-decoration:none;background:var(--panel)}.tabs a[aria-current=page]{background:var(--accent);color:var(--ink)}.status{white-space:pre-wrap;overflow-wrap:anywhere;min-height:1.5rem;color:var(--muted);margin:.5rem 0}.status[data-state=error]{color:var(--danger)}.status[data-state=success]{color:var(--good)}.notice{padding:.8rem 1rem;border-left:.2rem solid var(--accent);background:var(--panel2);border-radius:.3rem;margin:.6rem 0;white-space:pre-wrap;overflow-wrap:anywhere}.warning{border-color:var(--danger)}.card{min-width:0;width:100%;background:var(--bg);border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem}.metric{font-size:clamp(2rem,7vw,3rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.scroll{max-width:100%;overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;padding:.8rem;border-bottom:.0625rem solid var(--line);white-space:nowrap}td code{font-size:1rem}code{overflow-wrap:anywhere;color:var(--accent)}details{margin-bottom:1.25rem}summary{cursor:pointer;color:var(--muted);padding:.5rem 0}.settings{margin-top:.75rem}.settings form{display:flex;align-items:end;flex-wrap:wrap;gap:.75rem}.settings label{flex:1 1 18rem}.badge{display:inline-block;max-width:100%;overflow-wrap:anywhere;border:.0625rem solid var(--line);border-radius:2rem;padding:.2rem .7rem;color:var(--muted);font-size:.85rem}.entry-list{display:grid;gap:.8rem;list-style:none;padding:0;margin:0}.entry-list li{min-width:0}.entry-list button{width:100%;display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--panel2);color:var(--text);border-color:var(--line)}.entry-list small{font-weight:400}.check{display:flex;align-items:flex-start;gap:.65rem;cursor:pointer}.check input{margin-top:.25rem}.profiles{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem;margin:0}.profiles dt{color:var(--muted);font-size:.83rem}.profiles dd{margin:0 0 .65rem;white-space:pre-wrap;overflow-wrap:anywhere}.history{max-height:20rem;overflow:auto;padding-left:1.8rem;font-variant-numeric:tabular-nums}.history li{padding:.3rem;overflow-wrap:anywhere}[hidden]{display:none!important}footer{font-size:.85rem;color:var(--muted);margin-top:1rem}.wheel-stage{display:grid;place-items:center;position:relative;width:100%;aspect-ratio:1;max-width:30rem;margin:1.5rem auto}.wheel-ring{position:absolute;inset:0;border:.6rem double var(--accent);border-radius:50%;background:repeating-conic-gradient(from 0deg,var(--panel2) 0deg 30deg,var(--bg) 30deg 60deg);will-change:transform}.wheel-core{position:relative;width:79%;aspect-ratio:1;border:.125rem solid var(--line);border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center}.wheel-core output{font-size:clamp(1.1rem,5vw,2.3rem);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;max-width:100%}.pointer{position:absolute;top:-.6rem;font-size:2rem;color:var(--accent);z-index:1;line-height:1}.wheel-core p{margin:.4rem 0;font-size:.82rem}.overlay-only main{max-width:40rem;padding:1rem 0}.overlay-only .overlay-hide{display:none!important}.overlay-only .wheel-panel{border:0;background:transparent;padding:0}.overlay-only{background:var(--bg)}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}@media(max-width:32rem){main{padding-top:1rem}.row>button{flex:1 1 auto}.panel{border-radius:.7rem}.wheel-core output{font-size:clamp(1rem,5vw,1.7rem)}}
+</style></head><body><main><header class="overlay-hide"><div><span class="eyebrow">TikSpin / Text-only live giveaways</span><h1>Supervisor station</h1><p class="muted">Review creators, publish updates, and translate winning numerical IDs.</p></div><span class="badge">[✓] No images. No dependencies.</span></header><div class="overlay-hide"><details id="connection"><summary>Worker connection</summary><div class="panel settings"><form id="connection-form"><label>Deployed Worker HTTPS origin<input id="api-base" type="url" autocomplete="url" required aria-describedby="connection-help"></label><button type="submit" class="secondary">Save connection</button></form><p id="connection-help" class="muted">Paste your deployed Worker URL. This browser remembers the connection; no source edits are necessary.</p><p id="connection-status" class="status" role="status" aria-live="polite"></p></div></details></div><noscript><p class="notice warning">JavaScript is required to use TikSpin. Enable it in this browser.</p></noscript>
+<div class="notice warning"><strong>Unauthenticated operator station.</strong> This interface and its API have no login by design. Noindex is not security. Restrict the owner page AND the entire /api/owner/ API path with an external access gateway before exposing this deployment.</div>
+<section class="panel"><div class="row"><h2 class="grow">Live telemetry</h2><span id="last-update" class="muted">Not loaded</span><button type="button" id="refresh-owner" class="secondary">Refresh now</button></div><div class="two"><article class="card"><h3>Total viewers</h3><div id="metric-users" class="metric">—</div></article><article class="card"><h3>Open giveaways</h3><div id="metric-open" class="metric">—</div></article><article class="card"><h3>Pending creators</h3><div id="metric-pending" class="metric">—</div></article></div><p id="telemetry-status" class="status" role="status" aria-live="polite"></p><p class="muted">Refreshes every 15 seconds while this tab is visible.</p></section>
+<section class="panel"><h2>Application review</h2><div class="scroll"><table><caption class="muted">Pending streamer applications</caption><thead><tr><th scope="col">Applicant</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead><tbody id="applications"></tbody></table></div><p id="approval-status" class="status" role="status" aria-live="polite"></p><section id="approved-key-box" class="card" hidden><h3>Deliver this access key privately</h3><p id="approved-handle"></p><p><code id="approved-key"></code></p><button type="button" id="copy-key" class="secondary">Copy key</button><p class="muted">Do not post the access key in the bulletin or display it on stream.</p></section></section>
+<div class="grid"><section class="panel"><h2>Publish official bulletin</h2><p class="muted">The feed displays your message as plain text, never executable HTML.</p><form id="news-form"><label>Message<textarea name="message" maxlength="4000" required></textarea></label><button type="submit">Post notification</button></form><p id="news-status" class="status" role="status" aria-live="polite"></p></section><section class="panel"><h2>Winner translation terminal</h2><p class="muted">Enter a winning 10-digit UserID to reveal its prize-delivery profile. Passwords, PINs and secret answers are never returned.</p><form id="reveal-form"><label>Winning UserID<input name="user_id" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" autocomplete="off" required></label><button type="submit">Reveal winner profile</button></form><p id="reveal-status" class="status" role="status" aria-live="polite"></p><dl id="winner-profile" class="profiles" hidden></dl></section></div>
+<footer class="overlay-hide">TikSpin · Separate profiles. Anonymous entries. Local spins.</footer></main><script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const settings = $('connection');
+let apiBase = '';
+try { apiBase = localStorage.getItem('tikspin_api_base') || ''; } catch {}
+$('api-base').value = apiBase;
+settings.open = !apiBase;
+function status(id, text, state = '') {
+  const node = $(id); node.textContent = text; node.dataset.state = state;
+}
+function normalizeURL(value) {
+  const url = new URL(value.trim());
+  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash || !['','/'].includes(url.pathname)) {
+    throw new Error('Enter the HTTPS origin of your Worker, without a path, credentials, query or fragment.');
+  }
+  return url.origin;
+}
+$('connection-form').addEventListener('submit', event => {
+  event.preventDefault();
+  try {
+    const base = normalizeURL($('api-base').value);
+    localStorage.setItem('tikspin_api_base', base);
+    if (base !== apiBase) { location.reload(); return; }
+    status('connection-status', 'Worker connection saved.', 'success'); settings.open = false;
+  } catch (error) { status('connection-status', error.message, 'error'); }
+});
+async function api(path, options = {}) {
+  if (!apiBase) { settings.open = true; throw new Error('Set the Worker connection above first.'); }
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+  try {
+    const init = { method: options.method || 'GET', cache: 'no-store', credentials: 'omit', signal: controller.signal, referrerPolicy: 'no-referrer' };
+    if (options.body !== undefined) { init.headers = { 'Content-Type': 'application/json' }; init.body = JSON.stringify(options.body); }
+    const response = await fetch(apiBase + path, init);
+    let data;
+    try { data = await response.json(); } catch { throw new Error('Worker returned a non-JSON response. Check the connection and deployment.'); }
+    if (!response.ok) { const error = new Error(data.error || 'Request failed.'); error.status = response.status; throw error; }
+    return data;
+  } catch (error) {
+    if (error.name === 'AbortError') throw new Error('Request timed out. A write may have completed; check its state before retrying.');
+    if (error instanceof TypeError) throw new Error('Network request failed. Check your internet, Worker URL, CORS and deployment.');
+    throw error;
+  } finally { clearTimeout(timeout); }
+}
+async function busy(form, work) {
+  const buttons = [...form.querySelectorAll('button[type=submit]')];
+  buttons.forEach(button => button.disabled = true);
+  try { await work(); } finally { buttons.forEach(button => button.disabled = false); }
+}
+function values(form) { return Object.fromEntries(new FormData(form)); }
+function el(tag, text, className) {
+  const element = document.createElement(tag);
+  if (text !== undefined) element.textContent = text;
+  if (className) element.className = className;
+  return element;
+}
+window.TikSpin = Object.freeze({ $, api, status, busy, values, el, hasConnection: () => !!apiBase });
+})();
+</script><script>
+'use strict';
+
+const { $, api, status, busy, values, el } = TikSpin;
+let loading = false;
+let approving = false;
+async function telemetry() {
+  if (loading || approving || !TikSpin.hasConnection() || document.hidden) return;
+  loading = true; $('refresh-owner').disabled = true;
+  try {
+    const data = await api('/api/owner/telemetry');
+    $('metric-users').textContent = Number(data.users).toLocaleString();
+    $('metric-open').textContent = Number(data.open_giveaways).toLocaleString();
+    $('metric-pending').textContent = data.pending_streamers.length.toLocaleString();
+    $('applications').replaceChildren();
+    if (!data.pending_streamers.length) {
+      const row = el('tr'); const cell = el('td','No pending applications.'); cell.colSpan = 3; row.append(cell); $('applications').append(row);
+    }
+    for (const applicant of data.pending_streamers) {
+      const row = el('tr'); const cell = el('td'); const button = el('button','Accept Streamer'); button.type = 'button';
+      button.addEventListener('click',() => approve(applicant,button)); cell.append(button);
+      row.append(el('td',applicant.streamer_name),el('td','PENDING'),cell); $('applications').append(row);
+    }
+    $('last-update').textContent = 'Updated ' + new Date().toLocaleTimeString(); status('telemetry-status','Connected.','success');
+  } catch (error) { status('telemetry-status',error.message,'error'); }
+  finally { loading = false; $('refresh-owner').disabled = false; }
+}
+async function approve(applicant, button) {
+  if (approving) return;
+  approving = true; button.disabled = true; status('approval-status','Approving ' + applicant.streamer_name + '…');
+  try {
+    const data = await api('/api/owner/approve',{method:'POST',body:{id:applicant.id}});
+    $('approved-handle').textContent = data.streamer.streamer_name;
+    $('approved-key').textContent = data.streamer.streamer_id; $('approved-key-box').hidden = false;
+    status('approval-status','Approved. Deliver the key privately.','success');
+  } catch (error) { status('approval-status',error.message,'error'); button.disabled = false; }
+  finally { approving = false; await telemetry(); }
+}
+$('refresh-owner').addEventListener('click',telemetry);
+$('copy-key').addEventListener('click',async () => {
+  try { await navigator.clipboard.writeText($('approved-key').textContent); status('approval-status','Access key copied.','success'); }
+  catch { status('approval-status','Clipboard is unavailable. Select and copy the displayed key manually.','error'); }
+});
+$('news-form').addEventListener('submit',event => {
+  event.preventDefault(); const form = event.currentTarget;
+  busy(form,async () => {
+    status('news-status','Publishing…');
+    try { await api('/api/owner/post-news',{method:'POST',body:values(form)}); form.reset(); status('news-status','Bulletin published.','success'); }
+    catch (error) { status('news-status',error.message,'error'); }
+  });
+});
+$('reveal-form').addEventListener('submit',event => {
+  event.preventDefault(); const form = event.currentTarget;
+  busy(form,async () => {
+    $('winner-profile').hidden = true; $('winner-profile').replaceChildren(); status('reveal-status','Looking up winner…');
+    try {
+      const query = new URLSearchParams(values(form));
+      const data = await api('/api/owner/reveal-winner?' + query);
+      const fields = {user_id:'Winning UserID',username:'Login username',tiktok_username:'TikTok handle',roblox_username:'Roblox profile',ml_id:'Mobile Legends User ID',ml_server:'Mobile Legends server'};
+      for (const [key,label] of Object.entries(fields)) $('winner-profile').append(el('dt',label),el('dd',data.profile[key] || 'Not provided'));
+      $('winner-profile').hidden = false; status('reveal-status','Winner profile found. Keep this information private.','success');
+    } catch (error) { status('reveal-status',error.message,'error'); }
+  });
+});
+if (TikSpin.hasConnection()) telemetry();
+setInterval(telemetry,15000);
+document.addEventListener('visibilitychange',() => { if (!document.hidden) telemetry(); });
+
+</script></body></html>

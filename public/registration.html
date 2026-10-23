@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"><meta name="referrer" content="no-referrer"><meta name="color-scheme" content="dark"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https:; base-uri 'none'; form-action 'none'; object-src 'none'"><title>Streamer application | TikSpin</title><style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#121b2d;--panel2:#1a2640;--text:#f1f5ff;--muted:#b7c5df;--line:#354461;--accent:#65efdb;--ink:#081b1a;--danger:#ffb8b8;--good:#9ff3c1;--radius:1rem;font:100%/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);min-width:0}main{width:min(94%,76rem);margin:0 auto;padding:2rem 0 4rem}header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.75rem}h1,h2,h3,p{overflow-wrap:anywhere}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.12;margin:.2rem 0 .7rem;letter-spacing:-.045em}h2{font-size:1.35rem;margin:0 0 1rem}h3{font-size:1.05rem;margin:0 0 .4rem}p{margin:.5rem 0 1rem}.eyebrow{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700}.muted,small{color:var(--muted)}a{color:var(--accent);text-underline-offset:.2rem}button,input,textarea,select{font:inherit}button,a.button{display:inline-flex;justify-content:center;align-items:center;gap:.4rem;max-width:100%;white-space:normal;overflow-wrap:anywhere;padding:.75rem 1.1rem;border: .0625rem solid transparent;border-radius:.65rem;background:var(--accent);color:var(--ink);font-weight:750;cursor:pointer;text-decoration:none;text-align:center}button.secondary,a.secondary{background:var(--panel2);color:var(--text);border-color:var(--line)}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:.18rem solid var(--accent);outline-offset:.2rem}input:not([type=radio]),textarea,select{width:100%;min-width:0;padding:.78rem .9rem;color:var(--text);background:var(--bg);border:.0625rem solid var(--line);border-radius:.6rem}input[type=radio]{accent-color:var(--accent);width:1.1rem;height:1.1rem;flex-shrink:0}textarea{resize:vertical;min-height:7rem}label{display:grid;gap:.4rem;min-width:0;font-size:.93rem}form{display:grid;gap:1rem;min-width:0}fieldset{min-width:0;border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem;margin:0}legend{padding:0 .5rem}.panel{width:100%;min-width:0;padding:clamp(1rem,3vw,1.75rem);background:var(--panel);border:.0625rem solid var(--line);border-radius:var(--radius);margin-bottom:1.25rem}.narrow{max-width:42rem;margin-left:auto;margin-right:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:1.25rem;align-items:start}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1rem}.stack{display:grid;gap:1rem}.row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}.row>*{min-width:0}.grow{flex:1 1 12rem}.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}.tabs a{padding:.65rem .9rem;border:.0625rem solid var(--line);border-radius:.6rem;text-decoration:none;background:var(--panel)}.tabs a[aria-current=page]{background:var(--accent);color:var(--ink)}.status{white-space:pre-wrap;overflow-wrap:anywhere;min-height:1.5rem;color:var(--muted);margin:.5rem 0}.status[data-state=error]{color:var(--danger)}.status[data-state=success]{color:var(--good)}.notice{padding:.8rem 1rem;border-left:.2rem solid var(--accent);background:var(--panel2);border-radius:.3rem;margin:.6rem 0;white-space:pre-wrap;overflow-wrap:anywhere}.warning{border-color:var(--danger)}.card{min-width:0;width:100%;background:var(--bg);border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem}.metric{font-size:clamp(2rem,7vw,3rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.scroll{max-width:100%;overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;padding:.8rem;border-bottom:.0625rem solid var(--line);white-space:nowrap}td code{font-size:1rem}code{overflow-wrap:anywhere;color:var(--accent)}details{margin-bottom:1.25rem}summary{cursor:pointer;color:var(--muted);padding:.5rem 0}.settings{margin-top:.75rem}.settings form{display:flex;align-items:end;flex-wrap:wrap;gap:.75rem}.settings label{flex:1 1 18rem}.badge{display:inline-block;max-width:100%;overflow-wrap:anywhere;border:.0625rem solid var(--line);border-radius:2rem;padding:.2rem .7rem;color:var(--muted);font-size:.85rem}.entry-list{display:grid;gap:.8rem;list-style:none;padding:0;margin:0}.entry-list li{min-width:0}.entry-list button{width:100%;display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--panel2);color:var(--text);border-color:var(--line)}.entry-list small{font-weight:400}.check{display:flex;align-items:flex-start;gap:.65rem;cursor:pointer}.check input{margin-top:.25rem}.profiles{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem;margin:0}.profiles dt{color:var(--muted);font-size:.83rem}.profiles dd{margin:0 0 .65rem;white-space:pre-wrap;overflow-wrap:anywhere}.history{max-height:20rem;overflow:auto;padding-left:1.8rem;font-variant-numeric:tabular-nums}.history li{padding:.3rem;overflow-wrap:anywhere}[hidden]{display:none!important}footer{font-size:.85rem;color:var(--muted);margin-top:1rem}.wheel-stage{display:grid;place-items:center;position:relative;width:100%;aspect-ratio:1;max-width:30rem;margin:1.5rem auto}.wheel-ring{position:absolute;inset:0;border:.6rem double var(--accent);border-radius:50%;background:repeating-conic-gradient(from 0deg,var(--panel2) 0deg 30deg,var(--bg) 30deg 60deg);will-change:transform}.wheel-core{position:relative;width:79%;aspect-ratio:1;border:.125rem solid var(--line);border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center}.wheel-core output{font-size:clamp(1.1rem,5vw,2.3rem);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;max-width:100%}.pointer{position:absolute;top:-.6rem;font-size:2rem;color:var(--accent);z-index:1;line-height:1}.wheel-core p{margin:.4rem 0;font-size:.82rem}.overlay-only main{max-width:40rem;padding:1rem 0}.overlay-only .overlay-hide{display:none!important}.overlay-only .wheel-panel{border:0;background:transparent;padding:0}.overlay-only{background:var(--bg)}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}@media(max-width:32rem){main{padding-top:1rem}.row>button{flex:1 1 auto}.panel{border-radius:.7rem}.wheel-core output{font-size:clamp(1rem,5vw,1.7rem)}}
+</style></head><body><main><header class="overlay-hide"><div><span class="eyebrow">TikSpin / Text-only live giveaways</span><h1>Streamer application</h1><p class="muted">A private, unlisted creator application form.</p></div><span class="badge">[✓] No images. No dependencies.</span></header><div class="overlay-hide"><details id="connection"><summary>Worker connection</summary><div class="panel settings"><form id="connection-form"><label>Deployed Worker HTTPS origin<input id="api-base" type="url" autocomplete="url" required aria-describedby="connection-help"></label><button type="submit" class="secondary">Save connection</button></form><p id="connection-help" class="muted">Paste your deployed Worker URL. This browser remembers the connection; no source edits are necessary.</p><p id="connection-status" class="status" role="status" aria-live="polite"></p></div></details></div><noscript><p class="notice warning">JavaScript is required to use TikSpin. Enable it in this browser.</p></noscript><section class="panel narrow"><span class="eyebrow">Creator access / Invitation page</span><h2>Apply as a streamer</h2><p class="muted">Submit your public streamer handle for manual review. The operator will send your access key privately after approval.</p><form id="application-form"><label>Streamer handle<input name="streamer_name" pattern="[A-Za-z0-9_.@\-]{2,64}" minlength="2" maxlength="64" autocomplete="off" required></label><button type="submit">Submit application</button></form><p id="application-status" class="status" role="status" aria-live="polite"></p><p class="muted">Applications begin in PENDING status. Applying never grants access to viewer profiles.</p></section><footer class="overlay-hide">TikSpin · Separate profiles. Anonymous entries. Local spins.</footer></main><script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const settings = $('connection');
+let apiBase = '';
+try { apiBase = localStorage.getItem('tikspin_api_base') || ''; } catch {}
+$('api-base').value = apiBase;
+settings.open = !apiBase;
+function status(id, text, state = '') {
+  const node = $(id); node.textContent = text; node.dataset.state = state;
+}
+function normalizeURL(value) {
+  const url = new URL(value.trim());
+  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash || !['','/'].includes(url.pathname)) {
+    throw new Error('Enter the HTTPS origin of your Worker, without a path, credentials, query or fragment.');
+  }
+  return url.origin;
+}
+$('connection-form').addEventListener('submit', event => {
+  event.preventDefault();
+  try {
+    const base = normalizeURL($('api-base').value);
+    localStorage.setItem('tikspin_api_base', base);
+    if (base !== apiBase) { location.reload(); return; }
+    status('connection-status', 'Worker connection saved.', 'success'); settings.open = false;
+  } catch (error) { status('connection-status', error.message, 'error'); }
+});
+async function api(path, options = {}) {
+  if (!apiBase) { settings.open = true; throw new Error('Set the Worker connection above first.'); }
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+  try {
+    const init = { method: options.method || 'GET', cache: 'no-store', credentials: 'omit', signal: controller.signal, referrerPolicy: 'no-referrer' };
+    if (options.body !== undefined) { init.headers = { 'Content-Type': 'application/json' }; init.body = JSON.stringify(options.body); }
+    const response = await fetch(apiBase + path, init);
+    let data;
+    try { data = await response.json(); } catch { throw new Error('Worker returned a non-JSON response. Check the connection and deployment.'); }
+    if (!response.ok) { const error = new Error(data.error || 'Request failed.'); error.status = response.status; throw error; }
+    return data;
+  } catch (error) {
+    if (error.name === 'AbortError') throw new Error('Request timed out. A write may have completed; check its state before retrying.');
+    if (error instanceof TypeError) throw new Error('Network request failed. Check your internet, Worker URL, CORS and deployment.');
+    throw error;
+  } finally { clearTimeout(timeout); }
+}
+async function busy(form, work) {
+  const buttons = [...form.querySelectorAll('button[type=submit]')];
+  buttons.forEach(button => button.disabled = true);
+  try { await work(); } finally { buttons.forEach(button => button.disabled = false); }
+}
+function values(form) { return Object.fromEntries(new FormData(form)); }
+function el(tag, text, className) {
+  const element = document.createElement(tag);
+  if (text !== undefined) element.textContent = text;
+  if (className) element.className = className;
+  return element;
+}
+window.TikSpin = Object.freeze({ $, api, status, busy, values, el, hasConnection: () => !!apiBase });
+})();
+</script><script>
+'use strict';
+
+const { api, status, busy, values } = TikSpin;
+document.getElementById('application-form').addEventListener('submit',event => {
+  event.preventDefault(); const form = event.currentTarget;
+  busy(form,async () => {
+    status('application-status','Sending application…');
+    try {
+      const data = await api('/api/register/apply-streamer',{method:'POST',body:values(form)});
+      form.reset(); status('application-status',data.message,'success');
+    } catch (error) { status('application-status',error.message,'error'); }
+  });
+});
+
+</script></body></html>
