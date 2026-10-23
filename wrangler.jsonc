@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tikspin-api",
+  "main": "index.js",
+  "compatibility_date": "2026-10-23", // Matches today's date context perfectly
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tikspin",
+      "database_id": "69e55a7c-67d5-4537-8b85-42655295a55a" 
+    }
+  ]
+}
