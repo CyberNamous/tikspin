@@ -8,9 +8,10 @@
 <style>
 :root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9;--bad:#ff7a93;--ok:#7be0a4;--warn:#ffcf6b}
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%}
-body{background:radial-gradient(900px 420px at 50% -8%,#2a1250 0%,var(--bg) 72%) no-repeat,var(--bg);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;display:flex;justify-content:center;padding:calc(76px + env(safe-area-inset-top)) 16px 48px;overflow-x:hidden}
-main{width:100%;max-width:680px;min-width:0}
+html,body{margin:0}
+body{min-height:100vh;min-height:100dvh}
+body{background:radial-gradient(900px 420px at 50% -8%,#2a1250 0%,var(--bg) 72%) no-repeat,var(--bg);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;display:flex;justify-content:center;padding:calc(76px + env(safe-area-inset-top)) 16px calc(48px + env(safe-area-inset-bottom));overflow-x:hidden}
+main{width:100%;max-width:680px;min-width:0;display:flex;flex-direction:column}
 main,main *{overflow-wrap:anywhere}
 h1{font-size:1.75rem;margin:0;font-weight:900;letter-spacing:-.02em;background:linear-gradient(135deg,#e58bff,#ff4fd8 60%,#a23cf0);-webkit-background-clip:text;background-clip:text;color:transparent}
 h2{font-size:1.05rem;margin:0 0 10px}
@@ -46,12 +47,13 @@ a{color:var(--pink)}
 .pin-big{font-family:ui-monospace,Menlo,monospace;font-size:2.2rem;font-weight:900;letter-spacing:.2em;text-align:center;background:#130f26;border:1.5px dashed var(--pink2);border-radius:12px;padding:16px 8px;user-select:all}
 .check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.93rem}
 .check input{margin-top:3px;width:18px;height:18px;flex:none}
-footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:22px}
+footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:0;padding-top:16px}
+.fab[hidden]+footer{margin-top:auto}
 footer a,footer button.link{color:var(--pink);background:none;border:0;padding:0;font:inherit;display:inline;width:auto;margin:0;cursor:pointer;text-decoration:underline}
 dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;max-width:520px;width:92%;max-height:80vh}
 dialog::backdrop{background:rgba(0,0,0,.65)}
 
-.fab{position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));width:auto;margin:0;border-radius:99px;padding:9px 14px;font-size:.9rem;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:20}
+.fab{position:sticky;align-self:flex-end;bottom:calc(14px + env(safe-area-inset-bottom));width:auto;margin:auto 0 0;flex:none;border-radius:99px;padding:9px 14px;font-size:.9rem;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:20}
 #bot{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;justify-content:center}
 #bot.on{display:flex}
 .botbox{width:100%;max-width:560px;height:min(78vh,620px);background:var(--panel);border:1px solid var(--line);border-radius:16px 16px 0 0;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.6)}
@@ -209,6 +211,7 @@ body[data-view=v-pin] #tabs{display:none}
   </div>
 </section>
 
+<button class="fab" id="botFab" type="button">💬 Help</button>
 <footer id="foot">
   <div class="foot-links"><button class="link" type="button" data-terms>Terms &amp; Conditions</button><button class="link" type="button" id="fbOpen">Send Feedback</button><button class="link" type="button" id="supOpen">Contact Support</button><a id="supUs" href="#" target="_blank" rel="noopener noreferrer" hidden>Support us (optional)</a></div>
   <p>&copy; <span id="yr"></span> TikSpin. All rights reserved.</p>
@@ -225,7 +228,6 @@ body[data-view=v-pin] #tabs{display:none}
 <button type="button" data-tab="profile" id="tabProfile" aria-label="Profile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg><span>Profile</span></button>
 </div></nav>
 
-<button class="fab" id="botFab" type="button">💬 Help</button>
 <div id="bot"><div class="botbox"><div class="bothead"><span id="botName">TikSpin Helper</span><button class="ghost sm" id="botClose" type="button">Close</button></div>
 <div id="botMsgs"></div><div id="botChips"></div>
 <form class="botin" id="botForm" autocomplete="off"><input id="botIn" type="text" maxlength="300" placeholder="Ask a question..."><button type="submit">Send</button></form></div></div>
@@ -375,14 +377,23 @@ function alertItems(){
     if(f.status==='rejected')out.push({k:'bad',tag:'Action needed',attn:1,t:f.streamer+' did not accept your screenshot',d:'Send a new screenshot the next time you join.'});
     else if(f.status==='pending')out.push({k:'warn',tag:'Waiting',attn:0,t:'Waiting for '+f.streamer,d:'Your follow screenshot is waiting for the host to check it.'});
   });
-  return out.sort((a,b)=>b.attn-a.attn);
+  const dis=dismissedAlerts(),who=m.player.display;
+  out.forEach(a=>a.key=who+'|'+a.tag+'|'+a.t);
+  return out.filter(a=>!dis.includes(a.key)).sort((a,b)=>b.attn-a.attn);
+}
+// "Clear" only hides alerts on this device. A new status (different tag or title) shows up again.
+function dismissedAlerts(){try{const v=JSON.parse(store.get('ts_dis')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
+function clearAlerts(){
+  const keys=(alertItems()||[]).map(a=>a.key);if(!keys.length)return;
+  store.set('ts_dis',JSON.stringify([...dismissedAlerts(),...keys].slice(-200)));
+  syncNav();renderAlerts();
 }
 function renderAlerts(){
   const L=$('#alertList'),it=alertItems();
   if(!it&&store.get('ts_p')&&!S.meDone){L.replaceChildren(loadingCard('Loading your updates...'));return}
   if(!it){L.replaceChildren(h('div',{class:'card empty'},h('p',{style:'margin:0'},'Log in to see updates about your entries.'),h('button',{type:'button',onclick:()=>openAuth('login')},'Log in')));return}
   if(!it.length){L.replaceChildren(h('div',{class:'card empty'},'You are all caught up. Updates about your entries show up here.'));return}
-  L.replaceChildren(h('div',{class:'card'},...it.map(a=>h('div',{class:'item'},h('div',{},h('b',{},a.t),h('div',{class:'muted'},a.d)),h('span',{class:'tag '+a.k},a.tag)))),h('button',{class:'ghost',type:'button',onclick:()=>{renderMe();show('v-me')}},'Open My account'));
+  L.replaceChildren(h('div',{class:'row',style:'justify-content:flex-end;margin:0 0 8px'},h('button',{class:'ghost sm',type:'button',onclick:clearAlerts},'Clear all')),h('div',{class:'card'},...it.map(a=>h('div',{class:'item'},h('div',{},h('b',{},a.t),h('div',{class:'muted'},a.d)),h('span',{class:'tag '+a.k},a.tag)))),h('button',{class:'ghost',type:'button',onclick:()=>{renderMe();show('v-me')}},'Open My account'));
 }
 function syncNav(){
   const n=(alertItems()||[]).filter(a=>a.attn).length,b=$('#alertBadge');
