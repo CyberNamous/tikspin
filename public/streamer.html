@@ -230,7 +230,7 @@ function renderGiveaway(d){
   const link=location.origin+g.path,running=g.status!=='ended';
   const tag=g.status==='open'?(g.codeRevoked?['Code revoked','bad']:['Open for entries','good']):g.status==='closed'?['Entries closed','warn']:['Ended',''];
   const card=h('div',{class:'card'},
-    h('div',{class:'row',style:'justify-content:space-between'},h('h2',{style:'margin:0'},GAME[g.game]+' giveaway'),h('span',{class:'tag '+tag[1]},tag[0])),
+    h('div',{class:'row',style:'justify-content:space-between'},h('h2',{style:'margin:0'},GAME[g.game]+' Giveaway'),h('span',{class:'tag '+tag[1]},tag[0])),
     running?h('div',{},h('label',{},'Join code (share it on your stream)'),h('div',{class:'big'},g.code),
       h('div',{class:'grid',style:'margin-top:8px'},h('button',{class:'ghost',onclick:e=>copy(g.code,e.target)},'Copy code'),h('button',{class:'ghost',onclick:e=>copy(link,e.target)},'Copy link'))):null,
     h('div',{class:'stat'},...[['On wheel',g.counts.alive],['On hold',g.counts.frozen||0],['Winners',g.counts.winner||0],['Total',g.counts.total]].map(([l,n])=>h('div',{},h('b',{},String(n)),h('span',{class:'muted'},l)))),
