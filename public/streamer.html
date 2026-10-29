@@ -1,201 +1,395 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"><meta name="referrer" content="no-referrer"><meta name="color-scheme" content="dark"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https:; base-uri 'none'; form-action 'none'; object-src 'none'"><title>Live room | TikSpin</title><style>
-:root{color-scheme:dark;--bg:#090d18;--panel:#121b2d;--panel2:#1a2640;--text:#f1f5ff;--muted:#b7c5df;--line:#354461;--accent:#65efdb;--ink:#081b1a;--danger:#ffb8b8;--good:#9ff3c1;--radius:1rem;font:100%/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);min-width:0}main{width:min(94%,76rem);margin:0 auto;padding:2rem 0 4rem}header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.75rem}h1,h2,h3,p{overflow-wrap:anywhere}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.12;margin:.2rem 0 .7rem;letter-spacing:-.045em}h2{font-size:1.35rem;margin:0 0 1rem}h3{font-size:1.05rem;margin:0 0 .4rem}p{margin:.5rem 0 1rem}.eyebrow{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700}.muted,small{color:var(--muted)}a{color:var(--accent);text-underline-offset:.2rem}button,input,textarea,select{font:inherit}button,a.button{display:inline-flex;justify-content:center;align-items:center;gap:.4rem;max-width:100%;white-space:normal;overflow-wrap:anywhere;padding:.75rem 1.1rem;border: .0625rem solid transparent;border-radius:.65rem;background:var(--accent);color:var(--ink);font-weight:750;cursor:pointer;text-decoration:none;text-align:center}button.secondary,a.secondary{background:var(--panel2);color:var(--text);border-color:var(--line)}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:.18rem solid var(--accent);outline-offset:.2rem}input:not([type=radio]),textarea,select{width:100%;min-width:0;padding:.78rem .9rem;color:var(--text);background:var(--bg);border:.0625rem solid var(--line);border-radius:.6rem}input[type=radio]{accent-color:var(--accent);width:1.1rem;height:1.1rem;flex-shrink:0}textarea{resize:vertical;min-height:7rem}label{display:grid;gap:.4rem;min-width:0;font-size:.93rem}form{display:grid;gap:1rem;min-width:0}fieldset{min-width:0;border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem;margin:0}legend{padding:0 .5rem}.panel{width:100%;min-width:0;padding:clamp(1rem,3vw,1.75rem);background:var(--panel);border:.0625rem solid var(--line);border-radius:var(--radius);margin-bottom:1.25rem}.narrow{max-width:42rem;margin-left:auto;margin-right:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:1.25rem;align-items:start}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1rem}.stack{display:grid;gap:1rem}.row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}.row>*{min-width:0}.grow{flex:1 1 12rem}.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}.tabs a{padding:.65rem .9rem;border:.0625rem solid var(--line);border-radius:.6rem;text-decoration:none;background:var(--panel)}.tabs a[aria-current=page]{background:var(--accent);color:var(--ink)}.status{white-space:pre-wrap;overflow-wrap:anywhere;min-height:1.5rem;color:var(--muted);margin:.5rem 0}.status[data-state=error]{color:var(--danger)}.status[data-state=success]{color:var(--good)}.notice{padding:.8rem 1rem;border-left:.2rem solid var(--accent);background:var(--panel2);border-radius:.3rem;margin:.6rem 0;white-space:pre-wrap;overflow-wrap:anywhere}.warning{border-color:var(--danger)}.card{min-width:0;width:100%;background:var(--bg);border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem}.metric{font-size:clamp(2rem,7vw,3rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.scroll{max-width:100%;overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;padding:.8rem;border-bottom:.0625rem solid var(--line);white-space:nowrap}td code{font-size:1rem}code{overflow-wrap:anywhere;color:var(--accent)}details{margin-bottom:1.25rem}summary{cursor:pointer;color:var(--muted);padding:.5rem 0}.settings{margin-top:.75rem}.settings form{display:flex;align-items:end;flex-wrap:wrap;gap:.75rem}.settings label{flex:1 1 18rem}.badge{display:inline-block;max-width:100%;overflow-wrap:anywhere;border:.0625rem solid var(--line);border-radius:2rem;padding:.2rem .7rem;color:var(--muted);font-size:.85rem}.entry-list{display:grid;gap:.8rem;list-style:none;padding:0;margin:0}.entry-list li{min-width:0}.entry-list button{width:100%;display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--panel2);color:var(--text);border-color:var(--line)}.entry-list small{font-weight:400}.check{display:flex;align-items:flex-start;gap:.65rem;cursor:pointer}.check input{margin-top:.25rem}.profiles{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem;margin:0}.profiles dt{color:var(--muted);font-size:.83rem}.profiles dd{margin:0 0 .65rem;white-space:pre-wrap;overflow-wrap:anywhere}.history{max-height:20rem;overflow:auto;padding-left:1.8rem;font-variant-numeric:tabular-nums}.history li{padding:.3rem;overflow-wrap:anywhere}[hidden]{display:none!important}footer{font-size:.85rem;color:var(--muted);margin-top:1rem}.wheel-stage{display:grid;place-items:center;position:relative;width:100%;aspect-ratio:1;max-width:30rem;margin:1.5rem auto}.wheel-ring{position:absolute;inset:0;border:.6rem double var(--accent);border-radius:50%;background:repeating-conic-gradient(from 0deg,var(--panel2) 0deg 30deg,var(--bg) 30deg 60deg);will-change:transform}.wheel-core{position:relative;width:79%;aspect-ratio:1;border:.125rem solid var(--line);border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center}.wheel-core output{font-size:clamp(1.1rem,5vw,2.3rem);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;max-width:100%}.pointer{position:absolute;top:-.6rem;font-size:2rem;color:var(--accent);z-index:1;line-height:1}.wheel-core p{margin:.4rem 0;font-size:.82rem}.overlay-only main{max-width:40rem;padding:1rem 0}.overlay-only .overlay-hide{display:none!important}.overlay-only .wheel-panel{border:0;background:transparent;padding:0}.overlay-only{background:var(--bg)}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}@media(max-width:32rem){main{padding-top:1rem}.row>button{flex:1 1 auto}.panel{border-radius:.7rem}.wheel-core output{font-size:clamp(1rem,5vw,1.7rem)}}
-</style></head><body><main><header class="overlay-hide"><div><span class="eyebrow">TikSpin / Text-only live giveaways</span><h1>Live room</h1><p class="muted">An anonymous wheel for your stream. Download once. Spin without pings.</p></div><span class="badge">[✓] No images. No dependencies.</span></header><div class="overlay-hide"><details id="connection"><summary>Worker connection</summary><div class="panel settings"><form id="connection-form"><label>Deployed Worker HTTPS origin<input id="api-base" type="url" autocomplete="url" required aria-describedby="connection-help"></label><button type="submit" class="secondary">Save connection</button></form><p id="connection-help" class="muted">Paste your deployed Worker URL. This browser remembers the connection; no source edits are necessary.</p><p id="connection-status" class="status" role="status" aria-live="polite"></p></div></details></div><noscript><p class="notice warning">JavaScript is required to use TikSpin. Enable it in this browser.</p></noscript>
-<section id="key-panel" class="panel narrow overlay-hide"><h2>Streamer access</h2><form id="key-form"><label>Approved access key<input name="access_key" type="password" pattern="TKSPIN-[0-9]{6}" minlength="13" maxlength="13" autocomplete="off" required></label><button type="submit">Open live room</button></form><p id="key-status" class="status" role="status" aria-live="polite"></p></section>
-<section id="live-room" hidden><div class="panel row overlay-hide"><div class="grow"><span class="eyebrow">Streamer workspace</span><p id="room-label">Ready for a new giveaway.</p></div><button type="button" id="toggle-overlay" class="secondary">Overlay-only mode</button><button type="button" id="sign-out" class="secondary">Sign out</button></div><div class="grid" id="room-grid"><section class="panel overlay-hide"><h2>Giveaway controls</h2><form id="create-form"><label>Giveaway title<input name="title" maxlength="120" required autocomplete="off"></label><fieldset><legend>Exactly one game</legend><div class="stack"><label class="check"><input type="radio" name="mode" value="ML" required checked><span>Mobile Legends Giveaway</span></label><label class="check"><input type="radio" name="mode" value="ROBLOX" required><span>Roblox Giveaway</span></label></div></fieldset><label>Custom entry passcode<input name="entry_code" maxlength="100" required autocomplete="off"></label><button type="submit" id="create-button">Open giveaway</button></form><p id="create-status" class="status" role="status" aria-live="polite"></p><hr><h3>Close entries &amp; load the wheel</h3><p class="muted">Lock makes one request. Entries close permanently and the anonymous array is delivered only once. Keep this browser open: refreshing loses the array. Download it after locking for your own backup.</p><label class="check"><input type="checkbox" id="confirm-lock"><span>I am ready to close entries and keep this wheel in browser memory.</span></label><button type="button" id="lock-button" disabled>Lock Entries · download once</button><p id="lock-status" class="status" role="status" aria-live="polite"></p><div class="row"><button type="button" id="backup-button" class="secondary" disabled>Download ID backup</button><button type="button" id="next-button" class="secondary" disabled>Prepare next giveaway</button></div></section><section class="panel wheel-panel"><div class="row overlay-hide"><h2 class="grow">Anonymous wheel</h2><span id="entry-count" class="badge">0 IDs loaded</span></div><p id="wheel-title" class="muted">Lock a giveaway to load its IDs.</p><div class="wheel-stage"><span class="pointer" aria-hidden="true">▼</span><div id="wheel-ring" class="wheel-ring" aria-hidden="true"></div><div class="wheel-core"><p>10-DIGIT USER ID</p><output id="wheel-number" aria-live="off">—</output><p id="wheel-caption">Waiting for entries</p></div></div><div class="row"><button type="button" id="spin-button" class="grow" disabled>Spin locally</button><button type="button" id="exit-overlay" class="secondary" hidden>Exit overlay</button></div><p id="spin-status" class="status" role="status" aria-live="polite"></p><div class="overlay-hide"><h3>Winner log · repeat wins allowed</h3><ol id="winner-log" class="history"></ol><p class="muted">Only numerical IDs appear here. Spins never fetch or reveal account information. Escape exits overlay-only mode.</p></div></section></div></section>
-<footer class="overlay-hide">TikSpin · Separate profiles. Anonymous entries. Local spins.</footer></main><script>
-(() => {
-'use strict';
-const $ = id => document.getElementById(id);
-const settings = $('connection');
-let apiBase = '';
-try { apiBase = localStorage.getItem('tikspin_api_base') || ''; } catch {}
-$('api-base').value = apiBase;
-settings.open = !apiBase;
-function status(id, text, state = '') {
-  const node = $(id); node.textContent = text; node.dataset.state = state;
-}
-function normalizeURL(value) {
-  const url = new URL(value.trim());
-  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash || !['','/'].includes(url.pathname)) {
-    throw new Error('Enter the HTTPS origin of your Worker, without a path, credentials, query or fragment.');
-  }
-  return url.origin;
-}
-$('connection-form').addEventListener('submit', event => {
-  event.preventDefault();
-  try {
-    const base = normalizeURL($('api-base').value);
-    localStorage.setItem('tikspin_api_base', base);
-    if (base !== apiBase) { location.reload(); return; }
-    status('connection-status', 'Worker connection saved.', 'success'); settings.open = false;
-  } catch (error) { status('connection-status', error.message, 'error'); }
-});
-async function api(path, options = {}) {
-  if (!apiBase) { settings.open = true; throw new Error('Set the Worker connection above first.'); }
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
-  try {
-    const init = { method: options.method || 'GET', cache: 'no-store', credentials: 'omit', signal: controller.signal, referrerPolicy: 'no-referrer' };
-    if (options.body !== undefined) { init.headers = { 'Content-Type': 'application/json' }; init.body = JSON.stringify(options.body); }
-    const response = await fetch(apiBase + path, init);
-    let data;
-    try { data = await response.json(); } catch { throw new Error('Worker returned a non-JSON response. Check the connection and deployment.'); }
-    if (!response.ok) { const error = new Error(data.error || 'Request failed.'); error.status = response.status; throw error; }
-    return data;
-  } catch (error) {
-    if (error.name === 'AbortError') throw new Error('Request timed out. A write may have completed; check its state before retrying.');
-    if (error instanceof TypeError) throw new Error('Network request failed. Check your internet, Worker URL, CORS and deployment.');
-    throw error;
-  } finally { clearTimeout(timeout); }
-}
-async function busy(form, work) {
-  const buttons = [...form.querySelectorAll('button[type=submit]')];
-  buttons.forEach(button => button.disabled = true);
-  try { await work(); } finally { buttons.forEach(button => button.disabled = false); }
-}
-function values(form) { return Object.fromEntries(new FormData(form)); }
-function el(tag, text, className) {
-  const element = document.createElement(tag);
-  if (text !== undefined) element.textContent = text;
-  if (className) element.className = className;
-  return element;
-}
-window.TikSpin = Object.freeze({ $, api, status, busy, values, el, hasConnection: () => !!apiBase });
-})();
-</script><script>
-'use strict';
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>TikSpin · Streamer</title>
+<style>
+:root{--bg:#0d0a1c;--panel:#17122b;--line:#3a2a5e;--pink:#e58bff;--pink2:#d54bf0;--neon:#b43cf5;--text:#fff;--muted:#a99fcf;--bad:#ff4d6d;--ok:#7be0a4}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:radial-gradient(900px 500px at 50% -10%,#2d1450 0%,var(--bg) 70%);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;display:flex;justify-content:center;padding:22px 16px 60px}
+main{width:100%;max-width:620px}
+h1{font-size:clamp(1.8rem,7vw,2.4rem);margin:0;font-weight:900;color:var(--pink2);text-shadow:0 0 28px rgba(180,60,245,.45)}
+h2{font-size:1.05rem;margin:0 0 10px}
+p{line-height:1.5}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
+.lede{color:var(--muted);margin:0 0 16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.view{display:none}.view.on{display:block}
+label{display:block;font-weight:700;margin:12px 0 6px}
+input[type=text],input[type=password],select{width:100%;background:#0d0a1c;border:1.5px solid var(--line);border-radius:10px;color:var(--text);font:inherit;padding:12px 14px}
+input:focus,select:focus{outline:none;border-color:var(--neon);box-shadow:0 0 0 3px rgba(180,60,245,.25)}
+button,.btn{background:linear-gradient(135deg,var(--neon),var(--pink2));color:#fff;border:0;border-radius:10px;font:inherit;font-weight:800;padding:12px 16px;cursor:pointer;width:100%;margin-top:14px;display:block;text-align:center;text-decoration:none}
+button.ghost,.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--muted);font-weight:700}
+button.danger{background:#4a1522;color:var(--bad);border:1.5px solid #7a2438}
+button.sm{width:auto;display:inline-block;margin:0;padding:8px 12px;font-size:.9rem}
+button:disabled{opacity:.55;cursor:default}
+.err{color:var(--bad);font-size:.92rem;min-height:1.2em;margin-top:8px}
+.ok{color:var(--ok)}
+.muted{color:var(--muted);font-size:.92rem}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid button{margin:0}
+.tag{font-size:.78rem;font-weight:800;border-radius:99px;padding:3px 9px;background:#2a1d4d;color:var(--pink);white-space:nowrap}
+.tag.good{background:#12392a;color:var(--ok)}.tag.warn{background:#4a3511;color:#ffcf6b}.tag.bad{background:#4a1522;color:var(--bad)}
+.big{font-family:ui-monospace,Menlo,monospace;font-size:1.7rem;font-weight:900;letter-spacing:.16em;text-align:center;background:#130f26;border:1.5px dashed var(--pink2);border-radius:12px;padding:14px 8px;user-select:all;word-break:break-all}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.93rem}
+.check input{margin-top:3px;width:18px;height:18px;flex:none}
+.stat{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.stat div{background:#130f26;border:1px solid var(--line);border-radius:10px;padding:8px 12px;text-align:center;min-width:72px}
+.stat b{display:block;font-size:1.2rem}
+a{color:var(--pink)}
+details{margin-top:12px}summary{cursor:pointer;color:var(--pink);font-weight:700}
 
-const { $, api, status, busy, values, el } = TikSpin;
-let accessKey = ''; let activeGiveaway = null; let ids = []; let locked = false;
-let locking = false; let spinning = false; let turn = 0; let spinCount = 0;
-function sync() {
-  $('create-button').disabled = !!activeGiveaway || locking || spinning;
-  for (const control of $('create-form').elements) control.disabled = !!activeGiveaway || locking || spinning;
-  $('lock-button').disabled = !activeGiveaway || locked || locking || !$('confirm-lock').checked;
-  $('confirm-lock').disabled = !activeGiveaway || locked || locking;
-  $('spin-button').disabled = !locked || !ids.length || spinning || locking;
-  $('backup-button').disabled = !locked || locking;
-  $('next-button').disabled = !locked || locking || spinning;
-  $('sign-out').disabled = locking || spinning;
-  $('room-label').textContent = activeGiveaway ? activeGiveaway.giveaway_name + (locked ? ' · permanently locked' : ' · entries open') : 'Ready for a new giveaway.';
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;margin:0 -2px;position:sticky;top:0;background:#0d0a1c;z-index:5}
+.tabbtn{width:auto;margin:0;flex:none;padding:9px 14px;font-size:.9rem;background:transparent;border:1.5px solid var(--line);color:var(--muted)}
+.tabbtn.on{background:linear-gradient(135deg,var(--neon),var(--pink2));color:#fff;border-color:transparent}
+.pane[hidden]{display:none}
+.ent{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#130f26}
+.ent.hold{border-color:#a97a1f}
+.ent h3{margin:0;font-size:1rem}
+.ent .meta{color:var(--muted);font-size:.88rem;margin:4px 0}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.acts button,.acts select{width:auto;margin:0;padding:7px 11px;font-size:.85rem}
+.acts select{padding:7px 8px}
+.empty{color:var(--muted);text-align:center;padding:18px 8px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;background:#12392a;color:var(--ok);border:1px solid #1f6b4a;padding:10px 16px;border-radius:12px;z-index:50;font-weight:700;max-width:90%}
+.toast.bad{background:#4a1522;color:var(--bad);border-color:#7a2438}
+textarea{width:100%;background:#0d0a1c;border:1.5px solid var(--line);border-radius:10px;color:#fff;font:inherit;padding:12px 14px}
+dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;max-width:520px;width:92%}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+.shot{max-width:100%;border-radius:10px;margin-top:8px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><h1>TikSpin</h1><button class="ghost sm" id="outBtn" hidden>Log out</button></div>
+<p class="lede" id="lede">Streamer panel</p>
+<noscript><p class="err">TikSpin needs JavaScript to work.</p></noscript>
+
+<!-- LOG IN -->
+<section class="view" id="v-login">
+  <form class="card" id="loginForm" autocomplete="on">
+    <h2>Streamer login</h2>
+    <label for="lu">TikTok username</label><input id="lu" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
+    <label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password">
+    <button type="submit">Log in</button><div class="err" id="loginErr"></div>
+    <p class="muted" style="margin:10px 0 0">Streamers join by invitation only. Have an invitation link? Open it to register. Need one? <span class="mail">Ask the operator.</span></p>
+    <details><summary>Forgot your password?</summary><div id="recoverBox"></div></details>
+    <details><summary>Lost your PIN too?</summary><div id="helpBox"></div></details>
+  </form>
+  <a class="btn ghost" href="/">Back to TikSpin</a>
+</section>
+
+<!-- REGISTER WITH AN INVITATION -->
+<section class="view" id="v-reg">
+  <form class="card" id="regForm" autocomplete="off">
+    <h2>Create your streamer account</h2>
+    <p class="muted" style="margin-top:0">Use your own TikTok account. Players use these details to find you, so enter them exactly as they appear on your TikTok profile.</p>
+    <label for="rt">TikTok username (without @)</label><input id="rt" type="text" maxlength="25" autocapitalize="none" spellcheck="false">
+    <label for="rn">TikTok display name</label><input id="rn" type="text" maxlength="40">
+    <label for="rp">Password <span class="muted">(10+ characters)</span></label><input id="rp" type="password" autocomplete="new-password">
+    <label class="check"><input type="checkbox" id="rterms"><span>I accept the <a href="/terms#streamer" target="_blank" rel="noopener">Streamer Terms</a> and the <a href="/terms#global" target="_blank" rel="noopener">Global Terms</a>.</span></label>
+    <button type="submit">Request my account</button><div class="err" id="regErr"></div>
+  </form>
+</section>
+
+<!-- SAVE YOUR PIN -->
+<section class="view" id="v-pin">
+  <div class="card"><h2>Save your recovery PIN</h2><div class="big" id="pinBig"></div>
+    <p class="muted">Shown <b>once</b>. It helps you reset your password later. We can't show it again, so write it down or save it somewhere safe. Never share it.</p>
+    <label class="check"><input type="checkbox" id="pinSaved"><span>I saved my PIN.</span></label><button id="pinGo" disabled>Continue</button></div>
+</section>
+
+<!-- NOT APPROVED (pending / under review / rejected) -->
+<section class="view" id="v-status"><div class="card"><h2 id="stTitle"></h2><p id="stMsg"></p><p class="muted" id="stMail"></p></div></section>
+
+<!-- ACCOUNT CHECKS (new password / new terms) -->
+<section class="view" id="v-must"><div class="card" id="mustCard"></div></section>
+
+<!-- PANEL -->
+<section class="view" id="v-panel">
+  <div class="card"><div class="row" style="justify-content:space-between"><div><h2 style="margin:0" id="pName"></h2><div class="muted" id="pTT"></div></div><span class="tag good">Approved</span></div>
+    <label style="margin-top:14px">Your wheel link <span class="muted">(view only, for your stream or OBS)</span></label>
+    <div class="row"><input type="text" id="wheelLink" readonly style="flex:1"><button class="sm" id="copyWheel">Copy</button></div></div>
+  <div class="tabs"><button class="tabbtn on" data-tab="give">Giveaway</button><button class="tabbtn" data-tab="entries" id="tbEntries">Entries</button><button class="tabbtn" data-tab="reviews" id="tbReviews">Reviews</button><button class="tabbtn" data-tab="wheel">Wheel</button><button class="tabbtn" data-tab="sched">Schedule</button><button class="tabbtn" data-tab="acct">Account</button></div>
+  <div class="pane" id="p-give"><div id="giveawayBox"></div><div class="card" id="newBox" hidden></div></div>
+  <div class="pane" id="p-entries" hidden></div>
+  <div class="pane" id="p-reviews" hidden></div>
+  <div class="pane" id="p-wheel" hidden></div>
+  <div class="pane" id="p-sched" hidden></div>
+  <div class="pane" id="p-acct" hidden></div>
+</section>
+<dialog id="rep"><h2 id="repTitle">Report a player</h2><p class="muted" style="margin-top:0">The operator reviews reports by hand. A Permanent Ban needs reports from several hosts with clear evidence.</p>
+<select id="repCat"><option value="duplicate-accounts">Duplicate accounts</option><option value="fake-account">Fake account</option><option value="abuse">Abuse or cheating</option><option value="other">Other</option></select>
+<label for="repTxt">What happened?</label><textarea id="repTxt" rows="4" maxlength="1000"></textarea>
+<label for="repShot">Screenshot (optional)</label><input id="repShot" type="file" accept="image/*">
+<div class="err" id="repErr"></div><button id="repGo" type="button">Send report</button><button class="ghost" type="button" onclick="document.getElementById('rep').close()">Cancel</button></dialog>
+</main>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const h=(t,a,...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a||{}))x==='class'?e.className=v:x.startsWith('on')?e.addEventListener(x.slice(2),v):v!==false&&e.setAttribute(x,v===true?'':v);e.append(...k.filter(x=>x!=null&&x!==false));return e};
+const store={get(k){try{return localStorage.getItem(k)||''}catch{return ''}},set(k,v){try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch{}}};
+const GAME={roblox:'Roblox',ml:'Mobile Legends'};
+const S={me:null,email:''};
+async function api(path,{method='GET',body,token}={}){
+  try{const r=await fetch('/api/'+path,{method,headers:{...(body?{'content-type':'application/json'}:{}),...(token?{authorization:'Bearer '+token}:{})},body:body?JSON.stringify(body):void 0});
+    let d={};try{d=await r.json()}catch{}return {status:r.status,data:d}}
+  catch{return {status:0,data:{ok:false,error:'Could not reach TikSpin. Check your connection and try again.'}}}
 }
-function resetWheel() {
-  ids = []; locked = false; spinCount = 0; turn = 0;
-  $('entry-count').textContent = '0 IDs loaded'; $('winner-log').replaceChildren(); $('wheel-number').textContent = '—';
-  $('wheel-caption').textContent = 'Waiting for entries'; $('wheel-ring').style.transform = 'rotate(0deg)';
-  $('wheel-title').textContent = 'Lock a giveaway to load its IDs.'; $('confirm-lock').checked = false;
-  status('spin-status',''); status('lock-status','');
+const sApi=(p,o={})=>api('streamer/'+p,{...o,token:store.get('ts_s')});
+const post=(p,body)=>sApi(p,{method:'POST',body});
+function show(id){$$('.view').forEach(v=>v.classList.toggle('on',v.id===id));scrollTo(0,0);$('#outBtn').hidden=!['v-status','v-must','v-panel'].includes(id)}
+async function copy(text,btn){try{await navigator.clipboard.writeText(text)}catch{prompt('Copy this:',text);return}const o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1200)}
+const when=ms=>new Date(ms).toLocaleString([],{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+
+function setMail(){$$('.mail').forEach(el=>{if(S.email)el.replaceChildren(h('a',{href:'mailto:'+S.email},'Email '+S.email))})}
+
+/* ---------- routing by account status ---------- */
+function route(st,message){
+  if(st==='approved'){S.me&&S.me.mustChangePassword||S.me&&S.me.needsTerms?mustScreen():loadPanel();return}
+  const t={pending:'Request is being processed',suspended:'Account under review',rejected:'Request not approved'}[st]||'Account unavailable';
+  $('#stTitle').textContent=t;
+  $('#stMsg').textContent=message||(st==='pending'?'Request is being processed. If no progress is made within 24 hours, contact the operator.':'Contact the operator for details.');
+  $('#stMail').replaceChildren(S.email?h('span',{},'Contact the operator: ',h('a',{href:'mailto:'+S.email},S.email)):'Contact the operator using the email shown on the TikSpin homepage.');
+  show('v-status');
 }
-$('key-form').addEventListener('submit',event => {
-  event.preventDefault(); const form = event.currentTarget;
-  busy(form,async () => {
-    status('key-status','Checking access key…');
-    const candidate = values(form).access_key;
-    try {
-      const data = await api('/api/streamer/validate-key',{method:'POST',body:{access_key:candidate}});
-      accessKey = candidate; activeGiveaway = data.active_giveaway; resetWheel(); form.reset();
-      $('key-panel').hidden = true; $('live-room').hidden = false;
-      if (activeGiveaway) $('wheel-title').textContent = activeGiveaway.giveaway_name;
-      sync();
-    } catch (error) { status('key-status',error.message,'error'); }
+async function start(){
+  const {data:home}=await api('home');S.email=home&&home.contactEmail||'';setMail();
+  const inv=new URLSearchParams(location.search).get('invite');
+  if(inv){S.invite=inv;history.replaceState&&(()=>{try{history.replaceState(null,'','/streamer')}catch{}})();return show('v-reg')}
+  if(!store.get('ts_s'))return show('v-login');
+  const {status,data:d}=await sApi('me');
+  if(d.ok){S.me=d.streamer;return route(d.streamer.status,d.streamer.message)}
+  if(status===403&&d.code)return route(d.code,d.error);
+  store.set('ts_s','');show('v-login');
+}
+
+/* ---------- login, register ---------- */
+$('#loginForm').onsubmit=async e=>{
+  e.preventDefault();const b=e.submitter;b.disabled=true;$('#loginErr').textContent='';
+  const {data:d}=await api('streamer/login',{method:'POST',body:{tiktok:$('#lu').value.trim(),password:$('#lp').value}});b.disabled=false;
+  if(!d.ok){$('#loginErr').textContent=d.error||'Could not log in.';return}
+  store.set('ts_s',d.token);$('#lp').value='';S.me=d.streamer;route(d.streamer.status,d.streamer.message);
+};
+$('#regForm').onsubmit=async e=>{
+  e.preventDefault();const b=e.submitter;b.disabled=true;$('#regErr').textContent='';
+  const {data:d}=await api('streamer/register',{method:'POST',body:{invite:S.invite,tiktok:$('#rt').value.trim(),display:$('#rn').value.trim(),password:$('#rp').value,terms:$('#rterms').checked}});b.disabled=false;
+  if(!d.ok){$('#regErr').textContent=d.error||'Could not register.';return}
+  store.set('ts_s',d.token);S.me=d.streamer;$('#rp').value='';
+  $('#pinBig').textContent=d.pin;$('#pinSaved').checked=false;$('#pinGo').disabled=true;show('v-pin');
+};
+$('#pinSaved').onchange=e=>{$('#pinGo').disabled=!e.target.checked};
+$('#pinGo').onclick=()=>{$('#pinBig').textContent='';route(S.me.status,S.me.message)};
+$('#outBtn').onclick=async()=>{await post('logout',{});store.set('ts_s','');S.me=null;show('v-login')};
+
+// small helper: a form with labelled inputs, shown inside a container
+function mini(box,fields,label,send,done){
+  const ins={},err=h('div',{class:'err'});box.replaceChildren();
+  for(const [id,lab,type] of fields){ins[id]=h('input',{type:type||'text',autocomplete:'off',autocapitalize:'none',spellcheck:'false'});box.append(h('label',{},lab),ins[id])}
+  const go=h('button',{type:'button',onclick:async()=>{go.disabled=true;err.textContent='';err.className='err';const v={};for(const k in ins)v[k]=ins[k].value.trim();
+    const d=await send(v);go.disabled=false;if(!d.ok){err.textContent=d.error||'That did not work.';return}done(d,box)}},label);
+  box.append(go,err);
+}
+mini($('#recoverBox'),[['tiktok','TikTok username'],['pin','6-digit PIN','password'],['password','New password (10+ characters)','password']],'Set a new password',
+  v=>api('streamer/recover',{method:'POST',body:v}).then(r=>r.data),
+  (d,box)=>box.replaceChildren(h('p',{class:'ok'},'Password changed. Your new PIN (shown once): '),h('div',{class:'big'},d.pin),h('p',{class:'muted'},'Save it, then log in with your new password.')));
+mini($('#helpBox'),[['tiktok','Your TikTok username']],'Get my request code',
+  v=>api('streamer/pinrequest',{method:'POST',body:v}).then(r=>r.data),
+  (d,box)=>box.replaceChildren(h('p',{},'Your request code: '),h('div',{class:'big'},d.code),h('p',{class:'muted'},'Put this code in your TikTok bio for a short while, then email the operator with a screenshot of your profile. It works for 24 hours.'),d.email?h('a',{class:'btn',href:'mailto:'+d.email+'?subject='+encodeURIComponent(d.mail.subject)+'&body='+encodeURIComponent(d.mail.body)},'Open email'):h('p',{class:'muted'},'The operator email is not set up yet.')));
+
+/* ---------- new password / new terms ---------- */
+function mustScreen(){
+  const c=$('#mustCard'),m=S.me;c.replaceChildren();
+  if(m.mustChangePassword){
+    c.append(h('h2',{},'Choose a new password'),h('p',{class:'muted'},'The operator reset your account. Set your own password now.'));
+    const box=h('div');c.append(box);
+    mini(box,[['current','Current (temporary) password','password'],['next','New password (10+ characters)','password']],'Change password',v=>post('changepassword',v).then(r=>r.data),async d=>{store.set('ts_s',d.token);S.me.mustChangePassword=false;mustScreen()});
+  }else{
+    const cb=h('input',{type:'checkbox'}),err=h('div',{class:'err'});
+    c.append(h('h2',{},'Updated terms'),h('p',{class:'muted'},'Please read and accept the updated terms to continue.'),h('a',{href:'/terms#streamer',target:'_blank',rel:'noopener'},'Read the Streamer Terms'),h('label',{class:'check'},cb,h('span',{},'I accept the updated terms.')),
+      h('button',{onclick:async e=>{if(!cb.checked){err.textContent='Please tick the box.';return}const {data:d}=await post('acceptterms',{accept:true});if(!d.ok){err.textContent=d.error;return}S.me.needsTerms=false;route('approved')}},'Continue'),err);
+  }
+  show('v-must');
+}
+
+/* ---------- panel: generate a link, manage the giveaway ---------- */
+async function loadPanel(){
+  const {data:d}=await sApi('current');
+  if(!d.ok)return start();
+  $('#pName').textContent=S.me.display;$('#pTT').textContent='@'+S.me.tiktok;
+  $('#wheelLink').value=location.origin+'/wheel/'+S.me.wheelCode;$('#copyWheel').onclick=e=>copy($('#wheelLink').value,e.target);
+  S.cur=d;renderGiveaway(d);renderNew(d);renderEntries(d);renderWheel(d);renderSched(d);badges(d);show('v-panel');tab(S.tab||'give');
+}
+function renderGiveaway(d){
+  const box=$('#giveawayBox'),g=d.giveaway;box.replaceChildren();if(!g)return;
+  const link=location.origin+g.path,running=g.status!=='ended';
+  const tag=g.status==='open'?(g.codeRevoked?['Code revoked','bad']:['Open for entries','good']):g.status==='closed'?['Entries closed','warn']:['Ended',''];
+  const card=h('div',{class:'card'},
+    h('div',{class:'row',style:'justify-content:space-between'},h('h2',{style:'margin:0'},GAME[g.game]+' giveaway'),h('span',{class:'tag '+tag[1]},tag[0])),
+    running?h('div',{},h('label',{},'Join code (share it on your stream)'),h('div',{class:'big'},g.code),
+      h('div',{class:'grid',style:'margin-top:8px'},h('button',{class:'ghost',onclick:e=>copy(g.code,e.target)},'Copy code'),h('button',{class:'ghost',onclick:e=>copy(link,e.target)},'Copy link'))):null,
+    h('div',{class:'stat'},...[['On wheel',g.counts.alive],['On hold',g.counts.frozen||0],['Winners',g.counts.winner||0],['Total',g.counts.total]].map(([l,n])=>h('div',{},h('b',{},String(n)),h('span',{class:'muted'},l)))),
+    h('p',{class:'muted',style:'margin:0'},'Asks for: '+g.requirements.map(r=>({roblox_username:'Roblox username',ign:'IGN',user_id:'User ID',server_id:'Server ID',follow_proof:'follow screenshot'}[r]||r)).join(', ')+(g.expiresAt?' · entries close '+when(g.expiresAt):'')+(d.pendingProofs?' · '+d.pendingProofs+' screenshot(s) waiting for your review':'')),
+    h('div',{style:'margin-top:12px'},
+      h('label',{class:'check',style:'margin:0 0 10px'},h('input',{type:'checkbox',checked:g.showOnHome,onchange:async e=>{await act(e.target.checked?'home-on':'home-off')}}),h('span',{},'Show this giveaway on the TikSpin homepage (view only)'))),
+    running?h('div',{class:'grid'},
+      g.status==='open'?h('button',{class:'ghost',onclick:()=>act('close')},'Close entries'):h('button',{class:'ghost',onclick:()=>act('reopen')},'Reopen entries'),
+      !g.codeRevoked?h('button',{class:'ghost',onclick:()=>confirmAct('revoke','Revoke the code? Nobody new can join with it.')},'Revoke code'):null,
+      h('button',{class:'ghost',onclick:()=>confirmAct('end','End this giveaway? Waiting screenshots are declined.')},'End giveaway')):null,
+    h('button',{class:'danger',onclick:()=>confirmAct('delete','Delete this giveaway and all its entries? This cannot be undone.')},'Delete giveaway'));
+  box.append(card);
+}
+async function act(op){const {data:d}=await post('manage',{op});if(!d.ok)toast(d.error||'That did not work.',1);await loadPanel()}
+function confirmAct(op,msg){if(confirm(msg))act(op)}
+function renderNew(d){
+  const box=$('#newBox'),g=d.giveaway,running=g&&g.status!=='ended';box.hidden=!!running;if(running)return;
+  const game=h('select',{},h('option',{value:'roblox'},'Roblox giveaway'),h('option',{value:'ml'},'Mobile Legends giveaway'));
+  const fp=h('input',{type:'checkbox',checked:true}),home=h('input',{type:'checkbox'});
+  const dl=h('select',{},...[['','No deadline'],['30','Close in 30 minutes'],['60','Close in 1 hour'],['180','Close in 3 hours'],['1440','Close in 24 hours']].map(([v,t])=>h('option',{value:v},t)));
+  const err=h('div',{class:'err'});
+  box.replaceChildren(h('h2',{},'Generate a new link'),h('label',{},'Giveaway type'),game,
+    h('p',{class:'muted',id:'reqNote',style:'margin:8px 0 0'}),
+    h('label',{class:'check'},fp,h('span',{},'Ask players for a screenshot that they follow me (you review it, or it is checked on their phone later)')),
+    h('label',{class:'check'},home,h('span',{},'Show it on the TikSpin homepage')),
+    h('label',{},'Entry deadline'),dl,
+    h('button',{onclick:async e=>{e.target.disabled=true;err.textContent='';
+      const {data:r}=await post('generate',{game:game.value,followProof:fp.checked,showOnHome:home.checked,minutes:dl.value||undefined,scheduledId:S.sched||undefined});e.target.disabled=false;
+      if(!r.ok){err.textContent=r.error||'Could not make the link.';return}S.sched=null;await loadPanel()}},'Generate link'),err);
+  const note=()=>$('#reqNote').textContent='Players will be asked for: '+(game.value==='roblox'?'their Roblox username.':'their Mobile Legends IGN, User ID and Server ID.')+' These cannot be turned off.';
+  if(S.startGame){game.value=S.startGame;S.startGame=null}game.onchange=note;note();
+}
+
+/* ---------- tabs and small helpers ---------- */
+function toast(msg,bad){const t=h('div',{class:'toast'+(bad?' bad':'')},msg);document.body.append(t);setTimeout(()=>t.remove(),2800)}
+const empty=t=>h('div',{class:'empty'},t);
+function tab(n){S.tab=n;$$('.tabbtn').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));$$('.pane').forEach(p=>p.hidden=p.id!=='p-'+n);if(n==='reviews')loadReviews();if(n==='acct')renderAcct()}
+$$('.tabbtn').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+function badges(d){$('#tbEntries').textContent='Entries'+(d.giveaway?' ('+d.giveaway.counts.total+')':'');$('#tbReviews').textContent='Reviews'+(d.pendingProofs?' ('+d.pendingProofs+')':'')}
+const ttLink=u=>h('a',{href:'https://www.tiktok.com/@'+encodeURIComponent(u),target:'_blank',rel:'noopener noreferrer'},'@'+u);
+async function shrink(file){
+  const url=URL.createObjectURL(file);
+  try{const img=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=url});
+    const k=Math.min(1,1100/Math.max(img.width,img.height)),c=h('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    for(const q of[.7,.55,.4]){const d=c.toDataURL('image/jpeg',q);if(d.length<440000)return d}}catch{}finally{URL.revokeObjectURL(url)}
+  return '';
+}
+async function doEntry(body,ok){const {data:d}=await post('entry',body);if(!d.ok)return toast(d.error||'That did not work.',1);if(ok)toast(ok);await loadPanel()}
+const askReason=m=>{const r=prompt(m||'Reason (optional)','');return r===null?null:r};
+
+/* ---------- entries ---------- */
+function entryCard(e){
+  const hold=e.status==='frozen';
+  const tagCls={alive:'good',frozen:'warn',eliminated:'',winner:'good'}[e.status]||'';
+  const game=S.cur.giveaway.game==='roblox'?'Roblox: '+e.handle:'IGN '+e.handle+' · ID '+e.mlUserId+' ('+e.mlServerId+')';
+  const sel=h('select',{onchange:()=>doEntry({op:'tag',id:e.id,tag:sel.value},'Saved')},...[['unchecked','Follow: not checked'],['confirmed','Follow: confirmed'],['not_found','Follow: not found']].map(([v,t])=>h('option',{value:v,selected:e.followTag===v},t)));
+  return h('div',{class:'ent'+(hold?' hold':'')},
+    h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},e.name),h('span',{class:'tag '+tagCls},{alive:'On wheel',frozen:'On hold',eliminated:'Knocked out',winner:'Winner'}[e.status]||e.status)),
+    h('div',{class:'meta'},ttLink(e.tiktok),' ',h('button',{class:'ghost sm',style:'padding:3px 8px;font-size:.78rem',onclick:ev=>copy(e.tiktok,ev.target)},'Copy'),e.tiktokChangedAt?h('span',{class:'tag warn',style:'margin-left:6px'},'TikTok changed '+when(e.tiktokChangedAt)):null),
+    h('div',{class:'meta'},game+(e.source==='manual-approved'?' · approved by you':'')),
+    e.sameDevice.length?h('div',{class:'meta'},h('span',{class:'tag warn'},'Same device as '+e.sameDevice.join(', ')),' ',h('span',{},'only a hint')):null,
+    hold?h('div',{class:'meta'},e.freezeReason+' Check who really follows you, then decide. Neither entry is removed automatically.'):null,
+    h('div',{class:'acts'},sel,
+      hold?h('button',{onclick:()=>doEntry({op:'unfreeze',id:e.id},'Back on the wheel')},'Keep on wheel'):null,
+      h('button',{class:'ghost',onclick:()=>{const r=askReason('Reason for disqualifying (only this giveaway)');if(r!==null)doEntry({op:'disqualify',id:e.id,reason:r},'Disqualified')}},'Disqualify'),
+      h('button',{class:'ghost',onclick:()=>{const r=askReason('Add to YOUR ban list (all your giveaways). Reason (optional)');if(r!==null)doEntry({op:'ban',id:e.id,reason:r},'Added to your ban list')}},'Ban'),
+      h('button',{class:'ghost',onclick:()=>openReport({entryId:e.id},e.name)},'Report')));
+}
+function renderEntries(d){
+  const box=$('#p-entries'),g=d.giveaway;box.replaceChildren();
+  if(!g){box.append(empty('No giveaway yet. Generate a link on the Giveaway tab.'));return}
+  const holds=d.entries.filter(e=>e.status==='frozen').length;
+  if(holds)box.append(h('div',{class:'card',style:'border-color:#a97a1f'},h('b',{},holds+' entries are on hold. '),h('span',{class:'muted'},'The same game account was entered by two TikSpin accounts. Look at who follows you and decide each one.')));
+  const q=h('input',{type:'text',placeholder:'Search name or @username',oninput:()=>draw()}),list=h('div',{style:'margin-top:10px'});box.append(q,list);
+  function draw(){const k=q.value.trim().toLowerCase();list.replaceChildren();
+    const rows=d.entries.filter(e=>!k||e.name.toLowerCase().includes(k)||e.tiktok.toLowerCase().includes(k)).sort((a,b)=>(b.status==='frozen')-(a.status==='frozen')||a.identity.localeCompare(b.identity)||a.id-b.id);
+    if(!rows.length)list.append(empty(d.entries.length?'No match.':'Nobody has entered yet. Share your code.'));rows.forEach(e=>list.append(entryCard(e)))}
+  draw();
+  if(d.disqualified.length)box.append(h('details',{},h('summary',{},'Disqualified from this giveaway ('+d.disqualified.length+')'),...d.disqualified.map(x=>h('div',{class:'ent'},h('h3',{},x.name),h('div',{class:'meta'},ttLink(x.tiktok),' · '+x.handle+(x.reason?' · '+x.reason:'')),
+    h('div',{class:'acts'},x.playerId?h('button',{onclick:()=>doEntry({op:'restore',id:x.id},'Restored')},'Restore'):null,x.playerId?h('button',{class:'ghost',onclick:()=>openReport({disqualifiedId:x.id},x.name)},'Report'):null)))));
+  if(d.bans.length)box.append(h('details',{},h('summary',{},'Your ban list ('+d.bans.length+')'),...d.bans.map(b=>h('div',{class:'ent'},h('h3',{},b.name),h('div',{class:'meta'},b.reason||'No reason given'),h('div',{class:'acts'},h('button',{class:'ghost',onclick:()=>doEntry({op:'unban',playerId:b.playerId},'Removed from your ban list')},'Unban'))))));
+}
+function openReport(target,name){
+  const dlg=$('#rep');dlg.dataset.target=JSON.stringify(target);$('#repTitle').textContent='Report '+name;$('#repTxt').value='';$('#repShot').value='';$('#repErr').textContent='';dlg.showModal();
+}
+$('#repGo').onclick=async e=>{
+  const b=e.target;b.disabled=true;$('#repErr').textContent='';
+  const f=$('#repShot').files[0],ev=f?await shrink(f):'';
+  if(f&&!ev){$('#repErr').textContent='That image could not be read.';b.disabled=false;return}
+  const {data:d}=await post('report',{...JSON.parse($('#rep').dataset.target),category:$('#repCat').value,details:$('#repTxt').value,evidence:ev||undefined});b.disabled=false;
+  if(!d.ok){$('#repErr').textContent=d.error||'Could not send.';return}
+  $('#rep').close();toast('Report sent to the operator');
+};
+
+/* ---------- reviews of follow screenshots ---------- */
+async function loadReviews(){
+  const box=$('#p-reviews');const {data:d}=await sApi('proofs');box.replaceChildren();
+  if(!d.ok){box.append(empty(d.error||'Could not load.'));return}
+  box.append(h('p',{class:'muted',style:'margin-top:0'},'Players whose screenshot could not be checked automatically. Open their TikTok follower list or the screenshot, then approve or decline. The screenshot is deleted when you decide.'));
+  if(!d.proofs.length)return box.append(empty('Nothing is waiting for your review.'));
+  d.proofs.forEach(p=>{
+    const holder=h('div');
+    box.append(h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},p.name),h('span',{class:'muted'},when(p.at))),
+      h('div',{class:'meta'},ttLink(p.tiktok),p.game?' · '+GAME[p.game]:''),p.reason?h('div',{class:'meta'},p.reason):null,holder,
+      h('div',{class:'acts'},
+        h('button',{class:'ghost',onclick:async ev=>{ev.target.disabled=true;const {data:r}=await sApi('proofimage?id='+p.id);ev.target.disabled=false;if(!r.ok)return toast(r.error||'Not available',1);holder.replaceChildren(h('img',{class:'shot',src:r.screenshot,alt:'Screenshot'}))}},'View screenshot'),
+        h('button',{onclick:async()=>{const {data:r}=await post('proofdecision',{id:p.id,approve:true});if(!r.ok)return toast(r.error||'Failed',1);toast(r.entered?'Approved. They are on the wheel.':'Approved');await loadPanel();loadReviews()}},'Approve'),
+        h('button',{class:'ghost',onclick:async()=>{const why=askReason('Reason for declining (optional)');if(why===null)return;const {data:r}=await post('proofdecision',{id:p.id,approve:false,reason:why});if(!r.ok)return toast(r.error||'Failed',1);toast('Declined');await loadPanel();loadReviews()}},'Decline'))));
   });
-});
-$('create-form').addEventListener('submit',event => {
-  event.preventDefault(); const form = event.currentTarget;
-  if (activeGiveaway || locking || spinning) return;
-  busy(form,async () => {
-    status('create-status','Opening giveaway…');
-    try {
-      const data = await api('/api/streamer/create',{method:'POST',body:{...values(form),access_key:accessKey}});
-      resetWheel(); activeGiveaway = data.giveaway; form.reset();
-      $('wheel-title').textContent = activeGiveaway.giveaway_name;
-      status('create-status','Giveaway opened. Share your entry passcode on stream.','success');
-    } catch (error) { status('create-status',error.message,'error'); }
-  }).finally(sync);
-});
-$('confirm-lock').addEventListener('change',sync);
-$('lock-button').addEventListener('click',async () => {
-  if (!activeGiveaway || locked || locking || !$('confirm-lock').checked) return;
-  locking = true; sync(); status('lock-status','Locking and downloading exactly once…');
-  // No retries and no polling: a successful server lock cannot be downloaded again.
-  try {
-    const query = new URLSearchParams({giveaway_id:String(activeGiveaway.id),access_key:accessKey});
-    const data = await api('/api/streamer/lock-wheel?' + query);
-    if (!Array.isArray(data.user_ids) || data.user_ids.some(id => typeof id !== 'string' || !/^\d{10}$/.test(id))) throw new Error('Invalid anonymous array returned.');
-    ids = data.user_ids; locked = true;
-    $('entry-count').textContent = ids.length.toLocaleString() + ' IDs loaded';
-    $('wheel-caption').textContent = ids.length ? 'Ready to spin' : 'No entries received';
-    status('lock-status','Entries permanently closed. ' + ids.length.toLocaleString() + ' anonymous IDs loaded.','success');
-    status('spin-status',ids.length ? 'Offline-ready. Spins make zero network requests.' : 'This giveaway had no entries. Prepare a new one.');
-  } catch (error) {
-    // Treat any ambiguous outcome as final in this page; do not accidentally repeat the request.
-    locked = true; ids = [];
-    status('lock-status',error.message + ' No automatic retry was made. If the response was lost, the once-only array cannot be recovered from this page.','error');
-    $('wheel-caption').textContent = 'No local array available';
-  } finally { locking = false; sync(); }
-});
-function randomIndex(length) {
-  const limit = 4294967296 - (4294967296 % length);
-  const random = new Uint32Array(1);
-  do { crypto.getRandomValues(random); } while (random[0] >= limit);
-  return random[0] % length;
 }
-$('spin-button').addEventListener('click',() => {
-  if (spinning || !locked || !ids.length) return;
-  if (ids.length > 4294967296) { status('spin-status','Array exceeds this wheel’s random-index capacity.','error'); return; }
-  spinning = true; sync();
-  const selected = randomIndex(ids.length); const winner = ids[selected];
-  const duration = matchMedia('(prefers-reduced-motion: reduce)').matches ? 120 : 4200;
-  const start = performance.now(); const from = turn; const to = from + 2160 + (selected / ids.length) * 360;
-  let lastDisplay = -1;
-  $('wheel-caption').textContent = 'Spinning locally…'; status('spin-status','');
-  function frame(now) {
-    const progress = Math.min(1,(now-start)/duration);
-    const eased = 1 - Math.pow(1-progress,4);
-    $('wheel-ring').style.transform = 'rotate(' + (from + (to-from)*eased) + 'deg)';
-    const step = Math.floor(eased*80);
-    if (step !== lastDisplay) { $('wheel-number').textContent = ids[(selected + 80 - step) % ids.length]; lastDisplay = step; }
-    if (progress < 1) { requestAnimationFrame(frame); return; }
-    turn = to % 360; $('wheel-ring').style.transform = 'rotate(' + turn + 'deg)';
-    $('wheel-number').textContent = winner; $('wheel-caption').textContent = 'Winning UserID';
-    spinCount++;
-    $('winner-log').prepend(el('li', 'Spin ' + spinCount + ' · ' + winner + ' · ' + new Date().toLocaleTimeString()));
-    status('spin-status','Winner: ' + winner + '. Local result only; the operator can translate this ID.','success');
-    spinning = false; sync();
-  }
-  requestAnimationFrame(frame);
-});
-$('backup-button').addEventListener('click',() => {
-  if (!locked) return;
-  const blob = new Blob([ids.join('\n') + (ids.length ? '\n' : '')],{type:'text/plain;charset=utf-8'});
-  const url = URL.createObjectURL(blob); const link = el('a'); link.href = url;
-  link.download = 'tikspin-giveaway-' + activeGiveaway.id + '-ids.txt'; document.body.append(link); link.click(); link.remove();
-  setTimeout(() => URL.revokeObjectURL(url),1000);
-});
-$('next-button').addEventListener('click',() => {
-  if (!locked || locking || spinning) return;
-  if (ids.length && !confirm('Discard the in-memory ID array and winner log to prepare the next giveaway? Download a backup first if needed.')) return;
-  activeGiveaway = null; resetWheel(); status('create-status','Ready for a new giveaway.'); sync();
-});
-function overlay(enabled) {
-  document.body.classList.toggle('overlay-only',enabled);
-  $('exit-overlay').hidden = !enabled;
-  $('room-grid').style.gridTemplateColumns = enabled ? 'minmax(0,1fr)' : '';
-}
-$('toggle-overlay').addEventListener('click',() => overlay(true));
-$('exit-overlay').addEventListener('click',() => overlay(false));
-document.addEventListener('keydown',event => { if (event.key === 'Escape') overlay(false); });
-$('sign-out').addEventListener('click',() => {
-  if (locking || spinning) return;
-  if (ids.length && !confirm('Signing out loses the downloaded array and winner log. Continue?')) return;
-  accessKey = ''; activeGiveaway = null; resetWheel(); overlay(false);
-  $('live-room').hidden = true; $('key-panel').hidden = false; status('key-status','Signed out.');
-});
-window.addEventListener('beforeunload',event => {
-  if ((locked && ids.length) || locking || spinning) { event.preventDefault(); event.returnValue = ''; }
-});
 
-</script></body></html>
+/* ---------- wheel ---------- */
+function renderWheel(d){
+  const box=$('#p-wheel'),g=d.giveaway;box.replaceChildren();
+  if(!g||g.status==='ended')return box.append(empty(g?'This giveaway has ended. Generate a new link to run another.':'No giveaway yet.'));
+  const sp=g.spin,res=h('div',{class:'muted',style:'margin-top:10px'});
+  if(sp.landed)res.textContent=(sp.command==='spin_winner'?'Last winner: ':'Last knocked out: ')+sp.landed;
+  const spin=async(kind,msg)=>{if(msg&&!confirm(msg))return;const {data:r}=await post('spin',{kind});if(!r.ok)return toast(r.error||'That did not work.',1);
+    if(kind==='reset')toast('Wheel reset');else toast((r.winner?'Winner: ':'Knocked out: ')+(r.winner||r.target));await loadPanel()};
+  box.append(h('div',{class:'card'},h('h2',{},'Wheel controls'),
+    h('p',{class:'muted',style:'margin-top:0'},'Start each spin here while you are live. The picks are random among players who are still on the wheel. Open your wheel link on your stream so viewers see it.'),
+    h('div',{class:'stat'},h('div',{},h('b',{},String(Math.max(0,g.counts.alive-sp.out.length))),h('span',{class:'muted'},'Still in')),h('div',{},h('b',{},String(sp.out.length)),h('span',{class:'muted'},'Knocked out')),h('div',{},h('b',{},String(g.counts.winner||0)),h('span',{class:'muted'},'Winners'))),
+    h('div',{class:'grid'},h('button',{onclick:()=>spin('elim')},'Knock someone out'),h('button',{onclick:()=>spin('winner')},'Crown a winner')),
+    h('button',{class:'ghost',onclick:()=>spin('reset','Reset the wheel? Everyone goes back on it.')},'Reset wheel'),res));
+  if(sp.out.length)box.append(h('details',{},h('summary',{},'Knocked out so far'),h('p',{class:'muted'},sp.out.join(', '))));
+}
+
+/* ---------- schedule ---------- */
+function renderSched(d){
+  const box=$('#p-sched');box.replaceChildren();
+  const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'your time zone';
+  box.append(h('div',{class:'card'},h('h2',{},'Upcoming giveaways'),
+    ...(d.scheduled.length?d.scheduled.map(c=>h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},GAME[c.game]),h('span',{class:'tag'},when(c.startsAt))),
+      h('div',{class:'meta'},(c.note||'No note')+' · '+(c.showOnHome?'shown on the homepage':'not shown on the homepage')+(c.hiddenByOwner?' · hidden by the operator':'')),
+      h('div',{class:'acts'},h('button',{onclick:()=>{S.sched=c.id;S.startGame=c.game;tab('give');renderNew(S.cur);toast('Choose your options, then generate the link')}},'Start now'),
+        h('button',{class:'ghost',onclick:async()=>{if(!confirm('Cancel this scheduled giveaway?'))return;const {data:r}=await post('schedule',{op:'cancel',id:c.id});if(!r.ok)return toast(r.error,1);await loadPanel()}},'Cancel')))):[empty('Nothing scheduled.')])));
+  const game=h('select',{},h('option',{value:'roblox'},'Roblox'),h('option',{value:'ml'},'Mobile Legends')),at=h('input',{type:'datetime-local'}),note=h('input',{type:'text',maxlength:140,placeholder:'Short note, e.g. 500 diamonds. Plain text only.'}),home=h('input',{type:'checkbox',checked:true}),hint=h('div',{class:'muted',style:'margin-top:6px'}),err=h('div',{class:'err'});
+  at.onchange=()=>{hint.textContent=at.value?'This will show as '+when(new Date(at.value).getTime())+' in '+tz+', and in each visitor\'s own time zone.':''};
+  box.append(h('div',{class:'card'},h('h2',{},'Schedule a giveaway'),h('label',{},'Type'),game,h('label',{},'When ('+tz+')'),at,hint,h('label',{},'Note'),note,
+    h('label',{class:'check'},home,h('span',{},'Show it on the TikSpin homepage')),
+    h('button',{onclick:async e=>{e.target.disabled=true;err.textContent='';const t=new Date(at.value).getTime();
+      const {data:r}=await post('schedule',{op:'create',game:game.value,startsAt:t,note:note.value,showOnHome:home.checked});e.target.disabled=false;
+      if(!r.ok){err.textContent=r.error||'Could not save.';return}toast('Scheduled');await loadPanel()}},'Schedule'),err,
+    h('p',{class:'muted'},'Up to 3 upcoming giveaways, up to 30 days ahead. Nothing starts by itself: you generate the link when you go live.')));
+}
+
+/* ---------- account ---------- */
+async function renderAcct(){
+  const box=$('#p-acct');box.replaceChildren();
+  const pw=h('div'),pin=h('div');
+  box.append(h('div',{class:'card'},h('h2',{},'Change password'),pw),h('div',{class:'card'},h('h2',{},'Make a new recovery PIN'),h('p',{class:'muted',style:'margin-top:0'},'The old PIN stops working. The new one is shown once.'),pin));
+  mini(pw,[['current','Current password','password'],['next','New password (10+ characters)','password']],'Change password',v=>post('changepassword',v).then(r=>r.data),d=>{store.set('ts_s',d.token);toast('Password changed. Other devices were signed out.');renderAcct()});
+  mini(pin,[['password','Your password','password']],'Make a new PIN',v=>post('newpin',v).then(r=>r.data),(d,b)=>b.replaceChildren(h('p',{class:'ok'},'Your new PIN (shown once):'),h('div',{class:'big'},d.pin),h('p',{class:'muted'},'Save it somewhere safe.')));
+  const log=h('div',{class:'card'},h('h2',{},'Recent activity'),h('div',{class:'muted'},'Loading...'));box.append(log);
+  const {data:l}=await sApi('log');
+  log.replaceChildren(h('h2',{},'Recent activity'),h('p',{class:'muted',style:'margin-top:0'},'What your account did. If something here is not you, email the operator.'),...(l.ok&&l.log.length?l.log.slice(0,25).map(x=>h('div',{class:'meta',style:'border-top:1px solid var(--line);padding:6px 0'},when(x.at)+' · '+x.action.replace(/-/g,' ')+(x.detail?' · '+x.detail:''))):[empty('Nothing yet.')]));
+}
+
+start();
+</script>
+</body>
+</html>

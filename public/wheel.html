@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikSpin Wheel</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<style>
+:root{--bg:#0d0a1c;--panel:#17122b;--line:#3a2a5e;--pink:#e58bff;--pink2:#d54bf0;--neon:#b43cf5;--text:#ffffff;--muted:#a99fcf}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{background:radial-gradient(1100px 700px at 30% 40%,#2d1450 0%,var(--bg) 70%);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;display:flex;flex-direction:column}
+#banner{display:none;background:var(--neon);color:#fff;font-weight:800;font-size:1.15rem;padding:10px 0;overflow:hidden;white-space:nowrap;border-bottom:2px solid var(--pink)}
+#banner.on{display:block}
+#banner span{display:inline-block;padding-left:100%;animation:scroll 16s linear infinite}
+@keyframes scroll{to{transform:translateX(-100%)}}
+#stage{flex:1;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);gap:20px;padding:20px;min-height:0}
+#left{position:relative;min-height:0;display:flex;align-items:center;justify-content:center}
+#wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+canvas{display:block}
+#result{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(13,10,28,.92);border:2px solid var(--neon);border-radius:14px;padding:12px 26px;font-size:clamp(1.3rem,3vw,2.4rem);font-weight:900;text-align:center;box-shadow:0 0 40px rgba(180,60,245,.55);display:none;max-width:90%}
+#result.on{display:block}
+#result small{display:block;color:var(--muted);font-size:.45em;font-weight:700;margin-bottom:2px}
+#result b{color:var(--pink)}
+#sound{position:absolute;top:0;left:0;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;font-size:.85rem;cursor:pointer}
+#sound.done{display:none}
+.embed #right,.embed #sound{display:none}
+.embed #stage{grid-template-columns:1fr;padding:8px;gap:8px}
+.embed #entryPill{top:4px;right:4px;padding:5px 10px}
+.embed #result{bottom:4px;padding:6px 14px}
+#entryPill{position:absolute;top:0;right:0;background:rgba(23,18,43,.92);border:1.5px solid var(--neon);border-radius:14px;padding:8px 16px;text-align:right;box-shadow:0 0 24px rgba(180,60,245,.35)}
+#pillMain{display:block;font-size:clamp(1rem,2vw,1.6rem);font-weight:900;color:#fff}
+#pillReg{display:block;font-size:.8rem;font-weight:700;color:var(--muted)}
+#pillReg.open{color:var(--pink)}
+#pillReg:empty{display:none}
+#entryPill.bump{animation:bump .6s ease}
+@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.12);box-shadow:0 0 40px rgba(180,60,245,.8)}100%{transform:scale(1)}}
+#right{background:var(--panel);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+#right header{padding:16px 20px;border-bottom:1px solid var(--line)}
+#right h2{margin:0;font-size:1.5rem;font-weight:900;letter-spacing:.04em;color:var(--pink2);text-shadow:0 0 18px rgba(180,60,245,.5)}
+#count{color:var(--muted);margin-top:4px;font-size:.95rem}
+#log{list-style:none;margin:0;padding:10px 12px;overflow-y:auto;flex:1}
+#log li{padding:8px 10px;border-radius:8px;font-size:1.15rem;font-weight:700;display:flex;gap:10px;align-items:baseline;overflow-wrap:anywhere}
+#log li:nth-child(odd){background:rgba(255,255,255,.03)}
+#log .tag{color:var(--pink);font-size:.85em;flex:none}
+#log li.out{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--neon);text-decoration-thickness:2px}
+#log li.out .tag{color:var(--neon)}
+#log li.win{background:rgba(180,60,245,.2);color:#fff;box-shadow:inset 0 0 0 1px var(--neon)}
+#log li.win .tag{color:#fff}
+#log li.sep,#log li.more{color:var(--muted);font-size:.85rem;font-weight:700;background:none!important;letter-spacing:.04em}
+#log li.sep{margin-top:6px}
+#log .empty{color:var(--muted);font-weight:500}
+@media (max-width:820px){#stage{grid-template-columns:1fr;grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){#banner span{animation:none;padding-left:12px}}
+.brand{flex:none;width:clamp(48px,7vw,72px);height:auto;margin-left:auto;pointer-events:none;mix-blend-mode:screen}
+#right header{display:flex;align-items:center;gap:10px}
+</style>
+</head>
+<body>
+<div id="banner" role="alert"><span id="bannerText"></span></div>
+<div id="stage">
+  <section id="left">
+    <div id="wrap"><canvas id="wheel" aria-label="Survival wheel"></canvas></div>
+    <button id="sound" type="button">🔊 Enable sound</button>
+    <div id="entryPill" aria-live="polite"><span id="pillMain">0 entered</span><span id="pillReg"></span></div>
+    <div id="result" aria-live="assertive"></div>
+  </section>
+  <aside id="right">
+    <header><div class="hd"><h2>SURVIVAL LOG</h2><div id="hostName" style="color:var(--muted);font-size:.9rem"></div><div id="count">Waiting for entries</div></div><img class="brand" src="images/logo.png" alt="TikSpin" width="72" height="72" onerror="this.remove()"></header>
+    <ul id="log"></ul>
+  </aside>
+</div>
+<script>
+(function () {
+  var TAU = Math.PI * 2;
+  var COLORS = ['#a53cf0', '#e040c8', '#4a3aa8', '#7b2cc9', '#1a9a73'];
+  var canvas = document.getElementById('wheel');
+  var ctx = canvas.getContext('2d');
+  var wrap = document.getElementById('wrap');
+  var logEl = document.getElementById('log');
+  var countEl = document.getElementById('count');
+  var resultEl = document.getElementById('result');
+  var banner = document.getElementById('banner');
+  var bannerText = document.getElementById('bannerText');
+  var rolling = new Audio('audio/rolling.mp3');
+  var victory = new Audio('audio/victory.mp3');
+  rolling.loop = true; rolling.preload = 'auto'; victory.preload = 'auto';
+  if (/[?&]embed=1/.test(location.search)) { rolling.muted = true; victory.muted = true; }
+
+  var CODE = ((location.pathname.match(/^\/wheel\/([^/]+)/) || [])[1] || '');
+  var hostNameEl = document.getElementById('hostName');
+  var entries = [], segs = [], eliminated = new Set();
+  var registration = 'none', lastTotal = null;
+  var wheelCache = null, cacheKey = '', nowName = '';
+  var baseSpin = null, finishedSpin = -1;
+  var EMBED = /[?&]embed=1/.test(location.search);
+  if (EMBED) { document.documentElement.classList.add('embed'); }
+  var pill = document.getElementById('entryPill');
+  var pillMain = document.getElementById('pillMain');
+  var pillReg = document.getElementById('pillReg');
+
+  function updatePill() {
+    var total = entries.length;
+    var alive = entries.filter(function (e) { return e.status === 'alive' && !eliminated.has(e.name); }).length;
+    pillMain.textContent = eliminated.size ? alive + ' alive of ' + total : total + ' entered';
+    pillReg.textContent = registration === 'open' ? '● Registration open' : registration === 'closed' ? 'Registration closed' : '';
+    pillReg.className = registration;
+    if (lastTotal !== null && total > lastTotal) {
+      pill.classList.remove('bump');
+      void pill.offsetWidth;
+      pill.classList.add('bump');
+    }
+    lastTotal = total;
+  }
+  var theta = -Math.PI / 2, flick = 0, size = 600;
+  var spinning = false, busy = false, lastSpin = null, lastSig = '';
+
+  function rand() { var a = new Uint32Array(1); crypto.getRandomValues(a); return a[0] / 4294967296; }
+  function mod(x, m) { return ((x % m) + m) % m; }
+
+  function resize() {
+    var dpr = window.devicePixelRatio || 1;
+    size = Math.max(240, Math.floor(Math.min(wrap.clientWidth, wrap.clientHeight)));
+    canvas.style.width = size + 'px'; canvas.style.height = size + 'px';
+    canvas.width = Math.floor(size * dpr); canvas.height = Math.floor(size * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+
+  function faceMode(n, R) {
+    var a = TAU / n;
+    return { text: a * R * 0.8 >= 15, stroke: a * R >= 6 };
+  }
+
+  function drawFace(c, cx, cy, R, rot) {
+    var n = segs.length, a = TAU / n, m = faceMode(n, R);
+    var fs = Math.max(9, Math.min(R * 0.1, a * R * 0.5));
+    var over = m.stroke ? 0 : Math.min(0.004, a * 0.6);
+    for (var i = 0; i < n; i++) {
+      var start = rot + i * a;
+      c.beginPath(); c.moveTo(cx, cy); c.arc(cx, cy, R, start, start + a + over); c.closePath();
+      c.fillStyle = COLORS[i % COLORS.length]; c.fill();
+      if (m.stroke) { c.lineWidth = 2; c.strokeStyle = '#0d0a1c'; c.stroke(); }
+      if (m.text) {
+        c.save();
+        c.translate(cx, cy); c.rotate(start + a / 2);
+        c.fillStyle = '#ffffff'; c.textAlign = 'right'; c.textBaseline = 'middle';
+        c.font = '800 ' + fs + 'px "Avenir Next","Segoe UI",sans-serif';
+        c.fillText(segs[i].name, R - R * 0.06, 0, R * 0.72);
+        c.restore();
+      }
+    }
+  }
+
+  function buildCache() {
+    var dpr = window.devicePixelRatio || 1;
+    var R = size / 2 - size * 0.06;
+    if (!wheelCache) wheelCache = document.createElement('canvas');
+    wheelCache.width = Math.floor(size * dpr); wheelCache.height = Math.floor(size * dpr);
+    var x = wheelCache.getContext('2d');
+    x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawFace(x, size / 2, size / 2, R, 0);
+    cacheKey = segs.length + '|' + size + '|' + dpr;
+  }
+
+  function fitText(text, maxW, startPx) {
+    ctx.font = '900 ' + startPx + 'px "Avenir Next","Segoe UI",sans-serif';
+    var w = ctx.measureText(text).width;
+    var px = w > maxW ? Math.max(10, Math.floor(startPx * maxW / w)) : startPx;
+    ctx.font = '900 ' + px + 'px "Avenir Next","Segoe UI",sans-serif';
+  }
+
+  function draw() {
+    var s = size, cx = s / 2, cy = s / 2 + s * 0.02, R = s / 2 - s * 0.06;
+    ctx.clearRect(0, 0, s, s);
+    ctx.save();
+    ctx.shadowColor = '#b43cf5'; ctx.shadowBlur = 30;
+    ctx.beginPath(); ctx.arc(cx, cy, R + 6, 0, TAU);
+    ctx.fillStyle = '#17122b'; ctx.fill();
+    ctx.lineWidth = 6; ctx.strokeStyle = '#e58bff'; ctx.stroke();
+    ctx.restore();
+
+    var big = false;
+    if (!segs.length) {
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.fillStyle = '#0d0a1c'; ctx.fill();
+      ctx.fillStyle = '#a99fcf'; ctx.font = '700 ' + Math.round(s * 0.05) + 'px "Avenir Next","Segoe UI",sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('No entries yet', cx, cy);
+    } else if (faceMode(segs.length, R).text) {
+      drawFace(ctx, cx, cy, R, theta);
+    } else {
+      big = true;
+      var dpr = window.devicePixelRatio || 1;
+      if (!wheelCache || cacheKey !== segs.length + '|' + size + '|' + dpr) buildCache();
+      ctx.save();
+      ctx.translate(cx, cy); ctx.rotate(theta);
+      ctx.drawImage(wheelCache, -s / 2, -s / 2, s, s);
+      ctx.restore();
+    }
+
+    if (big) {
+      var hr = R * 0.5;
+      ctx.beginPath(); ctx.arc(cx, cy, hr, 0, TAU);
+      ctx.fillStyle = '#0d0a1c'; ctx.fill(); ctx.lineWidth = 5; ctx.strokeStyle = '#b43cf5'; ctx.stroke();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      if (nowName) {
+        ctx.fillStyle = '#ffffff';
+        fitText(nowName, hr * 1.6, Math.round(R * 0.2));
+        ctx.fillText(nowName, cx, cy);
+      } else {
+        ctx.fillStyle = '#ffffff';
+        fitText(String(segs.length), hr * 1.5, Math.round(R * 0.3));
+        ctx.fillText(String(segs.length), cx, cy - R * 0.06);
+        ctx.fillStyle = '#a99fcf';
+        ctx.font = '700 ' + Math.round(R * 0.09) + 'px "Avenir Next","Segoe UI",sans-serif';
+        ctx.fillText('on the wheel', cx, cy + R * 0.16);
+      }
+    } else {
+      ctx.beginPath(); ctx.arc(cx, cy, R * 0.11, 0, TAU);
+      ctx.fillStyle = '#0d0a1c'; ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = '#b43cf5'; ctx.stroke();
+    }
+
+    ctx.save();
+    ctx.translate(cx, cy - R - 4);
+    ctx.rotate(flick * 0.4);
+    ctx.beginPath(); ctx.moveTo(-R * 0.06, -R * 0.02); ctx.lineTo(R * 0.06, -R * 0.02); ctx.lineTo(0, R * 0.14); ctx.closePath();
+    ctx.fillStyle = '#ffffff'; ctx.shadowColor = '#b43cf5'; ctx.shadowBlur = 16; ctx.fill();
+    ctx.restore();
+  }
+
+  function indexAtPointer() {
+    if (!segs.length) return -1;
+    var a = TAU / segs.length;
+    return Math.floor(mod(-Math.PI / 2 - theta, TAU) / a) % segs.length;
+  }
+
+  function rebuildSegs(target) {
+    segs = entries.filter(function (e) {
+      return (e.status === 'alive' && !eliminated.has(e.name)) || (target && e.name === target);
+    });
+  }
+
+  function renderLog() {
+    var sig = entries.map(function (e) { return e.name + ':' + e.status + ':' + (eliminated.has(e.name) ? 1 : 0); }).join('|');
+    if (sig === lastSig) return;
+    lastSig = sig;
+    logEl.textContent = '';
+    if (!entries.length) {
+      var li0 = document.createElement('li'); li0.className = 'empty'; li0.textContent = 'No one has entered yet.';
+      logEl.appendChild(li0);
+    }
+    function addRow(kind, name) {
+      var li = document.createElement('li'), tag = document.createElement('span'), nm = document.createElement('span');
+      tag.className = 'tag'; nm.textContent = name;
+      if (kind === 'win') { li.className = 'win'; tag.textContent = '[WINNER]'; }
+      else if (kind === 'out') { li.className = 'out'; tag.textContent = '[OUT]'; }
+      else { tag.textContent = '[ALIVE]'; }
+      li.appendChild(tag); li.appendChild(nm); logEl.appendChild(li);
+    }
+    function addNote(text, cls) {
+      var li = document.createElement('li'); li.className = cls || 'more'; li.textContent = text; logEl.appendChild(li);
+    }
+    var wins = [], outs = [], alives = [];
+    entries.forEach(function (e) {
+      if (e.status === 'winner') wins.push(e.name);
+      else if (eliminated.has(e.name)) outs.push(e.name);
+      else alives.push(e.name);
+    });
+    if (entries.length > 120) {
+      wins.forEach(function (n) { addRow('win', n); });
+      if (outs.length) {
+        addNote('Knocked out', 'sep');
+        outs.slice(-60).reverse().forEach(function (n) { addRow('out', n); });
+        if (outs.length > 60) addNote('+ ' + (outs.length - 60) + ' more out');
+      }
+      addNote('Latest entries', 'sep');
+      alives.slice(-40).reverse().forEach(function (n) { addRow('alive', n); });
+      if (alives.length > 40) addNote('+ ' + (alives.length - 40) + ' more alive');
+    } else {
+      entries.forEach(function (e) {
+        addRow(e.status === 'winner' ? 'win' : eliminated.has(e.name) ? 'out' : 'alive', e.name);
+      });
+    }
+    countEl.textContent = entries.length ? alives.length + ' alive of ' + entries.length : 'Waiting for entries';
+  }
+
+  function showResult(label, name) {
+    resultEl.textContent = '';
+    var small = document.createElement('small'); small.textContent = label;
+    var b = document.createElement('b'); b.textContent = name;
+    resultEl.appendChild(small); resultEl.appendChild(b);
+    resultEl.classList.add('on');
+  }
+  function hideResult() { resultEl.classList.remove('on'); nowName = ''; }
+
+  function startSpin(mode, target, spinId) {
+    hideResult();
+    rebuildSegs(target || null);
+    if (!segs.length) return;
+    spinning = true; busy = true;
+    var n = segs.length, a = TAU / n;
+    var j = target ? segs.findIndex(function (e) { return e.name === target; }) : Math.floor(rand() * n);
+    if (j < 0) j = Math.floor(rand() * n);
+    var jitter = (rand() - 0.5) * a * 0.6;
+    var want = mod(-Math.PI / 2 - (j + 0.5) * a - jitter, TAU);
+    var delta = mod(want - mod(theta, TAU), TAU);
+    var D = delta + TAU * (12 + Math.floor(rand() * 4));
+    var tau = 1.8, T = tau * 7, th0 = theta;
+    var norm = 1 - Math.exp(-T / tau);
+    var t0 = performance.now(), lastIdx = indexAtPointer();
+    rolling.currentTime = 0; rolling.volume = 1;
+    var p = rolling.play(); if (p && p.catch) p.catch(function () {});
+
+    function frame(now) {
+      var t = Math.min((now - t0) / 1000, T);
+      theta = th0 + D * (1 - Math.exp(-t / tau)) / norm;
+      var w = (D / tau) * Math.exp(-t / tau) / norm;
+      rolling.volume = Math.max(0.15, Math.min(1, w / 12));
+      rolling.playbackRate = Math.max(0.7, Math.min(1.3, 0.7 + w / 40));
+      var idx = indexAtPointer();
+      if (idx !== lastIdx) { flick = 1; lastIdx = idx; if (idx >= 0) nowName = segs[idx].name; }
+      flick *= 0.82;
+      draw();
+      if (t < T) { requestAnimationFrame(frame); return; }
+      theta = th0 + D; flick = 0; nowName = segs[j].name; draw();
+      rolling.pause();
+      land(mode, segs[j].name, spinId);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function land(mode, name, spinId) {
+    spinning = false;
+    finishedSpin = spinId;
+    if (mode === 'spin_winner') {
+      victory.currentTime = 0; victory.volume = 1;
+      var p = victory.play(); if (p && p.catch) p.catch(function () {});
+      showResult('WINNER', name);
+      busy = false; renderLog(); updatePill();
+    } else {
+      eliminated.add(name);
+      showResult('OUT', name);
+      renderLog();
+      updatePill();
+      setTimeout(function () { rebuildSegs(null); busy = false; draw(); }, 2400);
+    }
+  }
+
+  function applyAlerts(alerts) {
+    if (alerts && alerts.length) {
+      var text = alerts.map(function (a) { return a.message; }).join('     •     ');
+      if (bannerText.textContent !== text) bannerText.textContent = text;
+      banner.classList.add('on');
+    } else {
+      banner.classList.remove('on'); bannerText.textContent = '';
+    }
+  }
+
+  var lastPoll = 0;
+  async function poll() {
+    lastPoll = Date.now();
+    try {
+      var res = await fetch('/api/wheel?code=' + encodeURIComponent(CODE), { cache: 'no-store' });
+      var d = await res.json();
+      if (!d.ok) { entries = []; eliminated = new Set(); registration = 'none'; hostNameEl.textContent = d.error || 'This wheel link is not valid.'; renderLog(); updatePill(); if (!busy) { rebuildSegs(null); draw(); } return; }
+      document.title = d.streamer.name + ' · TikSpin';
+      hostNameEl.textContent = 'Hosted by ' + d.streamer.name;
+      if (d.paused) { entries = []; eliminated = new Set(); registration = 'none'; hostNameEl.textContent = d.message || 'This giveaway is paused.'; renderLog(); updatePill(); if (!busy) { rebuildSegs(null); draw(); } return; }
+      if (d.force_reset) hideResult();
+      if (lastSpin === null) { lastSpin = d.spin_id; baseSpin = d.spin_id; }
+      var out = new Set(d.out || []);
+      if (d.command === 'spin_elim' && d.target && (d.spin_id <= baseSpin || d.spin_id === finishedSpin)) out.add(d.target);
+      eliminated = out;
+      entries = d.entries || [];
+      registration = d.registration || 'none';
+      applyAlerts(d.alerts);
+      renderLog();
+      updatePill();
+      if (!busy) { rebuildSegs(null); draw(); }
+      if (!busy && d.spin_id > lastSpin && (d.command === 'spin_winner' || d.command === 'spin_elim')) {
+        lastSpin = d.spin_id;
+        startSpin(d.command, d.target, d.spin_id);
+      } else if (d.spin_id < lastSpin) {
+        lastSpin = d.spin_id;
+        baseSpin = d.spin_id;
+      }
+    } catch (_) {}
+  }
+
+  document.getElementById('sound').addEventListener('click', function () {
+    [rolling, victory].forEach(function (a) {
+      a.muted = true;
+      var p = a.play();
+      var done = function () { a.pause(); a.currentTime = 0; a.muted = false; };
+      if (p && p.then) p.then(done).catch(function () { a.muted = false; }); else done();
+    });
+    this.classList.add('done');
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  poll();
+  setInterval(function () {
+    if (document.hidden && Date.now() - lastPoll < 15000) return;
+    if (EMBED && Date.now() - lastPoll < 2800) return;
+    poll();
+  }, 2000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) poll(); });
+})();
+</script>
+</body>
+</html>

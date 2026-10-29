@@ -1,138 +1,306 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"><meta name="referrer" content="no-referrer"><meta name="color-scheme" content="dark"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https:; base-uri 'none'; form-action 'none'; object-src 'none'"><title>Supervisor station | TikSpin</title><style>
-:root{color-scheme:dark;--bg:#090d18;--panel:#121b2d;--panel2:#1a2640;--text:#f1f5ff;--muted:#b7c5df;--line:#354461;--accent:#65efdb;--ink:#081b1a;--danger:#ffb8b8;--good:#9ff3c1;--radius:1rem;font:100%/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);min-width:0}main{width:min(94%,76rem);margin:0 auto;padding:2rem 0 4rem}header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.75rem}h1,h2,h3,p{overflow-wrap:anywhere}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.12;margin:.2rem 0 .7rem;letter-spacing:-.045em}h2{font-size:1.35rem;margin:0 0 1rem}h3{font-size:1.05rem;margin:0 0 .4rem}p{margin:.5rem 0 1rem}.eyebrow{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700}.muted,small{color:var(--muted)}a{color:var(--accent);text-underline-offset:.2rem}button,input,textarea,select{font:inherit}button,a.button{display:inline-flex;justify-content:center;align-items:center;gap:.4rem;max-width:100%;white-space:normal;overflow-wrap:anywhere;padding:.75rem 1.1rem;border: .0625rem solid transparent;border-radius:.65rem;background:var(--accent);color:var(--ink);font-weight:750;cursor:pointer;text-decoration:none;text-align:center}button.secondary,a.secondary{background:var(--panel2);color:var(--text);border-color:var(--line)}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:.18rem solid var(--accent);outline-offset:.2rem}input:not([type=radio]),textarea,select{width:100%;min-width:0;padding:.78rem .9rem;color:var(--text);background:var(--bg);border:.0625rem solid var(--line);border-radius:.6rem}input[type=radio]{accent-color:var(--accent);width:1.1rem;height:1.1rem;flex-shrink:0}textarea{resize:vertical;min-height:7rem}label{display:grid;gap:.4rem;min-width:0;font-size:.93rem}form{display:grid;gap:1rem;min-width:0}fieldset{min-width:0;border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem;margin:0}legend{padding:0 .5rem}.panel{width:100%;min-width:0;padding:clamp(1rem,3vw,1.75rem);background:var(--panel);border:.0625rem solid var(--line);border-radius:var(--radius);margin-bottom:1.25rem}.narrow{max-width:42rem;margin-left:auto;margin-right:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:1.25rem;align-items:start}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1rem}.stack{display:grid;gap:1rem}.row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}.row>*{min-width:0}.grow{flex:1 1 12rem}.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}.tabs a{padding:.65rem .9rem;border:.0625rem solid var(--line);border-radius:.6rem;text-decoration:none;background:var(--panel)}.tabs a[aria-current=page]{background:var(--accent);color:var(--ink)}.status{white-space:pre-wrap;overflow-wrap:anywhere;min-height:1.5rem;color:var(--muted);margin:.5rem 0}.status[data-state=error]{color:var(--danger)}.status[data-state=success]{color:var(--good)}.notice{padding:.8rem 1rem;border-left:.2rem solid var(--accent);background:var(--panel2);border-radius:.3rem;margin:.6rem 0;white-space:pre-wrap;overflow-wrap:anywhere}.warning{border-color:var(--danger)}.card{min-width:0;width:100%;background:var(--bg);border:.0625rem solid var(--line);border-radius:.7rem;padding:1rem}.metric{font-size:clamp(2rem,7vw,3rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.scroll{max-width:100%;overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;padding:.8rem;border-bottom:.0625rem solid var(--line);white-space:nowrap}td code{font-size:1rem}code{overflow-wrap:anywhere;color:var(--accent)}details{margin-bottom:1.25rem}summary{cursor:pointer;color:var(--muted);padding:.5rem 0}.settings{margin-top:.75rem}.settings form{display:flex;align-items:end;flex-wrap:wrap;gap:.75rem}.settings label{flex:1 1 18rem}.badge{display:inline-block;max-width:100%;overflow-wrap:anywhere;border:.0625rem solid var(--line);border-radius:2rem;padding:.2rem .7rem;color:var(--muted);font-size:.85rem}.entry-list{display:grid;gap:.8rem;list-style:none;padding:0;margin:0}.entry-list li{min-width:0}.entry-list button{width:100%;display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--panel2);color:var(--text);border-color:var(--line)}.entry-list small{font-weight:400}.check{display:flex;align-items:flex-start;gap:.65rem;cursor:pointer}.check input{margin-top:.25rem}.profiles{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem;margin:0}.profiles dt{color:var(--muted);font-size:.83rem}.profiles dd{margin:0 0 .65rem;white-space:pre-wrap;overflow-wrap:anywhere}.history{max-height:20rem;overflow:auto;padding-left:1.8rem;font-variant-numeric:tabular-nums}.history li{padding:.3rem;overflow-wrap:anywhere}[hidden]{display:none!important}footer{font-size:.85rem;color:var(--muted);margin-top:1rem}.wheel-stage{display:grid;place-items:center;position:relative;width:100%;aspect-ratio:1;max-width:30rem;margin:1.5rem auto}.wheel-ring{position:absolute;inset:0;border:.6rem double var(--accent);border-radius:50%;background:repeating-conic-gradient(from 0deg,var(--panel2) 0deg 30deg,var(--bg) 30deg 60deg);will-change:transform}.wheel-core{position:relative;width:79%;aspect-ratio:1;border:.125rem solid var(--line);border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center}.wheel-core output{font-size:clamp(1.1rem,5vw,2.3rem);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;max-width:100%}.pointer{position:absolute;top:-.6rem;font-size:2rem;color:var(--accent);z-index:1;line-height:1}.wheel-core p{margin:.4rem 0;font-size:.82rem}.overlay-only main{max-width:40rem;padding:1rem 0}.overlay-only .overlay-hide{display:none!important}.overlay-only .wheel-panel{border:0;background:transparent;padding:0}.overlay-only{background:var(--bg)}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}@media(max-width:32rem){main{padding-top:1rem}.row>button{flex:1 1 auto}.panel{border-radius:.7rem}.wheel-core output{font-size:clamp(1rem,5vw,1.7rem)}}
-</style></head><body><main><header class="overlay-hide"><div><span class="eyebrow">TikSpin / Text-only live giveaways</span><h1>Supervisor station</h1><p class="muted">Review creators, publish updates, and translate winning numerical IDs.</p></div><span class="badge">[✓] No images. No dependencies.</span></header><div class="overlay-hide"><details id="connection"><summary>Worker connection</summary><div class="panel settings"><form id="connection-form"><label>Deployed Worker HTTPS origin<input id="api-base" type="url" autocomplete="url" required aria-describedby="connection-help"></label><button type="submit" class="secondary">Save connection</button></form><p id="connection-help" class="muted">Paste your deployed Worker URL. This browser remembers the connection; no source edits are necessary.</p><p id="connection-status" class="status" role="status" aria-live="polite"></p></div></details></div><noscript><p class="notice warning">JavaScript is required to use TikSpin. Enable it in this browser.</p></noscript>
-<div class="notice warning"><strong>Unauthenticated operator station.</strong> This interface and its API have no login by design. Noindex is not security. Restrict the owner page AND the entire /api/owner/ API path with an external access gateway before exposing this deployment.</div>
-<section class="panel"><div class="row"><h2 class="grow">Live telemetry</h2><span id="last-update" class="muted">Not loaded</span><button type="button" id="refresh-owner" class="secondary">Refresh now</button></div><div class="two"><article class="card"><h3>Total viewers</h3><div id="metric-users" class="metric">—</div></article><article class="card"><h3>Open giveaways</h3><div id="metric-open" class="metric">—</div></article><article class="card"><h3>Pending creators</h3><div id="metric-pending" class="metric">—</div></article></div><p id="telemetry-status" class="status" role="status" aria-live="polite"></p><p class="muted">Refreshes every 15 seconds while this tab is visible.</p></section>
-<section class="panel"><h2>Application review</h2><div class="scroll"><table><caption class="muted">Pending streamer applications</caption><thead><tr><th scope="col">Applicant</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead><tbody id="applications"></tbody></table></div><p id="approval-status" class="status" role="status" aria-live="polite"></p><section id="approved-key-box" class="card" hidden><h3>Deliver this access key privately</h3><p id="approved-handle"></p><p><code id="approved-key"></code></p><button type="button" id="copy-key" class="secondary">Copy key</button><p class="muted">Do not post the access key in the bulletin or display it on stream.</p></section></section>
-<div class="grid"><section class="panel"><h2>Publish official bulletin</h2><p class="muted">The feed displays your message as plain text, never executable HTML.</p><form id="news-form"><label>Message<textarea name="message" maxlength="4000" required></textarea></label><button type="submit">Post notification</button></form><p id="news-status" class="status" role="status" aria-live="polite"></p></section><section class="panel"><h2>Winner translation terminal</h2><p class="muted">Enter a winning 10-digit UserID to reveal its prize-delivery profile. Passwords, PINs and secret answers are never returned.</p><form id="reveal-form"><label>Winning UserID<input name="user_id" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" autocomplete="off" required></label><button type="submit">Reveal winner profile</button></form><p id="reveal-status" class="status" role="status" aria-live="polite"></p><dl id="winner-profile" class="profiles" hidden></dl></section></div>
-<footer class="overlay-hide">TikSpin · Separate profiles. Anonymous entries. Local spins.</footer></main><script>
-(() => {
-'use strict';
-const $ = id => document.getElementById(id);
-const settings = $('connection');
-let apiBase = '';
-try { apiBase = localStorage.getItem('tikspin_api_base') || ''; } catch {}
-$('api-base').value = apiBase;
-settings.open = !apiBase;
-function status(id, text, state = '') {
-  const node = $(id); node.textContent = text; node.dataset.state = state;
-}
-function normalizeURL(value) {
-  const url = new URL(value.trim());
-  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash || !['','/'].includes(url.pathname)) {
-    throw new Error('Enter the HTTPS origin of your Worker, without a path, credentials, query or fragment.');
-  }
-  return url.origin;
-}
-$('connection-form').addEventListener('submit', event => {
-  event.preventDefault();
-  try {
-    const base = normalizeURL($('api-base').value);
-    localStorage.setItem('tikspin_api_base', base);
-    if (base !== apiBase) { location.reload(); return; }
-    status('connection-status', 'Worker connection saved.', 'success'); settings.open = false;
-  } catch (error) { status('connection-status', error.message, 'error'); }
-});
-async function api(path, options = {}) {
-  if (!apiBase) { settings.open = true; throw new Error('Set the Worker connection above first.'); }
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
-  try {
-    const init = { method: options.method || 'GET', cache: 'no-store', credentials: 'omit', signal: controller.signal, referrerPolicy: 'no-referrer' };
-    if (options.body !== undefined) { init.headers = { 'Content-Type': 'application/json' }; init.body = JSON.stringify(options.body); }
-    const response = await fetch(apiBase + path, init);
-    let data;
-    try { data = await response.json(); } catch { throw new Error('Worker returned a non-JSON response. Check the connection and deployment.'); }
-    if (!response.ok) { const error = new Error(data.error || 'Request failed.'); error.status = response.status; throw error; }
-    return data;
-  } catch (error) {
-    if (error.name === 'AbortError') throw new Error('Request timed out. A write may have completed; check its state before retrying.');
-    if (error instanceof TypeError) throw new Error('Network request failed. Check your internet, Worker URL, CORS and deployment.');
-    throw error;
-  } finally { clearTimeout(timeout); }
-}
-async function busy(form, work) {
-  const buttons = [...form.querySelectorAll('button[type=submit]')];
-  buttons.forEach(button => button.disabled = true);
-  try { await work(); } finally { buttons.forEach(button => button.disabled = false); }
-}
-function values(form) { return Object.fromEntries(new FormData(form)); }
-function el(tag, text, className) {
-  const element = document.createElement(tag);
-  if (text !== undefined) element.textContent = text;
-  if (className) element.className = className;
-  return element;
-}
-window.TikSpin = Object.freeze({ $, api, status, busy, values, el, hasConnection: () => !!apiBase });
-})();
-</script><script>
-'use strict';
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>TikSpin · Owner</title>
+<style>
+:root{--bg:#0d0a1c;--panel:#17122b;--line:#3a2a5e;--pink:#e58bff;--pink2:#d54bf0;--neon:#b43cf5;--text:#fff;--muted:#a99fcf;--bad:#ff4d6d;--ok:#7be0a4}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:radial-gradient(900px 500px at 50% -10%,#2d1450 0%,var(--bg) 70%);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;display:flex;justify-content:center;padding:22px 16px 60px}
+main{width:100%;max-width:680px}
+h1{font-size:clamp(1.7rem,7vw,2.2rem);margin:0;font-weight:900;color:var(--pink2);text-shadow:0 0 28px rgba(180,60,245,.45)}
+h2{font-size:1.05rem;margin:0 0 10px}
+p{line-height:1.5}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.view{display:none}.view.on{display:block}
+label{display:block;font-weight:700;margin:12px 0 6px}
+input[type=text],input[type=password],input[type=number],select,textarea{width:100%;background:#0d0a1c;border:1.5px solid var(--line);border-radius:10px;color:var(--text);font:inherit;padding:12px 14px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--neon);box-shadow:0 0 0 3px rgba(180,60,245,.25)}
+button,.btn{background:linear-gradient(135deg,var(--neon),var(--pink2));color:#fff;border:0;border-radius:10px;font:inherit;font-weight:800;padding:12px 16px;cursor:pointer;width:100%;margin-top:14px;display:block;text-align:center;text-decoration:none}
+button.ghost{background:transparent;border:1.5px solid var(--line);color:var(--muted);font-weight:700}
+button.danger{background:#4a1522;color:var(--bad);border:1.5px solid #7a2438}
+button.sm{width:auto;display:inline-block;margin:0;padding:8px 12px;font-size:.9rem}
+button:disabled{opacity:.55;cursor:default}
+.err{color:var(--bad);font-size:.92rem;min-height:1.2em;margin-top:8px}
+.ok{color:var(--ok)}
+.muted{color:var(--muted);font-size:.92rem}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.78rem;font-weight:800;border-radius:99px;padding:3px 9px;background:#2a1d4d;color:var(--pink);white-space:nowrap}
+.tag.good{background:#12392a;color:var(--ok)}.tag.warn{background:#4a3511;color:#ffcf6b}.tag.bad{background:#4a1522;color:var(--bad)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;position:sticky;top:0;background:#0d0a1c;z-index:5}
+.tabbtn{width:auto;margin:0;flex:none;padding:9px 14px;font-size:.9rem;background:transparent;border:1.5px solid var(--line);color:var(--muted)}
+.tabbtn.on{background:linear-gradient(135deg,var(--neon),var(--pink2));color:#fff;border-color:transparent}
+.pane[hidden]{display:none}
+.ent{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#130f26}
+.ent h3{margin:0;font-size:1rem}
+.meta{color:var(--muted);font-size:.88rem;margin:4px 0}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.acts button{width:auto;margin:0;padding:7px 12px;font-size:.85rem}
+.empty{color:var(--muted);text-align:center;padding:18px 8px}
+.big{font-family:ui-monospace,Menlo,monospace;font-size:1.2rem;font-weight:900;letter-spacing:.08em;text-align:center;background:#130f26;border:1.5px dashed var(--pink2);border-radius:12px;padding:12px 8px;user-select:all;word-break:break-all;margin:6px 0}
+.stat{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.stat button{margin:0;background:#130f26;border:1px solid var(--line);text-align:center;font-weight:700}
+.stat b{display:block;font-size:1.5rem;color:var(--pink)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip{width:auto;margin:0;padding:6px 12px;font-size:.85rem;background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:99px}
+.chip.on{border-color:var(--pink2);color:var(--pink)}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:.93rem}
+.check input{margin-top:3px;width:18px;height:18px;flex:none}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;background:#12392a;color:var(--ok);border:1px solid #1f6b4a;padding:10px 16px;border-radius:12px;z-index:50;font-weight:700;max-width:90%}
+.toast.bad{background:#4a1522;color:var(--bad);border-color:#7a2438}
+a{color:var(--pink)}
+details{margin-top:10px}summary{cursor:pointer;color:var(--pink);font-weight:700}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><h1>TikSpin Owner</h1><button class="ghost sm" id="outBtn" hidden>Lock</button></div>
 
-const { $, api, status, busy, values, el } = TikSpin;
-let loading = false;
-let approving = false;
-async function telemetry() {
-  if (loading || approving || !TikSpin.hasConnection() || document.hidden) return;
-  loading = true; $('refresh-owner').disabled = true;
-  try {
-    const data = await api('/api/owner/telemetry');
-    $('metric-users').textContent = Number(data.users).toLocaleString();
-    $('metric-open').textContent = Number(data.open_giveaways).toLocaleString();
-    $('metric-pending').textContent = data.pending_streamers.length.toLocaleString();
-    $('applications').replaceChildren();
-    if (!data.pending_streamers.length) {
-      const row = el('tr'); const cell = el('td','No pending applications.'); cell.colSpan = 3; row.append(cell); $('applications').append(row);
-    }
-    for (const applicant of data.pending_streamers) {
-      const row = el('tr'); const cell = el('td'); const button = el('button','Accept Streamer'); button.type = 'button';
-      button.addEventListener('click',() => approve(applicant,button)); cell.append(button);
-      row.append(el('td',applicant.streamer_name),el('td','PENDING'),cell); $('applications').append(row);
-    }
-    $('last-update').textContent = 'Updated ' + new Date().toLocaleTimeString(); status('telemetry-status','Connected.','success');
-  } catch (error) { status('telemetry-status',error.message,'error'); }
-  finally { loading = false; $('refresh-owner').disabled = false; }
-}
-async function approve(applicant, button) {
-  if (approving) return;
-  approving = true; button.disabled = true; status('approval-status','Approving ' + applicant.streamer_name + '…');
-  try {
-    const data = await api('/api/owner/approve',{method:'POST',body:{id:applicant.id}});
-    $('approved-handle').textContent = data.streamer.streamer_name;
-    $('approved-key').textContent = data.streamer.streamer_id; $('approved-key-box').hidden = false;
-    status('approval-status','Approved. Deliver the key privately.','success');
-  } catch (error) { status('approval-status',error.message,'error'); button.disabled = false; }
-  finally { approving = false; await telemetry(); }
-}
-$('refresh-owner').addEventListener('click',telemetry);
-$('copy-key').addEventListener('click',async () => {
-  try { await navigator.clipboard.writeText($('approved-key').textContent); status('approval-status','Access key copied.','success'); }
-  catch { status('approval-status','Clipboard is unavailable. Select and copy the displayed key manually.','error'); }
-});
-$('news-form').addEventListener('submit',event => {
-  event.preventDefault(); const form = event.currentTarget;
-  busy(form,async () => {
-    status('news-status','Publishing…');
-    try { await api('/api/owner/post-news',{method:'POST',body:values(form)}); form.reset(); status('news-status','Bulletin published.','success'); }
-    catch (error) { status('news-status',error.message,'error'); }
-  });
-});
-$('reveal-form').addEventListener('submit',event => {
-  event.preventDefault(); const form = event.currentTarget;
-  busy(form,async () => {
-    $('winner-profile').hidden = true; $('winner-profile').replaceChildren(); status('reveal-status','Looking up winner…');
-    try {
-      const query = new URLSearchParams(values(form));
-      const data = await api('/api/owner/reveal-winner?' + query);
-      const fields = {user_id:'Winning UserID',username:'Login username',tiktok_username:'TikTok handle',roblox_username:'Roblox profile',ml_id:'Mobile Legends User ID',ml_server:'Mobile Legends server'};
-      for (const [key,label] of Object.entries(fields)) $('winner-profile').append(el('dt',label),el('dd',data.profile[key] || 'Not provided'));
-      $('winner-profile').hidden = false; status('reveal-status','Winner profile found. Keep this information private.','success');
-    } catch (error) { status('reveal-status',error.message,'error'); }
-  });
-});
-if (TikSpin.hasConnection()) telemetry();
-setInterval(telemetry,15000);
-document.addEventListener('visibilitychange',() => { if (!document.hidden) telemetry(); });
+<section class="view on" id="v-login">
+  <form class="card" id="loginForm" autocomplete="off">
+    <h2>Owner key</h2>
+    <p class="muted" style="margin-top:0">Enter the OWNER_TOKEN you set as a secret in Cloudflare. It stays on this device until you tap Lock.</p>
+    <input type="password" id="key" autocomplete="off" placeholder="Owner key">
+    <button type="submit">Unlock</button><div class="err" id="loginErr"></div>
+  </form>
+</section>
 
-</script></body></html>
+<section class="view" id="v-app">
+  <div class="tabs" id="tabs"></div>
+  <div class="pane" id="p-over"></div>
+  <div class="pane" id="p-streamers" hidden></div>
+  <div class="pane" id="p-invites" hidden></div>
+  <div class="pane" id="p-resets" hidden></div>
+  <div class="pane" id="p-reports" hidden></div>
+  <div class="pane" id="p-posts" hidden></div>
+  <div class="pane" id="p-feedback" hidden></div>
+  <div class="pane" id="p-cards" hidden></div>
+  <div class="pane" id="p-players" hidden></div>
+  <div class="pane" id="p-settings" hidden></div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const h=(t,a,...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a||{}))x==='class'?e.className=v:x.startsWith('on')?e.addEventListener(x.slice(2),v):v!==false&&e.setAttribute(x,v===true?'':v);e.append(...k.filter(x=>x!=null&&x!==false));return e};
+const store={get(k){try{return localStorage.getItem(k)||''}catch{return ''}},set(k,v){try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch{}}};
+const GAME={roblox:'Roblox',ml:'Mobile Legends'};
+const when=ms=>ms?new Date(ms).toLocaleString([],{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'never';
+const empty=t=>h('div',{class:'empty'},t);
+function toast(msg,bad){const t=h('div',{class:'toast'+(bad?' bad':'')},msg);document.body.append(t);setTimeout(()=>t.remove(),2800)}
+async function copy(text,btn){try{await navigator.clipboard.writeText(text)}catch{prompt('Copy this:',text);return}const o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1200)}
+const S={dash:null,tab:'over',filter:'pending'};
+
+async function api(path,{method='GET',body}={}){
+  try{const r=await fetch('/api/owner/'+path,{method,headers:{...(body?{'content-type':'application/json'}:{}),authorization:'Bearer '+store.get('ts_o')},body:body?JSON.stringify(body):void 0});
+    let d={};try{d=await r.json()}catch{}
+    if(r.status===401&&store.get('ts_o')){store.set('ts_o','');lock()}
+    return {status:r.status,data:d}}
+  catch{return {status:0,data:{ok:false,error:'Could not reach TikSpin.'}}}
+}
+const post=(p,b)=>api(p,{method:'POST',body:b}).then(r=>r.data);
+const get=p=>api(p).then(r=>r.data);
+
+/* ---------- lock / unlock ---------- */
+function lock(){$('#v-app').classList.remove('on');$('#v-login').classList.add('on');$('#outBtn').hidden=true}
+$('#loginForm').onsubmit=async e=>{
+  e.preventDefault();const b=e.submitter;b.disabled=true;$('#loginErr').textContent='';
+  store.set('ts_o',$('#key').value.trim());const {status,data:d}=await api('dashboard');b.disabled=false;
+  if(!d.ok){store.set('ts_o','');$('#loginErr').textContent=status===401?'That key is not correct.':(d.error||'Could not unlock.');return}
+  $('#key').value='';openApp(d);
+};
+$('#outBtn').onclick=()=>{store.set('ts_o','');lock()};
+function openApp(d){S.dash=d;$('#v-login').classList.remove('on');$('#v-app').classList.add('on');$('#outBtn').hidden=false;drawTabs();tab(S.tab)}
+
+/* ---------- tabs ---------- */
+const TABS=[['over','Overview'],['streamers','Streamers'],['invites','Invites'],['resets','Resets'],['reports','Reports'],['posts','Posts'],['feedback','Feedback'],['cards','Homepage'],['players','Players'],['settings','Settings']];
+function drawTabs(){
+  const d=S.dash,n={streamers:d.pendingStreamers,resets:d.openResets,reports:d.casesReady,feedback:d.unreadFeedback};
+  $('#tabs').replaceChildren(...TABS.map(([k,t])=>h('button',{class:'tabbtn'+(S.tab===k?' on':''),onclick:()=>tab(k)},t+(n[k]?' ('+n[k]+')':''))));
+}
+async function refresh(){const d=await get('dashboard');if(d.ok){S.dash=d;drawTabs()}}
+function tab(k){
+  S.tab=k;drawTabs();$$('.pane').forEach(p=>p.hidden=p.id!=='p-'+k);
+  ({over:renderOver,streamers:renderStreamers,invites:renderInvites,resets:renderResets,reports:renderReports,posts:renderPosts,feedback:renderFeedback,cards:renderCards,players:renderPlayers,settings:renderSettings})[k]();
+}
+
+/* ---------- overview ---------- */
+async function renderOver(){
+  await refresh();const d=S.dash,box=$('#p-over');box.replaceChildren();
+  const ck=(ok,label,hint,optional)=>h('div',{class:'row',style:'margin:6px 0'},h('span',{class:'tag '+(ok?'good':optional?'':'bad')},ok?'Done':optional?'Optional':'Missing'),h('div',{},h('b',{},label),h('div',{class:'muted'},hint)));
+  const s=d.setup;
+  box.append(h('div',{class:'card'},h('h2',{},'Setup checklist'),
+    ck(s.pinPepper,'PIN_PEPPER secret','Protects recovery PINs. Players cannot sign up without it.'),
+    ck(s.deviceSalt,'DEVICE_SALT secret','Makes device codes impossible to turn back into IP addresses.'),
+    ck(s.contactEmail,'Contact email','Set it in Settings. It appears on the site and in the helper.'),
+    ck(s.botCheck,'Bot check (Turnstile)','Stops scripts from mass-creating accounts.',true)));
+  const tile=(n,l,k)=>h('button',{class:'ghost',onclick:()=>tab(k)},h('b',{},String(n)),l);
+  box.append(h('div',{class:'card'},h('h2',{},'Needs your attention'),h('div',{class:'stat'},tile(d.pendingStreamers,'Streamer requests','streamers'),tile(d.openResets,'Account resets','resets'),tile(d.casesReady,'Report cases ready','reports'),tile(d.unreadFeedback,'Unread feedback','feedback')),
+    h('p',{class:'muted',style:'margin-bottom:0'},'A report case opens once '+d.reportThreshold+' different streamers have reported the same player.')));
+  box.append(h('div',{class:'card'},h('div',{class:'row',style:'justify-content:space-between'},h('h2',{style:'margin:0'},'Notices'),d.alerts.length?h('button',{class:'ghost sm',onclick:async()=>{await post('alertsclear',{});renderOver()}},'Clear'):null),
+    ...(d.alerts.length?d.alerts.map(a=>h('div',{class:'meta',style:'border-top:1px solid var(--line);padding:7px 0'},when(a.at)+' · '+a.message)):[empty('No notices.')])));
+}
+
+/* ---------- streamers ---------- */
+const profile=u=>h('a',{href:'https://www.tiktok.com/@'+encodeURIComponent(u),target:'_blank',rel:'noopener noreferrer'},'@'+u);
+async function renderStreamers(){
+  const box=$('#p-streamers');box.replaceChildren();
+  const chips=h('div',{class:'chips'},...[['pending','Pending'],['approved','Approved'],['suspended','Suspended'],['rejected','Rejected'],['','All']].map(([v,t])=>h('button',{class:'chip'+(S.filter===v?' on':''),onclick:()=>{S.filter=v;renderStreamers()}},t)));
+  box.append(chips);
+  const d=await get('streamers'+(S.filter?'?status='+S.filter:''));
+  if(!d.ok)return box.append(empty(d.error||'Could not load.'));
+  if(!d.streamers.length)return box.append(empty('Nobody here.'));
+  const decide=async(id,op,extra,msg)=>{const r=await post('streamerdecision',{id,op,...extra});if(!r.ok)return toast(r.error||'That did not work.',1);toast(msg);await refresh();renderStreamers()};
+  d.streamers.forEach(s=>{
+    const tag={pending:['Pending','warn'],approved:['Approved','good'],suspended:['Suspended','bad'],rejected:['Rejected','bad']}[s.status];
+    const logBox=h('div'),acts=h('div',{class:'acts'});
+    const B=(t,fn,cls)=>acts.append(h('button',{class:cls||'',onclick:fn},t));
+    if(s.status==='pending'||s.status==='rejected')B('Approve',()=>decide(s.id,'approve',{},'Approved'));
+    if(s.status==='pending')B('Reject',()=>{const n=prompt('Reason shown to the streamer (optional)','');if(n!==null)decide(s.id,'reject',{note:n},'Rejected')},'ghost');
+    if(s.status==='approved')B('Suspend',()=>{const n=prompt('Note shown to the streamer (optional). Their posts and cards are hidden and giveaways paused.','');if(n!==null)decide(s.id,'suspend',{note:n},'Suspended')},'ghost');
+    if(s.status==='suspended')B('Unsuspend',()=>decide(s.id,'unsuspend',{},'Back to approved'));
+    B('Activity log',async()=>{const r=await get('streamerlog?id='+s.id);logBox.replaceChildren(...(r.ok&&r.log.length?r.log.slice(0,30).map(x=>h('div',{class:'meta',style:'border-top:1px solid var(--line);padding:5px 0'},when(x.at)+' · '+x.action.replace(/-/g,' ')+(x.detail?' · '+x.detail:''))):[empty('No activity yet.')]))},'ghost');
+    B('Delete',()=>{const c=prompt('This deletes the account, its giveaways and entries, and frees the username.\nType the TikTok username ('+s.tiktok+') to confirm:');if(c)decide(s.id,'delete',{confirm:c},'Deleted')},'danger');
+    box.append(h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},s.display),h('span',{class:'tag '+tag[1]},tag[0])),
+      h('div',{class:'meta'},profile(s.tiktok),' · joined '+when(s.createdAt)),h('div',{class:'meta'},'Last login '+when(s.lastLoginAt)+' · '+s.giveaways+' giveaway(s)'+(s.note?' · '+s.note:'')),acts,logBox));
+  });
+  box.append(h('p',{class:'muted'},'Check the TikTok profile before approving. Suspending is reversible and deletes nothing. Delete is for a verified hacked account or a removal, and carries no penalty.'));
+}
+
+/* ---------- invitations ---------- */
+async function renderInvites(){
+  const box=$('#p-invites');box.replaceChildren();
+  const who=h('input',{type:'text',placeholder:'Optional: lock it to one TikTok username',autocapitalize:'none'}),note=h('input',{type:'text',placeholder:'Your own note, e.g. who it is for',maxlength:100}),hours=h('input',{type:'number',min:1,max:720,placeholder:'Default 48'}),result=h('div'),err=h('div',{class:'err'});
+  box.append(h('div',{class:'card'},h('h2',{},'New invitation link'),h('p',{class:'muted',style:'margin-top:0'},'One-time. It stops working after one registration or when it expires.'),
+    h('label',{},'For TikTok username'),who,h('label',{},'Note'),note,h('label',{},'Valid for (hours)'),hours,
+    h('button',{onclick:async e=>{e.target.disabled=true;err.textContent='';const r=await post('invite',{forTiktok:who.value.trim(),note:note.value,hours:hours.value?Number(hours.value):undefined});e.target.disabled=false;
+      if(!r.ok){err.textContent=r.error||'Could not create it.';return}const url=location.origin+r.path;
+      result.replaceChildren(h('p',{class:'ok'},'Link created. It is shown once, so copy it now:'),h('div',{class:'big'},url),h('button',{onclick:ev=>copy(url,ev.target)},'Copy link'),h('p',{class:'muted'},'Valid until '+when(r.expiresAt)+(r.forTiktok?' · only for @'+r.forTiktok:'')));who.value=note.value=hours.value='';loadList()}},'Create link'),err,result));
+  const list=h('div',{class:'card'},h('h2',{},'Recent invitations'));box.append(list);
+  async function loadList(){const d=await get('invitations');list.replaceChildren(h('h2',{},'Recent invitations'),...(d.ok&&d.invitations.length?d.invitations.map(i=>h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('b',{},i.note||'(no note)'),h('span',{class:'tag '+({open:'good',used:'',expired:'warn',revoked:'bad'}[i.status])},i.status)),
+    h('div',{class:'meta'},'Created '+when(i.createdAt)+' · expires '+when(i.expiresAt)+(i.forTiktok?' · for @'+i.forTiktok:'')+(i.usedBy?' · used by '+i.usedBy:'')),
+    i.status==='open'?h('div',{class:'acts'},h('button',{class:'ghost',onclick:async()=>{await post('inviterevoke',{id:i.id});loadList()}},'Revoke')):null)):[empty('No invitations yet.')]))}
+  loadList();
+}
+
+/* ---------- account resets ---------- */
+async function renderResets(){
+  const box=$('#p-resets');box.replaceChildren();
+  box.append(h('p',{class:'muted',style:'margin-top:0'},'People who lost their PIN or are locked out, and emailed you a request code. Check that the code is in their TikTok bio (open their profile) before you reset anything.'));
+  const q=h('input',{type:'text',placeholder:'Search by request code, name or @username',oninput:()=>load()}),list=h('div',{style:'margin-top:10px'}),result=h('div');box.append(q,result,list);
+  let t;async function load(){clearTimeout(t);t=setTimeout(async()=>{const d=await get('resets?q='+encodeURIComponent(q.value.trim()));list.replaceChildren();
+    if(!d.ok)return list.append(empty(d.error||'Could not load.'));if(!d.requests.length)return list.append(empty('No open requests.'));
+    d.requests.forEach(r=>list.append(h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},r.display),h('span',{class:'tag'},r.kind)),
+      h('div',{class:'meta'},profile(r.tiktok),' · code ',h('b',{},r.code)),h('div',{class:'meta'},'Asked '+when(r.createdAt)+' · expires '+when(r.expiresAt)),
+      h('div',{class:'acts'},h('button',{onclick:async()=>{if(!confirm('You checked the proof. Reset '+r.display+'? They get a temporary password and a new PIN, and all their devices are signed out.'))return;
+          const x=await post('resetdo',{id:r.id,op:'password'});if(!x.ok)return toast(x.error||'Failed',1);
+          result.replaceChildren(h('div',{class:'card',style:'border-color:var(--pink2)'},h('h2',{class:'ok'},'Reset done for '+x.account.display),h('p',{class:'muted',style:'margin-top:0'},'Shown once. Send both to the person by email. They must choose a new password at next login.'),
+            h('label',{},'Temporary password'),h('div',{class:'big'},x.tempPassword),h('label',{},'New recovery PIN'),h('div',{class:'big'},x.pin)));scrollTo(0,0);refresh();load()}},'Checked: reset'),
+        h('button',{class:'ghost',onclick:async()=>{await post('resetdo',{id:r.id,op:'close'});toast('Closed');refresh();load()}},'Close request')))))},180)}
+  load();
+}
+
+
+/* ---------- reports and permanent bans ---------- */
+async function renderReports(){
+  const box=$('#p-reports');box.replaceChildren();
+  const all=!!S.allReports;
+  box.append(h('div',{class:'chips'},h('button',{class:'chip'+(all?'':' on'),onclick:()=>{S.allReports=false;renderReports()}},'Cases ready ('+S.dash.reportThreshold+'+ streamers)'),h('button',{class:'chip'+(all?' on':''),onclick:()=>{S.allReports=true;renderReports()}},'All open reports')),
+    h('p',{class:'muted',style:'margin-top:0'},'Judge the evidence, not the count. A ban covers the display username, TikTok names (now and earlier) and game accounts, and removes the player from every giveaway.'));
+  const d=await get('cases'+(all?'?all=1':''));
+  if(!d.ok)return box.append(empty(d.error||'Could not load.'));
+  if(!d.cases.length)box.append(empty(all?'No open reports.':'No case has enough reports yet.'));
+  d.cases.forEach(c=>{
+    const decide=async(op)=>{const note=prompt(op==='ban'?'Note for the record (what the evidence showed):':'Why are you dismissing this? (optional)','');if(note===null)return;
+      if(op==='ban'&&!confirm('Permanent Ban '+c.display+' from the whole platform?'))return;
+      const r=await post('casedecision',{reportId:c.reports[0].id,op,note});if(!r.ok)return toast(r.error||'Failed',1);toast(op==='ban'?'Banned. '+r.covered+' names covered.':'Dismissed');await refresh();renderReports()};
+    box.append(h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},c.display),h('span',{class:'tag '+(c.reporters>=S.dash.reportThreshold?'bad':'warn')},c.reporters+' streamer'+(c.reporters>1?'s':''))),
+      h('div',{class:'meta'},profile(c.tiktok),c.accountGone?' · account already deleted':''),
+      ...c.reports.map(r=>{const holder=h('div');return h('div',{style:'border-top:1px solid var(--line);padding:8px 0'},h('div',{class:'meta'},h('b',{},r.reporter),' · '+r.category.replace(/-/g,' ')+' · '+when(r.at)),h('div',{style:'white-space:pre-wrap'},r.details),holder,
+        r.hasEvidence?h('div',{class:'acts'},h('button',{class:'ghost',onclick:async ev=>{ev.target.disabled=true;const x=await get('caseevidence?id='+r.id);ev.target.disabled=false;if(!x.ok)return toast(x.error||'Not available',1);holder.replaceChildren(h('img',{src:x.evidence,alt:'Evidence',style:'max-width:100%;border-radius:10px;margin-top:8px;border:1px solid var(--line)'}))}},'View evidence')):null)}),
+      h('div',{class:'acts'},h('button',{class:'danger',onclick:()=>decide('ban')},'Permanent Ban'),h('button',{class:'ghost',onclick:()=>decide('dismiss')},'Dismiss'))));
+  });
+  const b=await get('bans');
+  box.append(h('details',{},h('summary',{},'Permanent Bans ('+(b.ok?b.bans.length:0)+')'),...(b.ok&&b.bans.length?b.bans.map(x=>h('div',{class:'ent'},h('div',{class:'meta'},when(x.at)+' · '+(x.reason||'no note')),h('div',{class:'meta',style:'word-break:break-all'},'Covers: '+x.covers),
+    h('div',{class:'acts'},h('button',{class:'ghost',onclick:async()=>{if(!confirm('Reverse this ban (for example after an appeal)? The covered names can register and enter again.'))return;const r=await post('unban',{id:x.id});if(!r.ok)return toast(r.error||'Failed',1);toast('Ban reversed');renderReports()}},'Unban')))):[empty('No bans.')])));
+}
+
+/* ---------- official posts ---------- */
+async function renderPosts(){
+  const box=$('#p-posts');box.replaceChildren();
+  const ed=S.editPost||null;
+  const title=h('input',{type:'text',maxlength:80,value:ed?ed.title:'',placeholder:'Title'}),body=h('textarea',{rows:5,maxlength:1500,placeholder:'Plain text only'}),link=h('input',{type:'text',maxlength:280,value:ed?ed.link:'',placeholder:'Optional link, must start with https://',autocapitalize:'none'}),pin=h('input',{type:'checkbox',checked:ed?ed.pinned:false}),err=h('div',{class:'err'});
+  body.value=ed?ed.body:'';
+  box.append(h('div',{class:'card'},h('h2',{},ed?'Edit post':'New TikSpin Official post'),h('label',{},'Title'),title,h('label',{},'Text'),body,h('label',{},'Link'),link,
+    ed?null:h('label',{class:'check'},pin,h('span',{},'Pin it to the top')),
+    h('button',{onclick:async e=>{e.target.disabled=true;err.textContent='';const r=await post('post',ed?{op:'edit',id:ed.id,title:title.value,body:body.value,link:link.value}:{op:'create',title:title.value,body:body.value,link:link.value,pinned:pin.checked});e.target.disabled=false;
+      if(!r.ok){err.textContent=r.error||'Could not save.';return}S.editPost=null;toast(ed?'Saved':'Posted');renderPosts()}},ed?'Save changes':'Post'),
+    ed?h('button',{class:'ghost',onclick:()=>{S.editPost=null;renderPosts()}},'Cancel'):null,err));
+  const d=await get('posts');
+  if(!d.ok||!d.posts.length)return box.append(empty('No posts yet.'));
+  d.posts.forEach(p=>{const run=(b,m)=>async()=>{const r=await post('post',{id:p.id,...b});if(!r.ok)return toast(r.error||'Failed',1);toast(m);renderPosts()};
+    box.append(h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},p.title),h('span',{},p.pinned?h('span',{class:'tag good'},'Pinned '):null,p.hidden?h('span',{class:'tag warn'},'Hidden'):null)),
+      h('div',{class:'meta'},when(p.createdAt)),h('div',{style:'white-space:pre-wrap'},p.body),p.link?h('div',{class:'meta'},p.link):null,
+      h('div',{class:'acts'},h('button',{class:'ghost',onclick:()=>{S.editPost=p;renderPosts();scrollTo(0,0)}},'Edit'),h('button',{class:'ghost',onclick:run({op:p.pinned?'unpin':'pin'},p.pinned?'Unpinned':'Pinned')},p.pinned?'Unpin':'Pin'),
+        h('button',{class:'ghost',onclick:run({op:p.hidden?'show':'hide'},p.hidden?'Visible again':'Hidden')},p.hidden?'Show':'Hide'),h('button',{class:'danger',onclick:()=>{if(confirm('Delete this post?'))run({op:'delete'},'Deleted')()}},'Delete'))))});
+}
+
+/* ---------- feedback inbox ---------- */
+async function renderFeedback(){
+  const box=$('#p-feedback');box.replaceChildren();const un=S.fbUnread!==false;
+  box.append(h('div',{class:'chips'},h('button',{class:'chip'+(un?' on':''),onclick:()=>{S.fbUnread=true;renderFeedback()}},'Unread'),h('button',{class:'chip'+(un?'':' on'),onclick:()=>{S.fbUnread=false;renderFeedback()}},'All'),
+    h('button',{class:'chip',onclick:async()=>{if(!confirm('Delete every message you marked as read?'))return;await post('feedbackaction',{op:'deleteread'});toast('Deleted');await refresh();renderFeedback()}},'Delete read')));
+  const d=await get('feedback'+(un?'?unread=1':''));
+  if(!d.ok||!d.feedback.length)return box.append(empty(un?'No unread feedback.':'No feedback yet.'));
+  d.feedback.forEach(f=>{const run=op=>async()=>{await post('feedbackaction',{op,id:f.id});await refresh();renderFeedback()};
+    box.append(h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('span',{class:'tag'},f.category),h('span',{class:'muted'},when(f.at))),h('div',{style:'white-space:pre-wrap;margin-top:6px'},f.message),
+      h('div',{class:'acts'},h('button',{class:'ghost',onclick:run(f.read?'unread':'read')},f.read?'Mark unread':'Mark read'),h('button',{class:'danger',onclick:run('delete')},'Delete'))))});
+}
+
+/* ---------- homepage cards ---------- */
+async function renderCards(){
+  const box=$('#p-cards');box.replaceChildren(h('p',{class:'muted',style:'margin-top:0'},'Giveaways and scheduled cards that streamers chose to show on the homepage. Hide one if it is misleading or inappropriate. Suspending the streamer hides all of theirs.'));
+  const d=await get('cards');if(!d.ok)return box.append(empty(d.error||'Could not load.'));
+  const row=(kind,c,sub)=>h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},c.streamer+' · '+GAME[c.game]),h('span',{class:'tag '+(c.hidden?'warn':'good')},c.hidden?'Hidden':'Visible')),h('div',{class:'meta'},sub),
+    h('div',{class:'acts'},h('button',{class:'ghost',onclick:async()=>{const r=await post('cardhide',{kind,id:c.id,hidden:!c.hidden});if(!r.ok)return toast(r.error||'Failed',1);toast(c.hidden?'Visible again':'Hidden');renderCards()}},c.hidden?'Show':'Hide')));
+  box.append(h('h2',{},'Running now'),...(d.active.length?d.active.map(c=>row('giveaway',c,c.status==='open'?'Open for entries':'In progress')):[empty('None.')]),
+    h('h2',{style:'margin-top:16px'},'Upcoming'),...(d.upcoming.length?d.upcoming.map(c=>row('scheduled',c,when(c.startsAt)+(c.note?' · '+c.note:''))):[empty('None.')]));
+}
+
+/* ---------- players ---------- */
+function renderPlayers(){
+  const box=$('#p-players');box.replaceChildren(h('p',{class:'muted',style:'margin-top:0'},'Find a player by display username or TikTok @username. Deleting an account is for requests people send you by email. It removes their entries and saved game details. Reports and disqualifications keep a copy of the names.'));
+  const q=h('input',{type:'text',placeholder:'Search (at least 2 characters)',autocapitalize:'none'}),list=h('div',{style:'margin-top:10px'});box.append(q,list);
+  let t;q.oninput=()=>{clearTimeout(t);t=setTimeout(async()=>{list.replaceChildren();if(q.value.trim().length<2)return;const d=await get('playersearch?q='+encodeURIComponent(q.value.trim()));
+    if(!d.ok||!d.players.length)return list.append(empty('No match.'));
+    d.players.forEach(p=>list.append(h('div',{class:'ent'},h('div',{class:'row',style:'justify-content:space-between'},h('h3',{},p.display),h('span',{class:'tag '+(p.status==='banned'?'bad':'good')},p.status)),
+      h('div',{class:'meta'},profile(p.tiktok),' · joined '+when(p.createdAt)+' · last login '+when(p.lastLoginAt)),
+      h('div',{class:'acts'},h('button',{class:'danger',onclick:async()=>{const c=prompt('Delete this account for good?\nType the display username ('+p.display+') to confirm:');if(!c)return;const r=await post('playerdelete',{id:p.id,confirm:c});if(!r.ok)return toast(r.error||'Failed',1);toast('Account deleted');q.oninput()}},'Delete account')))))},250)};
+}
+
+/* ---------- settings ---------- */
+const FIELDS=[['contact_email','Contact email','Shown on the site, in the Terms and in the helper. Leave empty to hide.','text'],
+ ['support_url','Support link','Your Ko-fi, PayPal or similar page. Must start with https://','text'],
+ ['support_enabled','Show the Support button','0 = hidden, 1 = shown on the homepage.','text'],
+ ['report_threshold','Reports needed for a case','How many different streamers must report a player before a case opens (1 to 10).','number'],
+ ['tiktok_change_days','Days between name changes','Applies to TikTok @username and display username changes (1 to 90).','number'],
+ ['invite_ttl_hours','Invitation lifetime (hours)','Default life of a new invitation link (1 to 720).','number'],
+ ['terms_global_version','Global Terms version','Change it (for example 1 to 2) to ask every player to accept again.','text'],
+ ['terms_streamer_version','Streamer Terms version','Change it to ask every streamer to accept again.','text']];
+async function renderSettings(){
+  const box=$('#p-settings');box.replaceChildren();const d=await get('settings');if(!d.ok)return box.append(empty(d.error||'Could not load.'));
+  FIELDS.forEach(([k,label,hint,type])=>{const inp=h('input',{type,value:d.settings[k]||'',autocapitalize:'none'}),err=h('div',{class:'err'});
+    box.append(h('div',{class:'card'},h('h2',{style:'margin-bottom:2px'},label),h('div',{class:'muted'},hint),inp,
+      h('button',{onclick:async e=>{e.target.disabled=true;err.textContent='';const r=await post('settingsave',{key:k,value:inp.value});e.target.disabled=false;if(!r.ok){err.textContent=r.error||'Not saved.';return}toast('Saved');refresh()}},'Save'),err))});
+}
+
+/* ---------- start ---------- */
+(async()=>{if(!store.get('ts_o'))return;const {data:d}=await api('dashboard');if(d.ok)openApp(d)})();
+</script>
+</body>
+</html>
