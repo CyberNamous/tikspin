@@ -6,17 +6,18 @@
 <title>TikSpin</title>
 <meta name="description" content="TikSpin: fair spin-the-wheel giveaways for TikTok streamers. Free to enter.">
 <style>
-:root{--bg:#0d0a1c;--panel:#17122b;--line:#3a2a5e;--pink:#e58bff;--pink2:#d54bf0;--neon:#b43cf5;--text:#fff;--muted:#a99fcf;--bad:#ff4d6d;--ok:#7be0a4}
+:root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9;--bad:#ff7a93;--ok:#7be0a4;--warn:#ffcf6b}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
-body{background:radial-gradient(900px 500px at 50% -10%,#2d1450 0%,var(--bg) 70%);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;display:flex;justify-content:center;padding:22px 16px 48px}
-main{width:100%;max-width:560px}
-h1{font-size:clamp(2rem,8vw,2.8rem);margin:0;font-weight:900;letter-spacing:-.02em;color:var(--pink2);text-shadow:0 0 28px rgba(180,60,245,.45)}
+body{background:radial-gradient(900px 420px at 50% -8%,#2a1250 0%,var(--bg) 72%) no-repeat,var(--bg);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;display:flex;justify-content:center;padding:calc(76px + env(safe-area-inset-top)) 16px 48px;overflow-x:hidden}
+main{width:100%;max-width:680px;min-width:0}
+main,main *{overflow-wrap:anywhere}
+h1{font-size:1.75rem;margin:0;font-weight:900;letter-spacing:-.02em;background:linear-gradient(135deg,#e58bff,#ff4fd8 60%,#a23cf0);-webkit-background-clip:text;background-clip:text;color:transparent}
 h2{font-size:1.05rem;margin:0 0 10px}
 p{line-height:1.5}
 .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:10px}
-.lede{color:var(--muted);margin:0 0 18px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.lede{color:var(--muted);margin:0 0 16px;font-size:.95rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
 ol.steps{margin:0 0 14px;padding-left:22px;color:var(--muted);line-height:1.6}
 .view{display:none}.view.on{display:block}
 label{display:block;font-weight:700;margin:12px 0 6px}
@@ -50,7 +51,7 @@ footer a,footer button.link{color:var(--pink);background:none;border:0;padding:0
 dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;max-width:520px;width:92%;max-height:80vh}
 dialog::backdrop{background:rgba(0,0,0,.65)}
 
-.fab{position:fixed;right:14px;bottom:14px;width:auto;margin:0;border-radius:99px;padding:12px 18px;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:20}
+.fab{position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));width:auto;margin:0;border-radius:99px;padding:9px 14px;font-size:.9rem;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:20}
 #bot{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;justify-content:center}
 #bot.on{display:flex}
 .botbox{width:100%;max-width:560px;height:min(78vh,620px);background:var(--panel);border:1px solid var(--line);border-radius:16px 16px 0 0;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.6)}
@@ -65,6 +66,41 @@ dialog::backdrop{background:rgba(0,0,0,.65)}
 .botin{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid var(--line)}
 .botin button{width:auto;margin:0;padding:10px 16px}
 textarea,select{width:100%;background:#0d0a1c;border:1.5px solid var(--line);border-radius:10px;color:#fff;font:inherit;padding:12px 14px}
+
+/* ---- Phase 3: homepage, tabs, sections ---- */
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+button.link{background:none;border:0;padding:0;font:inherit;font-weight:600;display:inline;width:auto;margin:0;color:var(--pink);text-decoration:underline;cursor:pointer}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:22px 2px 10px}
+.sec-h h2{margin:0;font-size:1.05rem}
+.feat{border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(135deg,var(--neon),#ff4fd8) border-box;border-radius:18px;padding:16px;margin-bottom:12px}
+.eyebrow{display:block;font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0 0;color:var(--muted);font-size:.92rem}
+ul.reqs{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+ul.reqs li{background:#221842;border:1px solid var(--line);border-radius:99px;padding:4px 10px;font-size:.82rem;color:#e6dfff}
+.joinbox{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.skel{height:14px;border-radius:8px;background:#241a45;margin:10px 0}.skel.w60{width:60%}.skel.w40{width:40%}
+.empty{text-align:center;color:var(--muted);padding:14px 6px}
+.how summary{cursor:pointer;font-weight:700;color:var(--muted)}
+.how ol.steps{margin:10px 0 0}
+.post .row{align-items:flex-start}
+.post h3{overflow-wrap:anywhere}
+.grid{display:grid;gap:12px;grid-template-columns:1fr}
+.host b{font-size:1.02rem}.host .muted{margin-top:4px}
+.foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-bottom:10px}
+footer p{margin:6px 0 0}
+nav#tabs{position:fixed;left:0;right:0;top:0;z-index:25;background:rgba(14,10,28,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(4px + env(safe-area-inset-top)) 8px 4px}
+#tabs .in{display:flex;max-width:680px;margin:0 auto}
+#tabs button{flex:1;min-width:0;margin:0;background:none;border:0;border-radius:12px;color:var(--muted);font-size:.72rem;font-weight:700;padding:6px 2px;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative}
+#tabs button[aria-current=page]{color:#fff}
+#tabs button[aria-current=page] svg{stroke:var(--pink2)}
+#tabs button[aria-current=page]::before{content:"";position:absolute;bottom:0;width:28px;height:3px;border-radius:4px 4px 0 0;background:linear-gradient(90deg,var(--neon),var(--pink2))}
+#tabs svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#tabs .badge{position:absolute;top:4px;left:calc(50% + 6px);min-width:17px;height:17px;border-radius:99px;background:var(--bad);color:#14091f;font-size:.66rem;line-height:17px;font-weight:900;padding:0 4px}
+body[data-view=v-pin] #tabs{display:none}
+@media(min-width:900px){main,#tabs .in{max-width:820px}.grid{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -75,18 +111,46 @@ textarea,select{width:100%;background:#0d0a1c;border:1.5px solid var(--line);bor
 
 <!-- HOME -->
 <section class="view on" id="v-home">
-  <form class="card" id="codeForm" autocomplete="off">
-    <h2>Have a giveaway code?</h2>
-    <div class="muted" style="margin-bottom:4px">How it works</div>
-    <ol class="steps"><li>Create a free account.</li><li>Get the giveaway code from a streamer.</li><li>Enter the code and fill in what that giveaway asks for.</li><li>Watch the wheel on their live.</li></ol>
-    <input class="code" id="codeIn" type="text" maxlength="24" placeholder="ENTER CODE" autocapitalize="characters" spellcheck="false">
-    <button type="submit">Continue</button>
-    <div class="err" id="codeErr"></div>
-    <p class="muted" style="margin:6px 0 0">Only the streamer has the code. They share it on their stream.</p>
-  </form>
+  <article class="feat" aria-labelledby="featH">
+    <span class="eyebrow">Featured giveaway</span>
+    <div id="featInfo" aria-live="polite"><div class="skel w60"></div><div class="skel"></div><div class="skel w40"></div></div>
+    <form class="joinbox" id="codeForm" autocomplete="off">
+      <label class="sr" for="codeIn">Giveaway code</label>
+      <input class="code" id="codeIn" type="text" maxlength="24" placeholder="ENTER GIVEAWAY CODE" autocapitalize="characters" spellcheck="false">
+      <button type="submit" id="featJoin">Join Giveaway</button>
+      <div class="err" id="codeErr" role="alert"></div>
+      <p class="muted" style="margin:6px 0 0">Only the streamer has the code. They share it on their stream.</p>
+    </form>
+  </article>
+  <details class="card how"><summary>How it works</summary><ol class="steps"><li>Create a free account.</li><li>Get the giveaway code from a streamer.</li><li>Enter the code and fill in what that giveaway asks for.</li><li>Watch the wheel on their live.</li></ol></details>
+  <div class="sec-h"><h2>Available giveaways</h2><button class="link" id="seeAll" type="button" hidden>See all</button></div>
+  <div class="card" id="activeHome"></div>
+  <div class="sec-h"><h2>Official Posts</h2></div>
   <div id="posts"></div>
-  <div class="card" id="activeBox" hidden><h2>Giveaways running now</h2><div id="active"></div><p class="muted" style="margin:8px 0 0">View only. You still need the streamer's code to join.</p></div>
-  <div class="card" id="upBox" hidden><h2>Coming up</h2><div id="upcoming"></div><p class="muted" id="tzNote" style="margin:8px 0 0"></p></div>
+</section>
+
+<!-- GIVEAWAYS -->
+<section class="view" id="v-give">
+  <div class="sec-h"><h2>Giveaways</h2></div>
+  <form class="card" id="code3Form" autocomplete="off"><label for="code3In" style="margin-top:0">Have a giveaway code?</label><input class="code" id="code3In" type="text" maxlength="24" placeholder="ENTER GIVEAWAY CODE" autocapitalize="characters" spellcheck="false"><button type="submit">Join Giveaway</button><div class="err" id="code3Err" role="alert"></div></form>
+  <div class="sec-h"><h2>Available now</h2></div>
+  <div class="card" id="giveAll"></div>
+  <div class="sec-h"><h2>Coming up</h2></div>
+  <div class="card" id="upcoming"></div>
+  <p class="muted" id="tzNote"></p>
+</section>
+
+<!-- STREAMERS -->
+<section class="view" id="v-streamers">
+  <div class="sec-h"><h2>Streamers</h2></div>
+  <div class="grid" id="hosts"></div>
+  <div class="card" style="margin-top:12px"><h2>Are you a streamer?</h2><p class="muted" style="margin-top:0">Streamers join by invitation. Log in to open your dashboard and run giveaways.</p><a class="btn" href="/streamer">Streamer login</a></div>
+</section>
+
+<!-- ALERTS -->
+<section class="view" id="v-alerts">
+  <div class="sec-h"><h2>Alerts</h2></div>
+  <div id="alertList"></div>
 </section>
 
 <!-- LOG IN / CREATE ACCOUNT -->
@@ -145,15 +209,27 @@ textarea,select{width:100%;background:#0d0a1c;border:1.5px solid var(--line);bor
   </div>
 </section>
 
-<footer id="foot"></footer>
+<footer id="foot">
+  <div class="foot-links"><button class="link" type="button" data-terms>Terms &amp; Conditions</button><button class="link" type="button" id="fbOpen">Send Feedback</button><button class="link" type="button" id="supOpen">Contact Support</button><a id="supUs" href="#" target="_blank" rel="noopener noreferrer" hidden>Support us (optional)</a></div>
+  <p>&copy; <span id="yr"></span> TikSpin. All rights reserved.</p>
+  <p>Entering is always free. TikSpin is independent and not affiliated with TikTok, Roblox or Mobile Legends.</p>
+</footer>
 </main>
 
+
+<nav id="tabs" aria-label="Main"><div class="in">
+<button type="button" data-tab="v-home" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Home</span></button>
+<button type="button" data-tab="v-give"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M5 12v9h14v-9"/><path d="M7.5 8a2.5 2.5 0 010-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 010 5"/></svg><span>Giveaways</span></button>
+<button type="button" data-tab="v-streamers"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.6a3.5 3.5 0 010 6.8"/><path d="M18 14.4c2 .7 3.5 2.5 3.5 5.6"/></svg><span>Streamers</span></button>
+<button type="button" data-tab="v-alerts" id="tabAlerts" aria-label="Alerts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16v-5a6 6 0 0112 0v5l2 2H4z"/><path d="M10 21a2 2 0 004 0"/></svg><span>Alerts</span><i class="badge" id="alertBadge" hidden></i></button>
+<button type="button" data-tab="profile" id="tabProfile" aria-label="Profile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg><span>Profile</span></button>
+</div></nav>
 
 <button class="fab" id="botFab" type="button">💬 Help</button>
 <div id="bot"><div class="botbox"><div class="bothead"><span id="botName">TikSpin Helper</span><button class="ghost sm" id="botClose" type="button">Close</button></div>
 <div id="botMsgs"></div><div id="botChips"></div>
 <form class="botin" id="botForm" autocomplete="off"><input id="botIn" type="text" maxlength="300" placeholder="Ask a question..."><button type="submit">Send</button></form></div></div>
-<dialog id="fb"><h2>Send feedback</h2><p class="muted" style="margin-top:0">One-way and anonymous: we don't collect your name. For account problems, use the Help button or email the operator.</p>
+<dialog id="fb"><h2>Send feedback</h2><p class="muted" style="margin-top:0">One-way and anonymous: we don't collect your name. For account problems, use Contact Support.</p>
 <form id="fbForm"><select id="fbCat"><option value="idea">Idea</option><option value="bug">Bug</option><option value="complaint">Complaint</option><option value="other">Other</option></select>
 <label for="fbMsg">Your message</label><textarea id="fbMsg" rows="5" maxlength="1000"></textarea>
 <div class="err" id="fbErr"></div><button type="submit">Send</button><button class="ghost" type="button" id="fbClose">Cancel</button></form></dialog>
@@ -175,32 +251,165 @@ async function api(path,{method='GET',body,token}={}){
 const pApi=(p,o={})=>api('player/'+p,{...o,token:store.get('ts_p')});
 const norm=s=>String(s||'').replace(/[\s-]+/g,'').toUpperCase();
 const when=ms=>new Date(ms).toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-const setUrl=u=>{try{history.replaceState(null,'',u)}catch{}}; // cosmetic only: some sandboxes forbid changing the address
-function show(id){$$('.view').forEach(v=>v.classList.toggle('on',v.id===id));scrollTo(0,0);if(id!=='v-join')setUrl('/')}
+const setUrl=u=>{try{history.replaceState({v:cur},'',u)}catch{}}; // cosmetic only: some sandboxes forbid changing the address
+let cur='v-home';
+// Tabs live on the homepage address with a #name, so a refresh or a shared link opens the same tab (the Worker never sees the #).
+const TABHASH={'v-give':'#giveaways','v-streamers':'#streamers','v-alerts':'#alerts'};
+const tabFromHash=()=>Object.keys(TABHASH).find(k=>TABHASH[k]===location.hash)||'';
+// The join code stays in the address while a visitor logs in, so a refresh or a shared link still lands on the giveaway.
+const urlFor=id=>((id==='v-join'||id==='v-auth')&&S.code)?'/join/'+S.code:'/'+(TABHASH[id]||'');
+const TAB_OF={'v-home':'v-home','v-give':'v-give','v-join':'v-give','v-streamers':'v-streamers','v-alerts':'v-alerts','v-me':'profile','v-auth':'profile','v-pin':'profile'};
+const LIVE_VIEWS=['v-home','v-give','v-streamers','v-alerts'];
+// Every screen change adds a browser history entry, so Back and Forward move between screens instead of leaving the site.
+function show(id,pop){
+  $$('.view').forEach(v=>v.classList.toggle('on',v.id===id));scrollTo(0,0);
+  if(pop!==true&&(id!==cur||urlFor(id)!==location.pathname+location.hash)){try{history.pushState({v:id},'',urlFor(id))}catch{}}
+  cur=id;document.body.dataset.view=id;
+  $$('#tabs button').forEach(b=>{if(b.dataset.tab===TAB_OF[id])b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  if(id==='v-alerts')renderAlerts();
+  if(LIVE_VIEWS.includes(id))loadHome();
+}
+addEventListener('popstate',e=>{
+  // Never let Back hide the one-time recovery PIN before it is saved.
+  if(cur==='v-pin'&&!$('#pinSaved').checked){try{history.pushState({v:'v-pin'},'',urlFor('v-pin'))}catch{}return}
+  let id=(e.state&&e.state.v)||tabFromHash()||'v-home';
+  if(id==='v-pin'||id==='v-auth'&&S.me)id='v-home';
+  if(id==='v-me'){if(S.me)renderMe();else id='v-home'}
+  if(id==='v-join'&&!(S.me&&S.gw&&S.code))id='v-home';
+  if(id!=='v-join'&&id!=='v-auth'){S.code='';S.gw=null;S.draft=null;if(location.pathname!=='/'){try{history.replaceState({v:id},'','/'+(TABHASH[id]||''))}catch{}}}
+  show(id,true);
+});
 function busy(btn,on){btn.disabled=on}
 
 /* ---------- home ---------- */
-async function loadHome(){
-  const {data:d}=await api('home');if(!d.ok)return;S.home=d;
-  const P=$('#posts');P.replaceChildren(...d.posts.map(p=>h('div',{class:'card post'+(p.pinned?' pin':'')},h('h3',{},(p.pinned?'📌 ':'')+p.title),h('p',{},p.body),p.link?h('a',{href:p.link,target:'_blank',rel:'noopener noreferrer'},'Read more'):null)));
-  if(d.posts.length)P.prepend(h('div',{class:'muted',style:'margin:0 0 6px'},'TikSpin Official'));
-  $('#activeBox').hidden=!d.active.length;
-  $('#active').replaceChildren(...d.active.map(g=>h('div',{class:'item'},h('div',{},h('b',{},g.streamer.name),h('div',{class:'muted'},GAME[g.game]+' · '+g.players+' on the wheel')),h('div',{},h('span',{class:'tag good'},g.status==='open'?'Open':'Running'),h('div',{style:'margin-top:6px;text-align:right'},h('a',{href:'/wheel/'+g.wheelCode},'Watch'))))));
-  $('#upBox').hidden=!d.upcoming.length;
-  $('#upcoming').replaceChildren(...d.upcoming.map(u=>h('div',{class:'item'},h('div',{},h('b',{},u.streamer.name),h('div',{class:'muted'},GAME[u.game]+(u.note?' · '+u.note:''))),h('span',{class:'tag'},when(u.startsAt)))));
-  $('#tzNote').textContent='Times are shown in your own time zone ('+(Intl.DateTimeFormat().resolvedOptions().timeZone||'local')+').';
-  const f=$('#foot');f.replaceChildren(h('button',{class:'link',onclick:()=>openTerms()},'Terms and Conditions'),' · ',h('button',{class:'link',onclick:()=>$('#fb').showModal()},'Send feedback'));
-  if(d.contactEmail)f.append(' · ',h('a',{href:'mailto:'+d.contactEmail},d.contactEmail));
-  if(d.support)f.append(' · ',h('a',{href:d.support.url,target:'_blank',rel:'noopener noreferrer'},'Support us (optional)'));
-  f.append(h('div',{style:'margin-top:8px'},'Entering is always free. TikSpin is independent and not affiliated with TikTok, Roblox or Mobile Legends.'));
+let homeAt=0;
+const fmtDate=ms=>new Date(ms).toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'});
+const REQ={roblox_username:'Roblox username',ign:'Mobile Legends IGN',user_id:'Mobile Legends User ID',server_id:'Server ID',follow_proof:'Follow the host on TikTok (host checks your screenshot)'};
+const reqList=g=>(g.requirements||[]).map(k=>REQ[k]||k);
+function left(ms){const s=Math.max(0,Math.floor((ms-Date.now())/1000)),d=Math.floor(s/86400),hh=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d?d+'d '+hh+'h':hh?hh+'h '+m+'m':m+'m'}
+const closeText=ms=>ms-Date.now()>0?'Entries close '+when(ms)+' · '+left(ms)+' left':'Entries closing now';
+// "Already entered" comes from the logged-in player's own entries, matched on the public wheel link and game.
+const entered=g=>!!(S.me&&S.me.giveaways.some(x=>x.wheelCode&&x.wheelCode===g.wheelCode&&x.game===g.game&&!x.finished&&x.state!=='removed'));
+const loadingCard=msg=>h('div',{class:'empty'},msg);
+
+let homeP=null;
+function loadHome(force){
+  if(homeP)return homeP;
+  if(!force&&S.home&&Date.now()-homeAt<30000)return Promise.resolve();
+  homeP=(async()=>{
+    const {data:d}=await api('home');
+    if(!d.ok){S.homeErr=true;if(!S.home)renderAll();return}
+    S.homeErr=false;S.home=d;homeAt=Date.now();renderAll();
+    const u=$('#supUs');if(d.support){u.href=d.support.url;u.hidden=false}else u.hidden=true;
+  })().finally(()=>{homeP=null});
+  return homeP;
 }
+function renderAll(){renderFeatured();renderGive();renderHosts();renderPosts()}
+
+function renderFeatured(){
+  const box=$('#featInfo'),d=S.home;
+  if(!d){box.replaceChildren(...(S.homeErr?[h('p',{class:'muted',style:'margin:0 0 8px'},'Could not load giveaways. Check your connection.'),h('button',{class:'ghost sm',type:'button',onclick:()=>loadHome(true)},'Try again')]:[h('div',{class:'skel w60'}),h('div',{class:'skel'}),h('div',{class:'skel w40'})]));return}
+  const g=d.active.find(x=>x.status==='open')||d.active[0];
+  if(!g){
+    const n=d.upcoming[0];S.featExp=0;
+    box.replaceChildren(h('h2',{id:'featH',style:'margin:0 0 6px'},'No giveaway is listed right now'),h('p',{class:'muted',style:'margin:0'},n?'Next scheduled: '+n.streamer.name+' · '+GAME[n.game]+' · '+when(n.startsAt):'Streamers choose whether to list their giveaway. If you have a code, you can still join below.'));return}
+  const open=g.status==='open',got=entered(g),wait=!got&&!!(S.me&&(S.me.following||[]).some(x=>x.tiktok.toLowerCase()===g.streamer.tiktok.toLowerCase()&&x.status==='pending'));S.featExp=open?g.expiresAt:0;
+  box.replaceChildren(...[
+    h('div',{class:'row',style:'justify-content:space-between;gap:8px;align-items:flex-start'},h('h2',{id:'featH',style:'margin:0'},g.streamer.name+' · '+GAME[g.game]+' giveaway'),h('span',{class:'tag '+(open?'good':'warn')},open?'Open':'Entries closed')),
+    h('div',{class:'muted',style:'margin-top:4px'},'Hosted by ',h('a',{href:g.streamer.profileUrl,target:'_blank',rel:'noopener noreferrer'},'@'+g.streamer.tiktok)),
+    h('div',{class:'facts'},h('span',{},g.players+(g.players===1?' player':' players')+' on the wheel'),open&&g.expiresAt?h('span',{id:'featClose'},closeText(g.expiresAt)):null,h('a',{href:'/wheel/'+g.wheelCode},'Watch the wheel')),
+    h('ul',{class:'reqs','aria-label':'Entry requirements'},...reqList(g).map(r=>h('li',{},r))),
+    got?h('p',{class:'ok',style:'margin:10px 0 0;font-weight:700'},'You are already entered in this giveaway.'):false,
+    wait?h('p',{class:'muted',style:'margin:10px 0 0;font-weight:700'},'Your screenshot was sent. The host is checking it.'):false,
+    !open?h('p',{class:'muted',style:'margin:10px 0 0'},'Entries for this giveaway are closed. You can still use a code for another giveaway.'):false].filter(Boolean));
+}
+setInterval(()=>{const e=$('#featClose');if(!e||document.hidden||!S.featExp)return;e.textContent=closeText(S.featExp);if(S.featExp<=Date.now()){S.featExp=0;loadHome(true)}},30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&LIVE_VIEWS.includes(cur))loadHome()});
+
+function giveItem(g){
+  const open=g.status==='open';
+  return h('div',{class:'item'},
+    h('div',{},h('b',{},g.streamer.name),h('div',{class:'muted'},GAME[g.game]+' · '+g.players+' on the wheel'+(open&&g.expiresAt?' · closes '+when(g.expiresAt):'')),h('div',{class:'muted'},'Needs: '+reqList(g).join(', '))),
+    h('div',{style:'text-align:right'},h('span',{class:'tag '+(open?'good':'warn')},open?'Open':'Entries closed'),h('div',{style:'margin-top:6px'},h('a',{href:'/wheel/'+g.wheelCode},'Watch'))));
+}
+function renderGive(){
+  const d=S.home,H=$('#activeHome'),A=$('#giveAll'),U=$('#upcoming'),see=$('#seeAll');
+  if(!d){const m=loadingCard(S.homeErr?'Could not load giveaways.':'Loading giveaways...');H.replaceChildren(m.cloneNode(true));A.replaceChildren(m.cloneNode(true));U.replaceChildren();see.hidden=true;return}
+  const none=()=>h('p',{class:'empty',style:'margin:0'},'No giveaways are listed publicly right now. Streamers choose whether to list theirs; you can still join with a code.');
+  H.replaceChildren(...(d.active.length?d.active.slice(0,3).map(giveItem):[none()]));
+  A.replaceChildren(...(d.active.length?d.active.map(giveItem):[none()]));
+  see.hidden=!(d.active.length>3||d.upcoming.length);
+  U.replaceChildren(...(d.upcoming.length?d.upcoming.map(u=>h('div',{class:'item'},h('div',{},h('b',{},u.streamer.name),h('div',{class:'muted'},GAME[u.game]+(u.note?' · '+u.note:''))),h('span',{class:'tag'},when(u.startsAt)))):[h('p',{class:'empty',style:'margin:0'},'Nothing is scheduled yet.')]));
+  $('#tzNote').textContent=d.upcoming.length?'Times are shown in your own time zone ('+(Intl.DateTimeFormat().resolvedOptions().timeZone||'local')+').':'';
+}
+function renderHosts(){
+  const d=S.home,H=$('#hosts');
+  if(!d){H.replaceChildren(h('div',{class:'card empty'},S.homeErr?'Could not load streamers.':'Loading streamers...'));return}
+  const m=new Map(),add=st=>{const k=st.tiktok.toLowerCase();if(!m.has(k))m.set(k,{s:st,live:[],next:[]});return m.get(k)};
+  d.active.forEach(g=>add(g.streamer).live.push(g));d.upcoming.forEach(u=>add(u.streamer).next.push(u));
+  if(!m.size){H.replaceChildren(h('div',{class:'card empty'},'No streamers have public giveaways right now.'));return}
+  H.replaceChildren(...[...m.values()].map(x=>h('div',{class:'card host',style:'margin:0'},
+    h('b',{},x.s.name),h('div',{},h('a',{href:x.s.profileUrl,target:'_blank',rel:'noopener noreferrer'},'@'+x.s.tiktok)),
+    ...x.live.map(g=>h('div',{class:'muted'},'Live: '+GAME[g.game]+' · '+g.players+' on the wheel · '+(g.status==='open'?'entries open':'entries closed')+' · ',h('a',{href:'/wheel/'+g.wheelCode},'Watch'))),
+    ...x.next.map(u=>h('div',{class:'muted'},'Next: '+GAME[u.game]+' · '+when(u.startsAt))))));
+}
+function renderPosts(){
+  const d=S.home,P=$('#posts');
+  if(!d){P.replaceChildren(h('div',{class:'card empty'},S.homeErr?'Could not load posts.':'Loading posts...'));return}
+  if(!d.posts.length){P.replaceChildren(h('div',{class:'card empty'},'No official posts yet. Check back soon.'));return}
+  P.replaceChildren(...d.posts.map(p=>h('article',{class:'card post'+(p.pinned?' pin':'')},
+    h('div',{class:'row',style:'justify-content:space-between;gap:8px'},h('h3',{},p.title),p.pinned?h('span',{class:'tag'},'📌 Pinned'):null),
+    h('div',{class:'muted',style:'margin:0 0 6px'},fmtDate(p.createdAt)),h('p',{style:'margin:0 0 6px'},p.body),
+    /^https?:\/\//i.test(p.link)?h('a',{href:p.link,target:'_blank',rel:'noopener noreferrer'},'Read more'):null)));
+}
+
+/* ---------- alerts: the player's own entry updates, from the existing /player/me data ---------- */
+function alertItems(){
+  const m=S.me;if(!m)return null;const out=[];
+  m.giveaways.forEach(g=>{
+    if(g.state==='winner'&&!g.finished)out.push({k:'good',tag:'Winner',attn:1,t:'You won the '+g.streamer+' giveaway',d:GAME[g.game]+' · the host will contact you on TikTok'});
+    else if(g.state==='on_hold'&&!g.finished)out.push({k:'warn',tag:'On hold',attn:1,t:'Your entry is on hold: '+g.streamer,d:GAME[g.game]+(g.holdReason?' · '+g.holdReason:'')});
+    else if(g.state==='removed')out.push({k:'bad',tag:'Removed',attn:0,t:'Removed from the '+g.streamer+' giveaway',d:GAME[g.game]+(g.holdReason?' · '+g.holdReason:'')});
+  });
+  (m.following||[]).forEach(f=>{
+    if(f.status==='rejected')out.push({k:'bad',tag:'Action needed',attn:1,t:f.streamer+' did not accept your screenshot',d:'Send a new screenshot the next time you join.'});
+    else if(f.status==='pending')out.push({k:'warn',tag:'Waiting',attn:0,t:'Waiting for '+f.streamer,d:'Your follow screenshot is waiting for the host to check it.'});
+  });
+  return out.sort((a,b)=>b.attn-a.attn);
+}
+function renderAlerts(){
+  const L=$('#alertList'),it=alertItems();
+  if(!it&&store.get('ts_p')&&!S.meDone){L.replaceChildren(loadingCard('Loading your updates...'));return}
+  if(!it){L.replaceChildren(h('div',{class:'card empty'},h('p',{style:'margin:0'},'Log in to see updates about your entries.'),h('button',{type:'button',onclick:()=>openAuth('login')},'Log in')));return}
+  if(!it.length){L.replaceChildren(h('div',{class:'card empty'},'You are all caught up. Updates about your entries show up here.'));return}
+  L.replaceChildren(h('div',{class:'card'},...it.map(a=>h('div',{class:'item'},h('div',{},h('b',{},a.t),h('div',{class:'muted'},a.d)),h('span',{class:'tag '+a.k},a.tag)))),h('button',{class:'ghost',type:'button',onclick:()=>{renderMe();show('v-me')}},'Open My account'));
+}
+function syncNav(){
+  const n=(alertItems()||[]).filter(a=>a.attn).length,b=$('#alertBadge');
+  b.hidden=!n;b.textContent=n>9?'9+':String(n);
+  $('#tabAlerts').setAttribute('aria-label','Alerts'+(n?', '+n+' need attention':''));
+  $('#tabProfile').setAttribute('aria-label',S.me?'Profile, '+S.me.player.display:'Profile, log in');
+  if(S.home)renderFeatured();
+  if(cur==='v-alerts')renderAlerts();
+}
+// Tabs: Profile is the existing My account page, or the login screen when logged out.
+$$('#tabs button').forEach(b=>b.onclick=()=>{
+  S.code='';S.gw=null;S.draft=null;
+  if(b.dataset.tab==='profile'){if(S.me){renderMe();show('v-me')}else openAuth('login')}
+  else show(b.dataset.tab);
+});
+$('#seeAll').onclick=()=>show('v-give');
+$('#code3Form').onsubmit=e=>{e.preventDefault();startCode($('#code3In').value,$('#code3Err'))};
+$('#fbOpen').onclick=()=>$('#fb').showModal();
+$('#supOpen').onclick=()=>openBot();
+$('#yr').textContent=new Date().getFullYear();
 function openTerms(){window.open('/terms','_blank','noopener')}
 document.addEventListener('click',e=>{if(e.target.closest('[data-terms]'))openTerms();if(e.target.closest('[data-home]'))goHome()});
-function goHome(){S.code='';show('v-home')}
+function goHome(){S.code='';S.gw=null;S.draft=null;show('v-home')}
 $$('[data-terms]');
 
 /* ---------- account ---------- */
-function setAuthBtn(){const b=$('#authBtn');b.hidden=false;if(S.me){b.textContent='My account';b.onclick=()=>{renderMe();show('v-me')}}else{b.textContent='Log in';b.onclick=()=>openAuth('login')}}
+function setAuthBtn(){S.meDone=true;const b=$('#authBtn');b.hidden=false;if(S.me){b.textContent='My account';b.onclick=()=>{renderMe();show('v-me')}}else{b.textContent='Log in';b.onclick=()=>openAuth('login')}syncNav()}
 function openAuth(tab,note){tab==='reg'?tabReg():tabLogin();$('#authNote').textContent=note||'';show('v-auth')}
 function tabLogin(){$('#tLogin').classList.add('on');$('#tReg').classList.remove('on');$('#loginForm').hidden=false;$('#regForm').hidden=true}
 function tabReg(){$('#tReg').classList.add('on');$('#tLogin').classList.remove('on');$('#loginForm').hidden=true;$('#regForm').hidden=false}
@@ -209,8 +418,8 @@ function setKind(k){
   S.kind=k;$('#kPlayer').classList.toggle('on',k==='player');$('#kStreamer').classList.toggle('on',k==='streamer');
   $('#lUser').textContent=k==='player'?'Display username':'TikTok username';
   const n=$('#streamerNote');n.hidden=k!=='streamer';
-  if(k==='streamer'){const mail=S.home&&S.home.contactEmail;
-    n.replaceChildren('Streamers join by invitation only. Have an invitation link? Open it to register. Need one? ',mail?h('a',{href:'mailto:'+mail},'Email '+mail):'Ask the operator.',h('a',{class:'btn ghost',href:'/streamer',style:'margin-top:10px'},'Open the streamer page'))}
+  if(k==='streamer'){
+    n.replaceChildren('Streamers join by invitation only. Have an invitation link? Open it to register. Need one? ',h('button',{class:'link',type:'button',onclick:()=>openBot()},'Ask through Contact Support'),'.',h('a',{class:'btn ghost',href:'/streamer',style:'margin-top:10px'},'Open the streamer page'))}
 }
 $('#kPlayer').onclick=()=>setKind('player');$('#kStreamer').onclick=()=>setKind('streamer');
 
@@ -222,7 +431,7 @@ async function loadMe(){
   setAuthBtn();return false;
 }
 async function afterAuth(){
-  if(!(await loadMe()))return;
+  if(!(await loadMe())){$('#loginErr').textContent='Could not load your account. Check your connection and try again.';return}
   if(S.code)return openJoin(S.code);
   renderMe();show('v-me');
 }
@@ -272,12 +481,12 @@ function pwForm(sel){
 
 /* ---------- entering a code ---------- */
 async function startCode(raw,errEl){
-  const code=norm(raw);if(code.length<6){errEl.textContent='Enter the code the streamer shared.';return}
-  errEl.textContent='';const {data:d}=await api('codecheck',{method:'POST',body:{code}});
-  if(!d.ok){errEl.textContent=d.error||'That code is not valid.';return}
+  const code=norm(raw);if(code.length<6){errEl.textContent='Enter the code the streamer shared.';return 'bad'}
+  errEl.textContent='';const {status,data:d}=await api('codecheck',{method:'POST',body:{code}});
+  if(!d.ok){errEl.textContent=d.error||'That code is not valid.';return(status===0||status===429||status>=500)?'net':'bad'}
   S.code=code;S.gw=d.giveaway;
-  if(!(await loadMe()))return openAuth('login','Log in or create a free account to join this giveaway.');
-  openJoin(code);
+  if(!(await loadMe())){openAuth('login','Log in or create a free account to join this giveaway.');return 'auth'}
+  openJoin(code);return 'ok'
 }
 $('#codeForm').onsubmit=e=>{e.preventDefault();startCode($('#codeIn').value,$('#codeErr'))};
 $('#code2Form').onsubmit=e=>{e.preventDefault();startCode($('#code2In').value,$('#code2Err'))};
@@ -293,17 +502,37 @@ async function openJoin(code){
   S.needProof=g.requirements.includes('follow_proof')&&!(f&&f.status==='approved');
   S.proofPending=f&&f.status==='pending';
   const pr=$('#jProof');pr.replaceChildren();
-  if(S.needProof&&!S.proofPending){pr.append(h('label',{for:'shot'},'Screenshot of '+g.streamer.name+"'s TikTok profile"),h('input',{id:'shot',type:'file',accept:'image/*'}),h('p',{class:'muted',style:'margin:6px 0 0'},'Follow the streamer first. The screenshot must show their name, @username and the Following button. The host checks it, and you only do this once per streamer.'))}
+  if(S.needProof&&!S.proofPending){pr.append(h('label',{for:'shot'},'Screenshot of '+g.streamer.name+"'s TikTok profile"),h('input',{id:'shot',type:'file',accept:'image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp'}),h('p',{class:'muted',style:'margin:6px 0 0'},'Follow the streamer first. The screenshot must show their name, @username and the Following button. The host checks it, and you only do this once per streamer.'))}
   if(S.proofPending)pr.append(h('p',{class:'muted'},'Your screenshot is already waiting for the host to review.'));
   $('#jGo').hidden=!!S.proofPending;$('#jGo').textContent=S.needProof?'Send for review':'Enter giveaway';
+  if(S.draft&&S.draft.code===code){for(const k in S.draft.vals){const el=$('#'+k);if(el&&S.draft.vals[k])el.value=S.draft.vals[k]}
+    if(S.draft.file&&S.needProof&&!S.proofPending)pr.append(h('p',{class:'ok',style:'margin:6px 0 0'},'Your screenshot ('+S.draft.file.name+') is kept. Choose another one only if you want to replace it.'))}
   $('#jErr').textContent='';$('#jDone').hidden=true;$('#joinForm').hidden=false;
-  show('v-join');setUrl('/join/'+code);
+  show('v-join');
+}
+async function loadImg(file){
+  if(window.createImageBitmap){
+    try{return await createImageBitmap(file)}catch{}
+  }
+  const url=URL.createObjectURL(file);
+  try{return await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=url})}
+  finally{URL.revokeObjectURL(url)}
 }
 async function shrink(file){
-  const url=URL.createObjectURL(file);
-  try{const img=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=url});
-    const k=Math.min(1,1100/Math.max(img.width,img.height)),c=h('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);
-    for(const q of[.7,.55,.4]){const d=c.toDataURL('image/jpeg',q);if(d.length<440000)return d}}catch{}finally{URL.revokeObjectURL(url)}
+  // Accepts JPG/JPEG, PNG and WebP (anything the browser can decode) and always outputs JPEG,
+  // which is the only format the server accepts.
+  try{
+    const img=await loadImg(file);
+    const w=img.width,hh=img.height;
+    for(const max of[1100,900,720,560]){
+      const k=Math.min(1,max/Math.max(w,hh)),c=h('canvas');
+      c.width=Math.round(w*k);c.height=Math.round(hh*k);
+      const x=c.getContext('2d');
+      x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height); // PNG/WebP transparency would turn black in JPEG
+      x.drawImage(img,0,0,c.width,c.height);
+      for(const q of[.7,.55,.4]){const d=c.toDataURL('image/jpeg',q);if(d.length<440000)return d}
+    }
+  }catch(e){console.error('shrink failed',e)}
   return '';
 }
 $('#joinForm').onsubmit=async e=>{
@@ -311,16 +540,20 @@ $('#joinForm').onsubmit=async e=>{
   const g=S.gw,fields=g.game==='roblox'?{roblox_username:$('#f_roblox').value.trim()}:{ign:$('#f_ign').value.trim(),user_id:$('#f_uid').value.trim(),server_id:$('#f_sid').value.trim()};
   let res;
   if(S.needProof){
-    const file=$('#shot')&&$('#shot').files[0];if(!file){$('#jErr').textContent='Choose your screenshot first.';busy(b,false);return}
+    const file=($('#shot')&&$('#shot').files[0])||(S.draft&&S.draft.code===S.code&&S.draft.file);if(!file){$('#jErr').textContent='Choose your screenshot first.';busy(b,false);return}
+    if(!/^image\/(jpeg|png|webp)$/i.test(file.type)&&!/\.(jpe?g|png|webp)$/i.test(file.name)){$('#jErr').textContent='Please use a JPG, JPEG, PNG or WebP screenshot.';busy(b,false);return}
     const shot=await shrink(file);if(!shot){$('#jErr').textContent='That image could not be read. Try another screenshot.';busy(b,false);return}
     res=await pApi('apply',{method:'POST',body:{code:S.code,fields,screenshot:shot,reason:'Sent for review'}});
   }else res=await pApi('enter',{method:'POST',body:{code:S.code,fields}});
   busy(b,false);const d=res.data;
-  if(res.status===401){store.set('ts_p','');S.me=null;return openAuth('login','Please log in again.')}
+  if(res.status===401){
+    const vals={};$$('#jFields input').forEach(i=>{vals[i.id]=i.value});
+    S.draft={code:S.code,vals,file:($('#shot')&&$('#shot').files[0])||(S.draft&&S.draft.file)||null};
+    store.set('ts_p','');S.me=null;setAuthBtn();return openAuth('login','Your session ended. Log in again and your entry details will still be here.')}
   if(!d.ok){$('#jErr').textContent=d.error||'Something went wrong.';return}
   const done=$('#jDone');done.hidden=false;$('#joinForm').hidden=true;
   done.replaceChildren(h('h2',{class:'ok'},S.needProof?'Sent to the host':(d.status==='frozen'?'Your entry is on hold':"You're on the wheel! 🎉")),h('p',{class:'muted'},S.needProof?'The host will review your screenshot. You\'re put on the wheel automatically when they approve it. You can follow it under My giveaways.':d.message),h('button',{type:'button',onclick:async()=>{await loadMe();renderMe();show('v-me')}},'My giveaways'));
-  S.code='';S.gw=null;
+  S.code='';S.gw=null;S.draft=null;
 };
 
 
@@ -397,9 +630,19 @@ $('#fbForm').onsubmit=async e=>{
 
 /* ---------- start ---------- */
 (async()=>{
-  await loadHome();await loadMe();
-  const m=location.pathname.match(/^\/join\/([^/]+)/);
-  if(m){const code=norm(decodeURIComponent(m[1]));$('#codeIn').value=code;await startCode(code,$('#codeErr'))}
+  const tab0=location.pathname==='/'?tabFromHash():'';
+  try{history.replaceState({v:tab0||'v-home'},'',location.pathname+location.search+location.hash)}catch{}
+  if(tab0)show(tab0,true);
+  await Promise.all([loadHome(),loadMe()]);
+  const m=location.pathname.match(/^\/join(?:\/([^/]*))?\/?$/);
+  if(m){
+    let raw='';try{raw=decodeURIComponent(m[1]||'')}catch{}
+    const code=norm(raw);
+    if(!code){setUrl('/');return}
+    $('#codeIn').value=code;
+    const r=await startCode(code,$('#codeErr'));
+    if(r==='bad')setUrl('/'); // invalid, expired or closed: do not leave a dead link in the address bar
+  }
 })();
 </script>
 </body>
