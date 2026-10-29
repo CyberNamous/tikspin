@@ -9,7 +9,7 @@
   "main": "index.js",
 
   // Use a date on or before today's date.
-  "compatibility_date": "2026-10-26",
+  "compatibility_date": "2026-10-29",
 
   // The website: every file inside the "public" folder (index.html, streamer.html, owner.html, wheel.html and
   // any images). Only that folder is published, so the Worker source can never be downloaded and no hidden
@@ -26,7 +26,7 @@
     {
       "binding": "DB",
       "database_name": "tikspin",
-      "database_id": "YOUR-D1-DATABASE-ID"
+      "database_id": "ef451e17-f5f0-4df3-adc6-9abe7a61267c"
     }
   ],
 
