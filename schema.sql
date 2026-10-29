@@ -1,14 +1,3 @@
--- TikSpin (global) - database schema for Cloudflare D1. Fresh install, no migration needed.
--- You normally do not run this by hand: the Worker creates every table by itself the first time it starts
--- (lib/schema.js holds this same SQL). This file is a readable copy and is safe to run more than once.
--- Use a NEW, EMPTY database named "tikspin" (not tikspin_vip).
-
-
--- =====================================================================================================
--- Settings and shared limiters
--- =====================================================================================================
-
--- Small owner-editable settings. The code falls back to the defaults below if a key is missing.
 CREATE TABLE IF NOT EXISTS system_config (
   key TEXT PRIMARY KEY,
   value TEXT
