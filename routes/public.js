@@ -46,7 +46,7 @@ async function loadHome(env, now) {
       'SELECT id, title, body, link, pinned, created_at FROM posts WHERE hidden = 0 ORDER BY pinned DESC, created_at DESC LIMIT 5'
     ),
     env.DB.prepare(
-      `SELECT g.id, g.game, g.status, s.display_name, s.tiktok_username, s.wheel_code,
+      `SELECT g.id, g.game, g.status, g.requirements, g.expires_at, g.code_revoked_at, s.display_name, s.tiktok_username, s.wheel_code,
               (SELECT COUNT(*) FROM entries e WHERE e.giveaway_id = g.id AND e.status != 'frozen') AS players
          FROM giveaways g JOIN streamers s ON s.id = g.streamer_id
         WHERE g.show_on_home = 1 AND g.hidden_by_owner = 0 AND g.status IN ('open', 'closed') AND s.status = 'approved'
@@ -73,10 +73,13 @@ async function loadHome(env, now) {
       id: p.id, title: p.title, body: p.body, link: p.link || '', pinned: !!p.pinned, createdAt: p.created_at
     })),
     // Information only. There is no join code here: the code box is the one way in.
+    // "open" only while the join-code check would accept it too (not closed, not revoked, not past its deadline).
     active: active.results.map((g) => ({
       game: g.game,
-      status: g.status === 'open' ? 'open' : 'running',
+      status: g.status === 'open' && !g.code_revoked_at && (!g.expires_at || g.expires_at > now) ? 'open' : 'running',
       players: g.players,
+      requirements: parseList(g.requirements),
+      expiresAt: g.expires_at || null,
       streamer: streamerCard(g.display_name, g.tiktok_username),
       wheelCode: g.wheel_code
     })),
