@@ -1,0 +1,1151 @@
+{
+ "version": 2,
+ "enabled": true,
+ "name": "TikSpin Helper",
+ "min_score": 1.9,
+ "greeting": "Hi! 👋 I'm the TikSpin helper. Ask me how to join a giveaway, where to get a code, or how to reset your password. I can also help you change your TikTok @username or display username, or get help with a lost PIN.",
+ "fallback": "I'm not sure about that one yet. Try one of the topics below, or email {email} and the operator will help.",
+ "quick": [
+  "How do I join a giveaway?",
+  "Where do I get a giveaway code?",
+  "I forgot my password",
+  "I lost my recovery PIN",
+  "Change my TikTok @username",
+  "Is it free?"
+ ],
+ "stopwords": [
+  "the",
+  "a",
+  "an",
+  "is",
+  "are",
+  "am",
+  "i",
+  "me",
+  "my",
+  "to",
+  "do",
+  "does",
+  "did",
+  "can",
+  "could",
+  "would",
+  "should",
+  "of",
+  "for",
+  "in",
+  "on",
+  "at",
+  "it",
+  "this",
+  "that",
+  "and",
+  "or",
+  "please",
+  "pls",
+  "po",
+  "ako",
+  "ang",
+  "ng",
+  "sa",
+  "na",
+  "ba",
+  "ko",
+  "mo",
+  "namin",
+  "niyo",
+  "what",
+  "how",
+  "when",
+  "why",
+  "where",
+  "who",
+  "with",
+  "be",
+  "you",
+  "your",
+  "we",
+  "us",
+  "there",
+  "have",
+  "has"
+ ],
+ "vars": {
+  "email": ""
+ },
+ "topics": [
+  {
+   "id": "greeting",
+   "title": "Say hi",
+   "weight": 1.6,
+   "keywords": [
+    "hi",
+    "hello",
+    "hey",
+    "heyy",
+    "yo",
+    "hola",
+    "kumusta",
+    "kamusta",
+    "good morning",
+    "good evening",
+    "good afternoon",
+    "good day",
+    "magandang araw"
+   ],
+   "answer": "Hi! 👋 What can I help you with? Joining a giveaway, your account, or contacting the operator?",
+   "related": [
+    "how_enter",
+    "join_code",
+    "contact"
+   ]
+  },
+  {
+   "id": "thanks",
+   "title": "Thanks",
+   "weight": 1.6,
+   "keywords": [
+    "thanks",
+    "thank you",
+    "thank u",
+    "thankyou",
+    "salamat",
+    "ty",
+    "tnx",
+    "tysm",
+    "okay thanks"
+   ],
+   "answer": "You're welcome! 💜 Anything else I can help with?",
+   "related": [
+    "contact"
+   ]
+  },
+  {
+   "id": "what_is",
+   "title": "What is TikSpin?",
+   "ask": "What is TikSpin?",
+   "keywords": [
+    "what is tikspin",
+    "tikspin",
+    "about",
+    "platform",
+    "how does it work",
+    "what is this",
+    "ano ito",
+    "what is this site",
+    "what is this website",
+    "explain",
+    "global",
+    "for streamers"
+   ],
+   "answer": "TikSpin is a free platform where TikTok streamers run spin-the-wheel giveaways for Roblox and Mobile Legends. You make one account, then enter a streamer's giveaway with the code they share. The wheel picks at random, and the streamer decides the prizes.",
+   "related": [
+    "how_register",
+    "how_wheel_works",
+    "prizes"
+   ]
+  },
+  {
+   "id": "how_register",
+   "title": "Create an account",
+   "ask": "How do I create an account?",
+   "keywords": [
+    "register",
+    "registration",
+    "sign up",
+    "signup",
+    "join",
+    "how to join",
+    "rehistro",
+    "magparehistro",
+    "paano sumali",
+    "paano mag register",
+    "create account",
+    "new here",
+    "first time",
+    "start",
+    "account",
+    "make an account",
+    "gumawa account",
+    "paano gumawa account",
+    "sign up"
+   ],
+   "answer": "Create your account on the homepage:\n1. Pick a display username (public, shown on the wheel).\n2. Choose a password.\n3. Enter your TikTok @username (private; only the host of a giveaway you enter can see it).\n4. Accept the Terms.\n\nYou'll then get a 6-digit recovery PIN, shown once. Save it somewhere safe. After that, enter a streamer's giveaway code.",
+   "related": [
+    "what_pin",
+    "how_enter",
+    "tiktok_at"
+   ]
+  },
+  {
+   "id": "how_enter",
+   "title": "How to join a giveaway",
+   "ask": "How do I join a giveaway?",
+   "keywords": [
+    "already registered",
+    "already in the system",
+    "enter",
+    "enter giveaway",
+    "login",
+    "log in",
+    "sign in",
+    "signin",
+    "returning",
+    "next giveaway",
+    "new giveaway",
+    "join again",
+    "registered na",
+    "nakarehistro na",
+    "pasok",
+    "join giveaway",
+    "enter code",
+    "paano sumali giveaway",
+    "how to enter",
+    "how to join giveaway",
+    "sumali"
+   ],
+   "answer": "1. Log in.\n2. Type the streamer's giveaway code on the homepage.\n3. Fill in what that giveaway asks for: your Roblox username, or your Mobile Legends IGN, User ID and Server ID. Saved details are filled in for you.\n4. If it asks, add your TikTok follow screenshot. You only do this once per streamer.\n\nThen you're on the wheel.",
+   "related": [
+    "join_code",
+    "follow_proof",
+    "closed"
+   ]
+  },
+  {
+   "id": "join_code",
+   "title": "Where do I get a giveaway code?",
+   "ask": "Where do I get a giveaway code?",
+   "weight": 1.2,
+   "keywords": [
+    "code",
+    "giveaway code",
+    "join code",
+    "invite code",
+    "where is the code",
+    "where to get code",
+    "code invalid",
+    "invalid code",
+    "wrong code",
+    "code not working",
+    "link",
+    "giveaway link",
+    "paano makakuha ng code",
+    "saan ang code",
+    "walang code",
+    "no code"
+   ],
+   "answer": "Only the streamer has the code, and they share it on their stream or chat. You can't find it anywhere else, and TikSpin never gives codes out. Capital letters don't matter, and you can type it with or without dashes. If it says the code isn't valid, check for typos. The giveaway may also be closed.",
+   "related": [
+    "how_enter",
+    "closed",
+    "contact"
+   ]
+  },
+  {
+   "id": "follow_proof",
+   "title": "The TikTok screenshot",
+   "ask": "Why do I need a screenshot?",
+   "keywords": [
+    "screenshot",
+    "follow proof",
+    "profile screenshot",
+    "following button",
+    "follow",
+    "following",
+    "proof",
+    "upload",
+    "picture",
+    "photo",
+    "image",
+    "ss",
+    "kuha"
+   ],
+   "answer": "Some giveaways ask for a screenshot of the streamer's TikTok profile showing the Following button. Your phone reads it, and if it passes you're in. You only do this once per streamer, and later giveaways from the same streamer skip it.",
+   "related": [
+    "scan_failed",
+    "manual_review"
+   ]
+  },
+  {
+   "id": "scan_failed",
+   "title": "My screenshot didn't pass",
+   "ask": "My screenshot didn't pass",
+   "weight": 1.2,
+   "keywords": [
+    "scan failed",
+    "scan fail",
+    "didn't pass",
+    "didnt pass",
+    "not passing",
+    "not detected",
+    "couldn't find",
+    "couldnt find",
+    "can't read",
+    "cant read",
+    "error",
+    "rejected",
+    "failed",
+    "doesn't work",
+    "doesnt work",
+    "not working",
+    "won't pass",
+    "wont pass",
+    "ocr",
+    "bakit hindi",
+    "hindi pumasa",
+    "ayaw",
+    "screenshot failed",
+    "screenshot error",
+    "screenshot rejected",
+    "screenshot not accepted",
+    "screenshot not working",
+    "screenshot didn't pass"
+   ],
+   "answer": "Make sure the whole profile header is visible: the streamer's name, their @username and the Following button (not Follow). Take a fresh screenshot and try again. If it still fails, you can send it to the streamer for a manual review.",
+   "related": [
+    "manual_review",
+    "follow_proof"
+   ]
+  },
+  {
+   "id": "manual_review",
+   "title": "Manual review by the streamer",
+   "ask": "What is a manual review?",
+   "keywords": [
+    "manual",
+    "manual review",
+    "host review",
+    "ask the host",
+    "review",
+    "approve",
+    "approval",
+    "pending",
+    "waiting",
+    "application",
+    "apply"
+   ],
+   "answer": "The streamer looks at your screenshot and approves or declines it. If approved, you're put on the wheel automatically. If the streamer doesn't decide within 7 days, the application expires and you can send it again. Your screenshot is deleted as soon as it's decided.",
+   "related": [
+    "scan_failed",
+    "contact"
+   ]
+  },
+  {
+   "id": "forgot_name",
+   "title": "I forgot my display username",
+   "ask": "I forgot my display username",
+   "keywords": [
+    "forgot display name",
+    "forgot my name",
+    "forgot ign",
+    "forgot name",
+    "don't remember name",
+    "dont remember name",
+    "nakalimutan pangalan",
+    "nakalimutan ko pangalan",
+    "wrong display name",
+    "lost name",
+    "forgot username",
+    "forgot my username",
+    "what is my username",
+    "nakalimutan username",
+    "nakalimutan display name"
+   ],
+   "answer": "Log in with the display username you chose when you created your account. We can't look it up for you here, because it belongs to your account. If you can't remember it, email {email} and include your TikTok @username.",
+   "related": [
+    "forgot_password",
+    "cant_enter"
+   ]
+  },
+  {
+   "id": "forgot_password",
+   "title": "I forgot my password",
+   "ask": "I forgot my password",
+   "request": "recover",
+   "weight": 1.5,
+   "keywords": [
+    "forgot password",
+    "forgot my password",
+    "reset password",
+    "password reset",
+    "lost password",
+    "cant log in",
+    "can't log in",
+    "cant login",
+    "new password",
+    "recover account",
+    "recover my account",
+    "nakalimutan password",
+    "nakalimutan ko password",
+    "forgot pass",
+    "recovery"
+   ],
+   "answer": "No problem. Use the form below with your display username, your TikTok @username and your 6-digit recovery PIN, and set a new password. Wrong PIN tries are limited, so double-check the PIN.",
+   "related": [
+    "lost_pin",
+    "what_pin",
+    "cant_enter"
+   ]
+  },
+  {
+   "id": "what_pin",
+   "title": "What is the recovery PIN?",
+   "ask": "What is the recovery PIN?",
+   "keywords": [
+    "pin",
+    "recovery pin",
+    "6 digit",
+    "six digit",
+    "what is pin",
+    "what is the pin",
+    "pin code",
+    "show pin",
+    "see my pin",
+    "pin number"
+   ],
+   "answer": "The recovery PIN is a 6-digit number shown once when you create your account. It lets you reset your password or change your TikTok @username. We only keep a scrambled version, so we can't show it again. Save it somewhere safe and never share it with anyone, including me.",
+   "related": [
+    "lost_pin",
+    "forgot_password"
+   ]
+  },
+  {
+   "id": "lost_pin",
+   "title": "I lost my PIN",
+   "ask": "I lost my recovery PIN",
+   "request": "pin",
+   "weight": 1.5,
+   "keywords": [
+    "lost pin",
+    "lost my pin",
+    "forgot pin",
+    "forgot my pin",
+    "no pin",
+    "nawala pin",
+    "nawala ang pin",
+    "nakalimutan pin",
+    "new pin",
+    "reset pin",
+    "pin lost",
+    "pin help",
+    "lost both"
+   ],
+   "answer": "If you can still log in, open Account and make a new PIN with your password. If you can't log in and lost the PIN too, ask the operator for help by email. I'll give you a request code to put in your email, and you'll need to show proof, like the code in your TikTok bio. The operator checks it by hand.",
+   "related": [
+    "what_pin",
+    "forgot_password",
+    "contact"
+   ]
+  },
+  {
+   "id": "change_password",
+   "title": "Change my password",
+   "ask": "How do I change my password?",
+   "keywords": [
+    "change password",
+    "update password",
+    "new password",
+    "change my password",
+    "palitan password"
+   ],
+   "answer": "Log in, open Account and choose Change password. You'll need your current password. Changing it signs you out of your other devices.",
+   "related": [
+    "forgot_password",
+    "what_pin"
+   ]
+  },
+  {
+   "id": "cant_enter",
+   "title": "I'm locked out",
+   "ask": "I'm locked out",
+   "keywords": [
+    "couldn't match",
+    "couldnt match",
+    "can't enter",
+    "cant enter",
+    "not matching",
+    "no match",
+    "locked",
+    "too many tries",
+    "too many wrong",
+    "wrong tries",
+    "blocked",
+    "hindi mag match",
+    "hindi makapasok",
+    "can't get in",
+    "wrong details",
+    "doesn't match",
+    "locked out",
+    "too many tries",
+    "slow down",
+    "locked",
+    "locked out of account",
+    "login locked",
+    "too many wrong tries"
+   ],
+   "answer": "Too many wrong passwords lock the login for about 15 minutes. Too many wrong PIN tries lock recovery for 24 hours. If you're locked out, wait it out or email {email}.",
+   "related": [
+    "forgot_password",
+    "lost_pin",
+    "contact"
+   ]
+  },
+  {
+   "id": "find_ml_id",
+   "title": "Where do I find my User ID?",
+   "ask": "Where do I find my User ID?",
+   "keywords": [
+    "user id",
+    "userid",
+    "server id",
+    "serverid",
+    "find my id",
+    "find id",
+    "where id",
+    "mlbb id",
+    "game id",
+    "my id",
+    "id number",
+    "saan makikita id",
+    "ml id",
+    "zone id",
+    "zoneid"
+   ],
+   "answer": "In Mobile Legends, tap your profile picture. Your ID is shown as numbers with a second number in brackets, like 123456789 (1234). The first number is your User ID. The number in brackets is your Server ID.",
+   "related": [
+    "how_enter",
+    "tiktok_at"
+   ]
+  },
+  {
+   "id": "roblox_giveaways",
+   "title": "Roblox giveaways",
+   "ask": "What do I need for a Roblox giveaway?",
+   "weight": 1.2,
+   "keywords": [
+    "roblox",
+    "roblox username",
+    "roblox name",
+    "roblox giveaway",
+    "robux",
+    "roblox account",
+    "rblx"
+   ],
+   "answer": "For a Roblox giveaway you only need your exact Roblox username. Use your own, because the prize is for that account. If two TikSpin accounts enter the same Roblox name, both entries are put on hold until the streamer decides.",
+   "related": [
+    "on_hold",
+    "one_account"
+   ]
+  },
+  {
+   "id": "tiktok_at",
+   "title": "Which TikTok username?",
+   "ask": "Which TikTok username do I use?",
+   "keywords": [
+    "tiktok username",
+    "tiktok name",
+    "tiktok handle",
+    "handle",
+    "at symbol",
+    "@",
+    "nickname",
+    "which username",
+    "tiktok id",
+    "tiktok @",
+    "tiktok user"
+   ],
+   "answer": "Use your own TikTok @username, the one in your profile link. You set it when you create your account. Only the streamer of a giveaway you enter can see it. To change it later, ask me to change your TikTok.",
+   "related": [
+    "change_tiktok",
+    "how_register"
+   ]
+  },
+  {
+   "id": "change_tiktok",
+   "title": "Change my TikTok @username",
+   "ask": "Change my TikTok @username",
+   "request": "tiktok",
+   "weight": 1.3,
+   "keywords": [
+    "change tiktok",
+    "change tiktok username",
+    "new tiktok username",
+    "wrong tiktok",
+    "tiktok changed",
+    "changed my tiktok",
+    "update tiktok",
+    "tiktok typo",
+    "mali tiktok",
+    "palitan tiktok",
+    "nagpalit tiktok",
+    "edit tiktok",
+    "different tiktok",
+    "replace tiktok"
+   ],
+   "answer": "I can help with that. You'll need your password and your 6-digit PIN, and you can change it once every 7 days. The new name shows in every giveaway you've entered right away. Use the form below.",
+   "related": [
+    "tiktok_at",
+    "change_name"
+   ]
+  },
+  {
+   "id": "change_name",
+   "title": "Change my display username",
+   "ask": "Change my display username",
+   "request": "name",
+   "weight": 1.3,
+   "keywords": [
+    "change name",
+    "change display name",
+    "change ign",
+    "new ign",
+    "new display name",
+    "renamed",
+    "changed my name",
+    "changed my ign",
+    "update name",
+    "update ign",
+    "wrong name",
+    "palitan pangalan",
+    "nagpalit ng name",
+    "palit ign",
+    "rename",
+    "nagpalit",
+    "palitan",
+    "nagpalit ng ign",
+    "nagpalit ako ng ign",
+    "nagpalit ng name",
+    "palit ng name",
+    "change username",
+    "new username"
+   ],
+   "answer": "I can help with that. You'll need your password and your 6-digit PIN, and you can change it once every 7 days. The new name must not be taken, and it's the one shown on the wheel. Use the form below.",
+   "related": [
+    "change_tiktok",
+    "how_enter"
+   ]
+  },
+  {
+   "id": "how_wheel_works",
+   "title": "How the wheel works",
+   "ask": "How does the wheel work?",
+   "keywords": [
+    "wheel",
+    "spin",
+    "random",
+    "fair",
+    "how winners",
+    "how are winners picked",
+    "elimination",
+    "eliminated",
+    "knock out",
+    "knocked out",
+    "matirang matibay",
+    "rigged",
+    "pick",
+    "picked",
+    "draw",
+    "chance",
+    "odds",
+    "paano pumipili"
+   ],
+   "answer": "The wheel picks at random from the players on it. Some spins knock a player out, and one spin crowns the winner. The streamer starts every spin and decides who is on the wheel. Only display usernames show on the wheel.",
+   "related": [
+    "prizes",
+    "winner_contact"
+   ]
+  },
+  {
+   "id": "prizes",
+   "title": "What are the prizes?",
+   "ask": "What are the prizes?",
+   "keywords": [
+    "prize",
+    "prizes",
+    "reward",
+    "rewards",
+    "premyo",
+    "what do i win",
+    "diamonds",
+    "skin",
+    "skins",
+    "how much",
+    "worth",
+    "giveaway prize",
+    "ano premyo"
+   ],
+   "answer": "The streamer decides the prizes, not TikSpin. TikSpin only runs the draw. Ask {host} on TikTok what's up for grabs.",
+   "related": [
+    "winner_contact",
+    "how_wheel_works"
+   ]
+  },
+  {
+   "id": "winner_contact",
+   "title": "Did I win?",
+   "ask": "Did I win?",
+   "keywords": [
+    "did i win",
+    "am i the winner",
+    "who won",
+    "winner",
+    "how will i know",
+    "panalo",
+    "nanalo",
+    "claim",
+    "claim prize",
+    "claiming",
+    "when do i get",
+    "deliver",
+    "delivery",
+    "result",
+    "results"
+   ],
+   "answer": "Watch the wheel on the streamer's live. If you win, your account shows Winner and the streamer contacts you on TikTok. TikSpin doesn't send prizes and can't see or announce results. Never pay anything to claim a prize.",
+   "related": [
+    "prizes",
+    "contact"
+   ]
+  },
+  {
+   "id": "closed",
+   "title": "Is entry open?",
+   "ask": "Is the giveaway open?",
+   "keywords": [
+    "registration closed",
+    "closed",
+    "is it open",
+    "is registration open",
+    "when open",
+    "when does it open",
+    "open",
+    "bukas",
+    "sarado",
+    "can't register",
+    "cant register",
+    "not open",
+    "available",
+    "giveaway closed",
+    "giveaway ended",
+    "ended"
+   ],
+   "answer": "{status} You can only enter while the streamer's code is active. A closed, ended or revoked code stops working, and the homepage shows which giveaways are running or coming up.",
+   "related": [
+    "join_code",
+    "how_enter"
+   ]
+  },
+  {
+   "id": "on_hold",
+   "title": "My entry is on hold",
+   "ask": "Why is my entry on hold?",
+   "weight": 1.2,
+   "keywords": [
+    "on hold",
+    "hold",
+    "frozen",
+    "freeze",
+    "froze",
+    "pending review",
+    "conflict",
+    "not on wheel",
+    "not on the wheel",
+    "removed from wheel",
+    "why am i not on the wheel",
+    "wala ako sa wheel"
+   ],
+   "answer": "An entry is put on hold when the same game account was entered by two different TikSpin accounts. It isn't a ban. The streamer reviews both entries and decides who stays on the wheel. If it's your own account, message the streamer on TikTok.",
+   "related": [
+    "one_account",
+    "device_flag",
+    "banned"
+   ]
+  },
+  {
+   "id": "device_flag",
+   "title": "Same device",
+   "ask": "Why does the streamer see 'same device'?",
+   "keywords": [
+    "same device",
+    "device",
+    "shared phone",
+    "same phone",
+    "family",
+    "sibling",
+    "kapatid",
+    "iisang phone",
+    "flagged",
+    "duplicate device"
+   ],
+   "answer": "Streamers can see when entries come from the same device. It's only a hint, never an automatic ban, and the streamer decides. Family members can share a phone, so if that's you, tell the streamer.",
+   "related": [
+    "on_hold",
+    "one_account"
+   ]
+  },
+  {
+   "id": "one_account",
+   "title": "One account per person",
+   "ask": "Can I have more than one account?",
+   "keywords": [
+    "multiple accounts",
+    "two accounts",
+    "more than one account",
+    "alt",
+    "alt account",
+    "second account",
+    "another account",
+    "friend's account",
+    "friends account",
+    "duplicate",
+    "already linked",
+    "tiktok already linked",
+    "already used",
+    "already taken",
+    "same tiktok",
+    "more than one account",
+    "multiple accounts",
+    "two accounts",
+    "second account",
+    "another account",
+    "alt account",
+    "extra account",
+    "dalawang account"
+   ],
+   "answer": "One person, one account. Don't enter the same game account from different TikSpin accounts, and don't use someone else's game name. Two accounts claiming one game account are put on hold for the streamer to review.",
+   "related": [
+    "on_hold",
+    "terms"
+   ]
+  },
+  {
+   "id": "privacy",
+   "title": "My data and privacy",
+   "ask": "What happens to my data?",
+   "keywords": [
+    "privacy",
+    "data",
+    "my data",
+    "personal data",
+    "personal information",
+    "information",
+    "what do you collect",
+    "what do you store",
+    "stored",
+    "safe",
+    "secure",
+    "ip address",
+    "tracking"
+   ],
+   "answer": "We collect only what's needed: your display username, TikTok @username, the game details you enter, and a scrambled password and PIN. We don't collect your real name, payment details or game passwords. Only your display username is public, and the streamer of a giveaway you enter can see your TikTok @username and entry details. We don't sell your data. See the Terms for the full details.",
+   "related": [
+    "delete_data",
+    "terms"
+   ]
+  },
+  {
+   "id": "delete_data",
+   "title": "Delete my data",
+   "ask": "Delete my account and data",
+   "keywords": [
+    "delete",
+    "delete my data",
+    "remove my data",
+    "delete my account",
+    "erase",
+    "remove me",
+    "unregister",
+    "burahin",
+    "tanggalin"
+   ],
+   "answer": "Email {email} from the details of your account (display username and TikTok @username) and ask for deletion. Your account and entries are removed.",
+   "related": [
+    "privacy",
+    "contact"
+   ]
+  },
+  {
+   "id": "terms",
+   "title": "Terms and Conditions",
+   "ask": "Where are the Terms?",
+   "keywords": [
+    "terms",
+    "conditions",
+    "terms and conditions",
+    "t&c",
+    "tnc",
+    "rules",
+    "policy",
+    "agree",
+    "agreement"
+   ],
+   "answer": "The short version: one person, one account. Entries must be honest. The streamer is responsible for their giveaway, its prizes and delivery, and their decisions about entries are final. Read the full Terms and Conditions from the link on the homepage and at sign-up.",
+   "related": [
+    "one_account",
+    "privacy"
+   ]
+  },
+  {
+   "id": "banned",
+   "title": "Disqualified or banned",
+   "ask": "Why was I disqualified or banned?",
+   "keywords": [
+    "banned",
+    "ban",
+    "disqualified",
+    "dq",
+    "why was i disqualified",
+    "blocked",
+    "removed from wheel",
+    "kicked",
+    "permanently banned",
+    "na ban",
+    "na dq"
+   ],
+   "answer": "A streamer can disqualify you from one giveaway, and that only affects that giveaway. A Permanent Ban works across the whole platform and is only given by the operator after reports with clear evidence. If you think it's a mistake, email {email}.",
+   "related": [
+    "one_account",
+    "on_hold",
+    "contact"
+   ]
+  },
+  {
+   "id": "paused",
+   "title": "Paused giveaway",
+   "ask": "Why is a giveaway paused?",
+   "keywords": [
+    "paused",
+    "pause",
+    "suspended",
+    "under review",
+    "not working giveaway",
+    "stopped",
+    "frozen giveaway"
+   ],
+   "answer": "A giveaway is paused while the streamer's account is under review by the operator. Your entry is kept safe, and the giveaway continues if the review clears.",
+   "related": [
+    "closed",
+    "contact"
+   ]
+  },
+  {
+   "id": "free",
+   "title": "Is it free?",
+   "ask": "Is it free?",
+   "keywords": [
+    "free",
+    "cost",
+    "price",
+    "pay",
+    "payment",
+    "paid",
+    "fee",
+    "charge",
+    "libre",
+    "bayad",
+    "money",
+    "otp",
+    "login code",
+    "share password"
+   ],
+   "answer": "Yes. Entering is always free, and you'll never be asked to pay. Never share your game password or login codes with anyone, including this helper. TikSpin accepts optional support for running costs, but it gives no advantages in any giveaway.",
+   "related": [
+    "support_us",
+    "not_affiliated"
+   ]
+  },
+  {
+   "id": "support_us",
+   "title": "Support TikSpin",
+   "ask": "Can I support TikSpin?",
+   "weight": 1.2,
+   "keywords": [
+    "donate",
+    "donation",
+    "support us",
+    "support tikspin",
+    "tip",
+    "contribute",
+    "sponsor",
+    "help the platform",
+    "ko-fi",
+    "kofi",
+    "gcash"
+   ],
+   "answer": "Support is optional and goes toward running costs and improving the platform. It gives no perks, no extra entries and no influence on any giveaway. If the homepage shows a Support button, that's the official link.",
+   "related": [
+    "free",
+    "contact"
+   ]
+  },
+  {
+   "id": "not_affiliated",
+   "title": "Is this official / legit?",
+   "ask": "Is this legit?",
+   "keywords": [
+    "moonton",
+    "official",
+    "affiliated",
+    "legit",
+    "scam",
+    "is this real",
+    "is this safe",
+    "trusted",
+    "fake",
+    "totoo ba",
+    "affiliated",
+    "roblox official",
+    "moonton"
+   ],
+   "answer": "TikSpin is an independent platform. It isn't affiliated with TikTok, Roblox, Moonton or Mobile Legends. Giveaways and prizes belong to the streamers who run them.",
+   "related": [
+    "free",
+    "privacy"
+   ]
+  },
+  {
+   "id": "age",
+   "title": "Age requirement",
+   "ask": "Is there an age requirement?",
+   "keywords": [
+    "age",
+    "how old",
+    "minor",
+    "under 18",
+    "underage",
+    "parent",
+    "guardian",
+    "bata",
+    "magulang"
+   ],
+   "answer": "You need to be old enough to use TikTok and Mobile Legends where you live. If you're a minor, ask a parent or guardian before you enter.",
+   "related": [
+    "terms"
+   ]
+  },
+  {
+   "id": "streamer_apply",
+   "title": "I'm a streamer",
+   "ask": "I'm a streamer, how do I join?",
+   "weight": 1.2,
+   "keywords": [
+    "streamer",
+    "i am a streamer",
+    "become a streamer",
+    "host giveaway",
+    "host a giveaway",
+    "run giveaway",
+    "invitation",
+    "invite link",
+    "apply streamer",
+    "streamer account",
+    "mag host",
+    "gusto mag host"
+   ],
+   "answer": "Streamers join by invitation. Email {email} to ask for an invitation link. After you register, the operator reviews your account. Once approved, you can create Roblox or Mobile Legends giveaways and share their codes.",
+   "related": [
+    "contact",
+    "what_is"
+   ]
+  },
+  {
+   "id": "schedule_time",
+   "title": "Upcoming giveaways",
+   "ask": "What time is the giveaway?",
+   "keywords": [
+    "schedule",
+    "scheduled",
+    "upcoming",
+    "what time",
+    "when is the giveaway",
+    "time zone",
+    "timezone",
+    "next giveaway",
+    "anong oras",
+    "kailan"
+   ],
+   "answer": "Upcoming giveaways on the homepage show the time in your own time zone, so there's nothing to convert. The streamer starts the giveaway live and shares the code then.",
+   "related": [
+    "join_code",
+    "closed"
+   ]
+  },
+  {
+   "id": "feedback_how",
+   "title": "Send feedback",
+   "ask": "How do I send feedback?",
+   "keywords": [
+    "feedback",
+    "suggestion",
+    "suggest",
+    "idea",
+    "improve",
+    "bug report",
+    "report a bug",
+    "complain",
+    "comment"
+   ],
+   "answer": "Use the Send feedback button on the homepage for a bug or an idea. It's one-way and needs no name, so for account problems email {email} instead.",
+   "related": [
+    "contact",
+    "report_someone"
+   ]
+  },
+  {
+   "id": "report_someone",
+   "title": "Report a scam or cheater",
+   "ask": "How do I report someone?",
+   "weight": 1.1,
+   "keywords": [
+    "report",
+    "report player",
+    "report streamer",
+    "scam",
+    "scammer",
+    "fake giveaway",
+    "cheater",
+    "cheating",
+    "fraud",
+    "fake"
+   ],
+   "answer": "If you saw a scam or a fake giveaway, email {email} with screenshots. Streamers can report players from their own giveaways with the Report button in their panel. Permanent Bans only happen after reports with clear evidence, and the operator reviews each one by hand.",
+   "related": [
+    "banned",
+    "contact"
+   ]
+  },
+  {
+   "id": "contact",
+   "title": "Who to contact",
+   "ask": "Who do I contact?",
+   "keywords": [
+    "contact",
+    "help",
+    "who to contact",
+    "who do i contact",
+    "email",
+    "report",
+    "problem",
+    "bug",
+    "talk to",
+    "reach",
+    "owner",
+    "operator",
+    "admin",
+    "human",
+    "agent",
+    "person",
+    "complaint",
+    "tulong",
+    "makausap",
+    "host"
+   ],
+   "answer": "• Prizes, winners and giveaway questions: {host} on TikTok.\n• Problems with the platform, your account, your data or bans: email {email}.\n\nI can also help you reset your password, change your TikTok @username or display username, or get help with a lost PIN.",
+   "related": [
+    "forgot_password",
+    "change_tiktok",
+    "lost_pin"
+   ]
+  }
+ ]
+}

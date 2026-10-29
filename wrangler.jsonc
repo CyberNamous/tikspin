@@ -1,17 +1,62 @@
 {
+  // TikSpin (global) - Cloudflare Worker configuration.
+  // Only ONE value needs changing: the database_id below. Everything else works as it is.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tikspin-api",
+
+  "name": "tikspin",
+
+  // The Worker entry file. It imports lib/, routes/, llm.js and llm.json, and the build bundles them for you.
   "main": "index.js",
-  "compatibility_date": "2026-10-23", // Matches today's date context perfectly
+
+  // Use a date on or before today's date.
+  "compatibility_date": "2026-10-26",
+
+  // The website: every file inside the "public" folder (index.html, streamer.html, owner.html, wheel.html and
+  // any images). Only that folder is published, so the Worker source can never be downloaded and no hidden
+  // .assetsignore file is needed.
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"
   },
+
+  // A NEW database for TikSpin (do not reuse tikspin_vip). Make it in the Cloudflare app/website:
+  //   Storage & databases > D1 > Create database > name it "tikspin" > copy its Database ID and paste it below.
+  // You do NOT need to run any SQL. The Worker creates its tables by itself the first time it starts.
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "tikspin",
-      "database_id": "69e55a7c-67d5-4537-8b85-42655295a55a" 
+      "database_id": "YOUR-D1-DATABASE-ID"
     }
-  ]
+  ],
+
+  // Daily cleanup (lib/maintenance.js), 03:17 UTC every day. Applied automatically when you deploy.
+  "triggers": {
+    "crons": ["17 3 * * *"]
+  },
+
+  // Public setting (not secret). Leave empty to keep the bot check (Cloudflare Turnstile) off.
+  "vars": {
+    "TURNSTILE_SITE_KEY": ""
+  },
+
+  // Request logging is OFF. Cloudflare's logs can include page addresses, and a giveaway join code is part of its
+  // address (/join/<code>), so leaving logs off keeps codes out of them. Switch to true only while hunting a bug.
+  "observability": { "enabled": false }
+
+  // SECRETS are NOT stored in this file. Add them in the Cloudflare app/website:
+  //   Workers & Pages > tikspin > Settings > Variables and Secrets > Add > type "Secret".
+  // Any long random text works (40+ letters and numbers, no spaces). Your phone's "suggest strong password" is fine.
+  //   OWNER_TOKEN        the key you type into the owner panel (required)
+  //   PIN_PEPPER         protects recovery PINs if the database ever leaks (required). Never change it later,
+  //                      or every existing PIN stops working. Keep a copy somewhere safe.
+  //   DEVICE_SALT        makes device codes impossible to turn back into IP addresses (recommended). Changing it
+  //                      later only resets the "same device" badges.
+  //   TURNSTILE_SECRET   only if you turn the bot check on (also paste the site key above)
+  // The old STREAMER_TOKEN, OWNER_TOKEN_2 and STREAM_TOKEN are no longer used.
+  // The owner panel shows a setup checklist, so you can see at a glance which secrets are still missing.
+
+  // Optional: use your own domain instead of workers.dev. Remove the slashes in front of "routes" and put your
+  // domain in. Add a comma after the "observability" line above first.
+  // ,"routes": [{ "pattern": "YOUR-DOMAIN.com", "custom_domain": true }]
 }
