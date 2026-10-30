@@ -6,6 +6,9 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <title>TikSpin · Streamer</title>
+<link rel="icon" type="image/png" href="/images/logo.png">
+<link rel="apple-touch-icon" href="/images/logo.png">
+<meta name="theme-color" content="#0a0716">
 <style>
 :root{--bg:#0d0a1c;--panel:#17122b;--line:#3a2a5e;--pink:#e58bff;--pink2:#d54bf0;--neon:#b43cf5;--text:#fff;--muted:#a99fcf;--bad:#ff4d6d;--ok:#7be0a4}
 *{box-sizing:border-box}
@@ -62,11 +65,12 @@ textarea{width:100%;background:#0d0a1c;border:1.5px solid var(--line);border-rad
 dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;max-width:520px;width:92%}
 dialog::backdrop{background:rgba(0,0,0,.65)}
 .shot{max-width:100%;border-radius:10px;margin-top:8px;border:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px}.brand img{width:30px;height:30px;border-radius:8px;object-fit:contain}
 </style>
 </head>
 <body>
 <main>
-<div class="top"><h1>TikSpin</h1><button class="ghost sm" id="outBtn" hidden>Log out</button></div>
+<div class="top"><h1 class="brand"><img src="/images/logo.png" alt="" width="30" height="30">TikSpin</h1><button class="ghost sm" id="outBtn" hidden>Log out</button></div>
 <p class="lede" id="lede">Streamer panel</p>
 <noscript><p class="err">TikSpin needs JavaScript to work.</p></noscript>
 
