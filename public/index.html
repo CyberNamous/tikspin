@@ -103,6 +103,9 @@ nav#tabs{position:fixed;left:0;right:0;top:0;z-index:25;background:rgba(14,10,28
 body[data-view=v-pin] #tabs{display:none}
 @media(min-width:900px){main,#tabs .in{max-width:820px}.grid{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+.item.read{opacity:.62}
+.udot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--pink2);margin-right:7px;vertical-align:middle}
+.row button:disabled{opacity:.5;cursor:default}
 </style>
 </head>
 <body>
@@ -377,12 +380,19 @@ function alertItems(){
     if(f.status==='rejected')out.push({k:'bad',tag:'Action needed',attn:1,t:f.streamer+' did not accept your screenshot',d:'Send a new screenshot the next time you join.'});
     else if(f.status==='pending')out.push({k:'warn',tag:'Waiting',attn:0,t:'Waiting for '+f.streamer,d:'Your follow screenshot is waiting for the host to check it.'});
   });
-  const dis=dismissedAlerts(),who=m.player.display;
-  out.forEach(a=>a.key=who+'|'+a.tag+'|'+a.t);
+  const dis=dismissedAlerts(),rd=readAlerts(),who=m.player.display;
+  out.forEach(a=>{a.key=who+'|'+a.tag+'|'+a.t;a.read=rd.includes(a.key)});
   return out.filter(a=>!dis.includes(a.key)).sort((a,b)=>b.attn-a.attn);
 }
 // "Clear" only hides alerts on this device. A new status (different tag or title) shows up again.
 function dismissedAlerts(){try{const v=JSON.parse(store.get('ts_dis')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
+// "Mark as read" keeps the alert in the list but dims it and stops it counting on the bell. Also device-only.
+function readAlerts(){try{const v=JSON.parse(store.get('ts_read')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
+function markAlertsRead(keys){
+  const all=keys||(alertItems()||[]).filter(a=>!a.read).map(a=>a.key);if(!all.length)return;
+  store.set('ts_read',JSON.stringify([...new Set([...readAlerts(),...all])].slice(-200)));
+  syncNav();renderAlerts();
+}
 function clearAlerts(){
   const keys=(alertItems()||[]).map(a=>a.key);if(!keys.length)return;
   store.set('ts_dis',JSON.stringify([...dismissedAlerts(),...keys].slice(-200)));
@@ -393,10 +403,11 @@ function renderAlerts(){
   if(!it&&store.get('ts_p')&&!S.meDone){L.replaceChildren(loadingCard('Loading your updates...'));return}
   if(!it){L.replaceChildren(h('div',{class:'card empty'},h('p',{style:'margin:0'},'Log in to see updates about your entries.'),h('button',{type:'button',onclick:()=>openAuth('login')},'Log in')));return}
   if(!it.length){L.replaceChildren(h('div',{class:'card empty'},'You are all caught up. Updates about your entries show up here.'));return}
-  L.replaceChildren(h('div',{class:'row',style:'justify-content:flex-end;margin:0 0 8px'},h('button',{class:'ghost sm',type:'button',onclick:clearAlerts},'Clear all')),h('div',{class:'card'},...it.map(a=>h('div',{class:'item'},h('div',{},h('b',{},a.t),h('div',{class:'muted'},a.d)),h('span',{class:'tag '+a.k},a.tag)))),h('button',{class:'ghost',type:'button',onclick:()=>{renderMe();show('v-me')}},'Open My account'));
+  const unread=it.filter(a=>!a.read).length;
+  L.replaceChildren(h('div',{class:'row',style:'justify-content:flex-end;gap:8px;margin:0 0 8px'},h('button',{class:'ghost sm',type:'button',onclick:clearAlerts},'Clear all'),h('button',{class:'ghost sm',type:'button',disabled:!unread,onclick:()=>markAlertsRead()},'Mark all as read')),h('div',{class:'card'},...it.map(a=>h('div',{class:'item'+(a.read?' read':''),onclick:()=>{if(!a.read)markAlertsRead([a.key])}},h('div',{},h('b',{},a.read?null:h('span',{class:'udot','aria-label':'Unread'}),a.t),h('div',{class:'muted'},a.d)),h('span',{class:'tag '+a.k},a.tag)))),h('button',{class:'ghost',type:'button',onclick:()=>{renderMe();show('v-me')}},'Open My account'));
 }
 function syncNav(){
-  const n=(alertItems()||[]).filter(a=>a.attn).length,b=$('#alertBadge');
+  const n=(alertItems()||[]).filter(a=>a.attn&&!a.read).length,b=$('#alertBadge');
   b.hidden=!n;b.textContent=n>9?'9+':String(n);
   $('#tabAlerts').setAttribute('aria-label','Alerts'+(n?', '+n+' need attention':''));
   $('#tabProfile').setAttribute('aria-label',S.me?'Profile, '+S.me.player.display:'Profile, log in');
