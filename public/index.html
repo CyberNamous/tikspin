@@ -110,6 +110,10 @@ body[data-view=v-pin] #tabs{display:none}
 .udot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--pink2);margin-right:7px;vertical-align:middle}
 .row button:disabled{opacity:.5;cursor:default}
 .brand{display:flex;align-items:center;gap:8px}.brand img{width:30px;height:30px;border-radius:8px;object-fit:contain}
+.author{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+.author img{width:36px;height:36px;border-radius:50%;object-fit:contain;background:#130f26;border:1px solid #3a2a5e;flex:none}
+.author b{display:flex;align-items:center;gap:5px;font-size:.95rem}
+.vbadge{width:16px;height:16px;flex:none}
 </style>
 </head>
 <body>
@@ -362,13 +366,16 @@ function renderHosts(){
     ...x.live.map(g=>h('div',{class:'muted'},'Live: '+GAME[g.game]+' · '+g.players+' on the wheel · '+(g.status==='open'?'entries open':'entries closed')+' · ',h('a',{href:'/wheel/'+g.wheelCode},'Watch'))),
     ...x.next.map(u=>h('div',{class:'muted'},'Next: '+GAME[u.game]+' · '+when(u.startsAt))))));
 }
+const verifiedBadge=()=>{const N='http://www.w3.org/2000/svg',m=(t,o)=>{const e=document.createElementNS(N,t);for(const k in o)e.setAttribute(k,o[k]);return e};
+  const s=m('svg',{viewBox:'0 0 24 24',class:'vbadge',role:'img','aria-label':'Verified'});
+  s.append(m('circle',{cx:12,cy:12,r:11,fill:'#d54bf0'}),m('path',{d:'M7 12.5l3.2 3.2L17 9',fill:'none',stroke:'#fff','stroke-width':2.4,'stroke-linecap':'round','stroke-linejoin':'round'}));return s};
 function renderPosts(){
   const d=S.home,P=$('#posts');
   if(!d){P.replaceChildren(h('div',{class:'card empty'},S.homeErr?'Could not load posts.':'Loading posts...'));return}
   if(!d.posts.length){P.replaceChildren(h('div',{class:'card empty'},'No official posts yet. Check back soon.'));return}
   P.replaceChildren(...d.posts.map(p=>h('article',{class:'card post'+(p.pinned?' pin':'')},
-    h('div',{class:'row',style:'justify-content:space-between;gap:8px'},h('h3',{},p.title),p.pinned?h('span',{class:'tag'},'📌 Pinned'):null),
-    h('div',{class:'muted',style:'margin:0 0 6px'},fmtDate(p.createdAt)),h('p',{style:'margin:0 0 6px'},p.body),
+    h('div',{class:'author'},h('img',{src:'/images/logo.png',alt:'',width:'36',height:'36'}),h('div',{style:'flex:1;min-width:0'},h('b',{},'TikSpin Official',verifiedBadge()),h('div',{class:'muted',style:'margin:0'},fmtDate(p.createdAt))),p.pinned?h('span',{class:'tag'},'📌 Pinned'):null),
+    h('h3',{style:'margin:0 0 6px'},p.title),h('p',{style:'margin:0 0 6px'},p.body),
     /^https?:\/\//i.test(p.link)?h('a',{href:p.link,target:'_blank',rel:'noopener noreferrer'},'Read more'):null)));
 }
 
