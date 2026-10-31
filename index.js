@@ -7,6 +7,8 @@
 //   routes/public.js    homepage feed, wheel view, code check, feedback, helper bot
 //   routes/player.js    player accounts, entering giveaways, PIN / TikTok change
 //   routes/streamer.js  streamer registration, giveaways, entries, schedule, reports
+//   routes/profile.js   streamer profiles and streamer search (also creates the profile and follow tables)
+//   routes/follow.js    platform follows and viewer profiles
 //   routes/owner.js     invitations, approvals, suspensions, resets, reports, posts, feedback inbox
 //
 // Each routes module exports `actions`: { actionName: { h, ...options } }
@@ -25,6 +27,8 @@ import * as pub from './routes/public.js';
 import * as player from './routes/player.js';
 import * as streamer from './routes/streamer.js';
 import * as owner from './routes/owner.js';
+import * as profile from './routes/profile.js';
+import * as follow from './routes/follow.js';
 
 const DEFAULT_MAX_BODY = 20000;
 const OWNER_FAIL_MAX = 10;
@@ -36,15 +40,23 @@ const GROUPS = [
   { prefix: '/api/player/', auth: 'player', actions: player.actions },
   { prefix: '/api/streamer/', auth: 'streamer', actions: streamer.actions },
   { prefix: '/api/owner/', auth: 'owner', actions: owner.actions },
+  { prefix: '/api/streamer-profile/', auth: 'streamer', actions: profile.streamerActions },
+  { prefix: '/api/profile/', auth: 'none', actions: profile.publicActions },
+  { prefix: '/api/player-profile/', auth: 'player', actions: follow.playerActions },
+  { prefix: '/api/viewer/', auth: 'none', actions: follow.viewerActions },
   { prefix: '/api/', auth: 'none', actions: pub.actions }
 ];
 
 // Pretty links that are not real files. The Worker serves the right page and the page reads the code from the URL.
 //   /join/<code>   -> homepage (the giveaway join view)
 //   /wheel/<code>  -> wheel page (read-only view of one giveaway)
+//   /s/<username>  -> a streamer's public profile page
+//   /u/<name>      -> a viewer's public profile page (only when the player made it public)
 const PAGES = [
   { re: /^\/join(\/[^/]*)?$/, target: '/' },
-  { re: /^\/wheel\/[^/]+$/, target: '/wheel' }
+  { re: /^\/wheel\/[^/]+$/, target: '/wheel' },
+  { re: /^\/s\/[^/]+$/, target: '/profile' },
+  { re: /^\/u\/[^/]+$/, target: '/viewer' }
 ];
 
 // Messages the pages show for blocked accounts.
