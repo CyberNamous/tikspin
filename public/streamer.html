@@ -66,6 +66,12 @@ dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);bo
 dialog::backdrop{background:rgba(0,0,0,.65)}
 .shot{max-width:100%;border-radius:10px;margin-top:8px;border:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:8px}.brand img{width:30px;height:30px;border-radius:8px;object-fit:contain}
+.avgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:8px;margin:8px 0 14px}
+.avbtn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1;margin:0;padding:0;border-radius:50%;border:2px solid transparent;background:#1d1636;color:#fff;font-weight:900}
+.avbtn img{width:100%;height:100%;display:block}
+.cvgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:8px 0 14px}
+.cvbtn{width:100%;aspect-ratio:3/1;margin:0;padding:0;border-radius:10px;border:2px solid transparent;background:#1d1636 center/cover no-repeat}
+.avbtn[aria-pressed=true],.cvbtn[aria-pressed=true]{border-color:var(--pink);box-shadow:0 0 0 2px #2a1d4d}
 </style>
 </head>
 <body>
@@ -119,12 +125,13 @@ dialog::backdrop{background:rgba(0,0,0,.65)}
   <div class="card"><div class="row" style="justify-content:space-between"><div><h2 style="margin:0" id="pName"></h2><div class="muted" id="pTT"></div></div><span class="tag good">Approved</span></div>
     <label style="margin-top:14px">Your wheel link <span class="muted">(view only, for your stream or OBS)</span></label>
     <div class="row"><input type="text" id="wheelLink" readonly style="flex:1"><button class="sm" id="copyWheel">Copy</button></div></div>
-  <div class="tabs"><button class="tabbtn on" data-tab="give">Giveaway</button><button class="tabbtn" data-tab="entries" id="tbEntries">Entries</button><button class="tabbtn" data-tab="reviews" id="tbReviews">Reviews</button><button class="tabbtn" data-tab="wheel">Wheel</button><button class="tabbtn" data-tab="sched">Schedule</button><button class="tabbtn" data-tab="acct">Account</button></div>
+  <div class="tabs"><button class="tabbtn on" data-tab="give">Giveaway</button><button class="tabbtn" data-tab="entries" id="tbEntries">Entries</button><button class="tabbtn" data-tab="reviews" id="tbReviews">Reviews</button><button class="tabbtn" data-tab="wheel">Wheel</button><button class="tabbtn" data-tab="sched">Schedule</button><button class="tabbtn" data-tab="prof">Profile</button><button class="tabbtn" data-tab="acct">Account</button></div>
   <div class="pane" id="p-give"><div id="giveawayBox"></div><div class="card" id="newBox" hidden></div></div>
   <div class="pane" id="p-entries" hidden></div>
   <div class="pane" id="p-reviews" hidden></div>
   <div class="pane" id="p-wheel" hidden></div>
   <div class="pane" id="p-sched" hidden></div>
+  <div class="pane" id="p-prof" hidden></div>
   <div class="pane" id="p-acct" hidden></div>
 </section>
 <dialog id="rep"><h2 id="repTitle">Report a player</h2><p class="muted" style="margin-top:0">The operator reviews reports by hand. A Permanent Ban needs reports from several hosts with clear evidence.</p>
@@ -271,7 +278,7 @@ function renderNew(d){
 /* ---------- tabs and small helpers ---------- */
 function toast(msg,bad){const t=h('div',{class:'toast'+(bad?' bad':'')},msg);document.body.append(t);setTimeout(()=>t.remove(),2800)}
 const empty=t=>h('div',{class:'empty'},t);
-function tab(n){S.tab=n;$$('.tabbtn').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));$$('.pane').forEach(p=>p.hidden=p.id!=='p-'+n);if(n==='reviews')loadReviews();if(n==='acct')renderAcct()}
+function tab(n){S.tab=n;$$('.tabbtn').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));$$('.pane').forEach(p=>p.hidden=p.id!=='p-'+n);if(n==='reviews')loadReviews();if(n==='acct')renderAcct();if(n==='prof')renderProf()}
 $$('.tabbtn').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 function badges(d){$('#tbEntries').textContent='Entries'+(d.giveaway?' ('+d.giveaway.counts.total+')':'');$('#tbReviews').textContent='Reviews'+(d.pendingProofs?' ('+d.pendingProofs+')':'')}
 const ttLink=u=>h('a',{href:'https://www.tiktok.com/@'+encodeURIComponent(u),target:'_blank',rel:'noopener noreferrer'},'@'+u);
@@ -382,6 +389,33 @@ function renderSched(d){
 }
 
 /* ---------- account ---------- */
+async function renderProf(){
+  const box=$('#p-prof');box.replaceChildren(h('div',{class:'card muted'},'Loading...'));
+  const {data:d}=await api('streamer-profile/mine',{token:store.get('ts_s')});
+  if(!d.ok){box.replaceChildren(h('div',{class:'card'},h('p',{class:'err'},d.error||'Could not load your profile.')));return}
+  const st={avatar:d.avatar||'',cover:d.cover||''};
+  const bio=h('input',{type:'text',id:'pfBio',maxlength:'160',value:d.bio,placeholder:'Tell visitors about your giveaways'});
+  const pub=h('input',{type:'checkbox',id:'pfPub'});pub.checked=d.isPublic;
+  const count=h('div',{class:'muted'},d.bio.length+' / 160'),msg=h('div',{class:'err',role:'status'}),go=h('button',{type:'button'},'Save profile');
+  const avs=h('div',{class:'avgrid',role:'group','aria-label':'Choose an avatar'}),cvs=h('div',{class:'cvgrid',role:'group','aria-label':'Choose a cover'});
+  const paint=()=>{[...avs.children].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===st.avatar)));[...cvs.children].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===st.cover)))};
+  avs.append(h('button',{type:'button',class:'avbtn','data-id':'','aria-label':'Default avatar, your initial','aria-pressed':'false',onclick:()=>{st.avatar='';paint()}},(d.name||'?').charAt(0).toUpperCase()));
+  for(let i=1;i<=12;i++){const id='a'+String(i).padStart(2,'0');avs.append(h('button',{type:'button',class:'avbtn','data-id':id,'aria-label':'Avatar '+i,'aria-pressed':'false',onclick:()=>{st.avatar=id;paint()}},h('img',{src:'/profiles/avatars/'+id+'.svg',alt:'',width:'52',height:'52'})))}
+  const dflt=h('button',{type:'button',class:'cvbtn','data-id':'','aria-label':'Default cover','aria-pressed':'false',onclick:()=>{st.cover='';paint()}});dflt.style.background='linear-gradient(120deg,#3b1a6e,#a93bd6)';cvs.append(dflt);
+  for(let i=1;i<=8;i++){const id='c'+String(i).padStart(2,'0'),b=h('button',{type:'button',class:'cvbtn','data-id':id,'aria-label':'Cover '+i,'aria-pressed':'false',onclick:()=>{st.cover=id;paint()}});b.style.backgroundImage="url('/profiles/covers/"+id+".svg')";cvs.append(b)}
+  paint();
+  bio.addEventListener('input',()=>{count.textContent=bio.value.length+' / 160'});
+  go.onclick=async()=>{go.disabled=true;msg.textContent='';
+    const {data:r}=await api('streamer-profile/save',{method:'POST',token:store.get('ts_s'),body:{bio:bio.value,avatar:st.avatar,cover:st.cover,isPublic:pub.checked}});
+    go.disabled=false;if(!r.ok){msg.textContent=r.error||'Could not save your profile.';return}
+    bio.value=r.bio;st.avatar=r.avatar;st.cover=r.cover;paint();count.textContent=r.bio.length+' / 160';toast('Profile saved.')};
+  box.replaceChildren(h('div',{class:'card'},h('h2',{},'Your public profile'),
+    h('p',{class:'muted',style:'margin-top:0'},'Visitors see your name, TikTok link, avatar, cover, bio and public giveaways. Web addresses in the bio are removed.'),
+    h('div',{class:'muted'},'Avatar'),avs,h('div',{class:'muted'},'Cover'),cvs,
+    h('label',{for:'pfBio'},'Bio'),bio,count,
+    h('label',{class:'check',for:'pfPub'},pub,h('span',{},'Show my profile publicly')),msg,go,
+    h('a',{class:'btn ghost',href:d.url,target:'_blank',rel:'noopener',style:'margin-top:10px'},'View my profile')));
+}
 async function renderAcct(){
   const box=$('#p-acct');box.replaceChildren();
   const pw=h('div'),pin=h('div');

@@ -112,8 +112,42 @@ body[data-view=v-pin] #tabs{display:none}
 .brand{display:flex;align-items:center;gap:8px}.brand img{width:30px;height:30px;border-radius:8px;object-fit:contain}
 .author{display:flex;align-items:center;gap:10px;margin:0 0 8px}
 .author img{width:36px;height:36px;border-radius:50%;object-fit:contain;background:#130f26;border:1px solid #3a2a5e;flex:none}
-.author b{display:flex;align-items:center;gap:5px;font-size:.95rem}
+.author b{display:flex;align-items:center;gap:5px;font-size:.95rem;white-space:nowrap}
 .vbadge{width:16px;height:16px;flex:none}
+/* ---- Phase 1: adaptive homepage and Official updates ---- */
+.hm{min-width:0}
+#updates{position:fixed;top:0;right:0;bottom:0;z-index:28;width:min(92vw,360px);background:#120c25;border-left:1px solid var(--pink2);padding:calc(14px + env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);visibility:hidden;transition:transform .25s ease,visibility 0s linear .25s}
+#updates.open{transform:none;visibility:visible;transition:transform .25s ease}
+.updhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.updhead h2{margin:0;font-size:1.1rem;color:var(--pink)}
+#updClose .d{display:none}
+#updScrim{position:fixed;inset:0;z-index:27;background:rgba(5,3,12,.7)}
+#updTab{position:fixed;right:0;top:42%;z-index:22;width:34px;height:116px;margin:0;padding:0;border:1px solid var(--neon);border-right:0;border-radius:12px 0 0 12px;background:#1d1636;color:var(--pink);font-size:.82rem;font-weight:800;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;cursor:pointer}
+#updTab.new::after{content:"";position:absolute;top:-4px;left:-5px;width:12px;height:12px;border-radius:50%;background:var(--bad);border:2px solid var(--bg)}
+body.upd-lock{overflow:hidden}
+@media(hover:hover){#updTab:hover{background:#2a1d4d}}
+@media(min-width:900px){
+main{max-width:1132px}
+#tabs .in{max-width:560px}
+.view:not(#v-home){max-width:760px;width:100%;margin-inline:auto}
+#v-home.on{display:grid;grid-template-columns:minmax(0,1fr) 340px;column-gap:28px;align-items:start}
+#updates{position:sticky;top:calc(76px + env(safe-area-inset-top));z-index:1;width:auto;max-height:calc(100dvh - 100px);transform:none;visibility:visible;transition:none;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px}
+#updClose .m{display:none}#updClose .d{display:inline}
+#updScrim{display:none!important}
+#updTab{display:none}
+body.upd-off #updTab{display:flex}
+body.upd-off #v-home.on{grid-template-columns:minmax(0,1fr)}
+body.upd-off #updates{display:none}
+}
+body[data-view]:not([data-view=v-home]) #updTab{display:none}
+.mav{position:relative;overflow:hidden;width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff}
+.mav img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.avgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:8px;margin:8px 0}
+.avbtn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1;margin:0;padding:0;border-radius:50%;border:2px solid transparent;background:#1d1636;color:#fff;font-weight:900}
+.avbtn img{width:100%;height:100%;display:block}
+.avbtn[aria-pressed=true]{border-color:var(--pink);box-shadow:0 0 0 2px #2a1d4d}
+.stlink{display:block;color:inherit;text-decoration:none}
+.stlink:hover{border-color:var(--pink2)}
 </style>
 </head>
 <body>
@@ -124,6 +158,7 @@ body[data-view=v-pin] #tabs{display:none}
 
 <!-- HOME -->
 <section class="view on" id="v-home">
+  <div class="hm">
   <article class="feat" aria-labelledby="featH">
     <span class="eyebrow">Featured giveaway</span>
     <div id="featInfo" aria-live="polite"><div class="skel w60"></div><div class="skel"></div><div class="skel w40"></div></div>
@@ -138,8 +173,11 @@ body[data-view=v-pin] #tabs{display:none}
   <details class="card how"><summary>How it works</summary><ol class="steps"><li>Create a free account.</li><li>Get the giveaway code from a streamer.</li><li>Enter the code and fill in what that giveaway asks for.</li><li>Watch the wheel on their live.</li></ol></details>
   <div class="sec-h"><h2>Available giveaways</h2><button class="link" id="seeAll" type="button" hidden>See all</button></div>
   <div class="card" id="activeHome"></div>
-  <div class="sec-h"><h2>Official Posts</h2></div>
-  <div id="posts"></div>
+  </div>
+  <aside id="updates" aria-label="Official updates">
+    <div class="updhead"><h2>Official updates</h2><button class="ghost sm" id="updClose" type="button"><span class="m">Close</span><span class="d">Collapse</span></button></div>
+    <div id="posts"></div>
+  </aside>
 </section>
 
 <!-- GIVEAWAYS -->
@@ -156,6 +194,7 @@ body[data-view=v-pin] #tabs{display:none}
 <!-- STREAMERS -->
 <section class="view" id="v-streamers">
   <div class="sec-h"><h2>Streamers</h2></div>
+  <div class="card" style="margin-bottom:12px"><label class="sr" for="stSearch">Search streamers</label><input id="stSearch" type="text" maxlength="24" placeholder="Search streamers by name or @username" autocomplete="off" enterkeyhint="search" style="margin:0"></div>
   <div class="grid" id="hosts"></div>
   <div class="card" style="margin-top:12px"><h2>Are you a streamer?</h2><p class="muted" style="margin-top:0">Streamers join by invitation. Log in to open your dashboard and run giveaways.</p><a class="btn" href="/streamer">Streamer login</a></div>
 </section>
@@ -208,6 +247,7 @@ body[data-view=v-pin] #tabs{display:none}
   <div class="card"><div class="row" style="justify-content:space-between"><div><h2 id="meName" style="margin:0"></h2><div class="muted" id="meTT"></div></div><button class="ghost sm" id="logout">Log out</button></div></div>
   <form class="card" id="code2Form" autocomplete="off"><h2>Join a giveaway</h2><input class="code" id="code2In" type="text" maxlength="24" placeholder="ENTER CODE" autocapitalize="characters" spellcheck="false"><button type="submit">Continue</button><div class="err" id="code2Err"></div></form>
   <div class="card"><h2>My giveaways</h2><div id="mine"></div></div>
+  <div class="card" id="myProf"><h2>My public profile</h2><div id="myProfBox"></div></div>
   <div class="card"><h2>Change password</h2><div id="pwForm"></div></div>
   <button class="ghost" type="button" data-home>Back to home</button>
 </section>
@@ -229,6 +269,8 @@ body[data-view=v-pin] #tabs{display:none}
   <p>TikSpin is an independent , free to use platform and is not affiliated with TikTok, Roblox or Mobile Legends.</p>
 </footer>
 </main>
+<div id="updScrim" hidden></div>
+<button id="updTab" type="button" aria-controls="updates" aria-expanded="false">Updates</button>
 
 
 <nav id="tabs" aria-label="Main"><div class="in">
@@ -280,6 +322,7 @@ function show(id,pop){
   cur=id;document.body.dataset.view=id;
   $$('#tabs button').forEach(b=>{if(b.dataset.tab===TAB_OF[id])b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
   if(id==='v-alerts')renderAlerts();
+  if(id==='v-streamers')loadStreamers();
   if(LIVE_VIEWS.includes(id))loadHome();
 }
 addEventListener('popstate',e=>{
@@ -355,17 +398,25 @@ function renderGive(){
   U.replaceChildren(...(d.upcoming.length?d.upcoming.map(u=>h('div',{class:'item'},h('div',{},h('b',{},u.streamer.name),h('div',{class:'muted'},GAME[u.game]+(u.note?' · '+u.note:''))),h('span',{class:'tag'},when(u.startsAt)))):[h('p',{class:'empty',style:'margin:0'},'Nothing is scheduled yet.')]));
   $('#tzNote').textContent=d.upcoming.length?'Times are shown in your own time zone ('+(Intl.DateTimeFormat().resolvedOptions().timeZone||'local')+').':'';
 }
-function renderHosts(){
-  const d=S.home,H=$('#hosts');
-  if(!d){H.replaceChildren(h('div',{class:'card empty'},S.homeErr?'Could not load streamers.':'Loading streamers...'));return}
-  const m=new Map(),add=st=>{const k=st.tiktok.toLowerCase();if(!m.has(k))m.set(k,{s:st,live:[],next:[]});return m.get(k)};
-  d.active.forEach(g=>add(g.streamer).live.push(g));d.upcoming.forEach(u=>add(u.streamer).next.push(u));
-  if(!m.size){H.replaceChildren(h('div',{class:'card empty'},'No streamers have public giveaways right now.'));return}
-  H.replaceChildren(...[...m.values()].map(x=>h('div',{class:'card host',style:'margin:0'},
-    h('b',{},x.s.name),h('div',{},h('a',{href:x.s.profileUrl,target:'_blank',rel:'noopener noreferrer'},'@'+x.s.tiktok)),
-    ...x.live.map(g=>h('div',{class:'muted'},'Live: '+GAME[g.game]+' · '+g.players+' on the wheel · '+(g.status==='open'?'entries open':'entries closed')+' · ',h('a',{href:'/wheel/'+g.wheelCode},'Watch'))),
-    ...x.next.map(u=>h('div',{class:'muted'},'Next: '+GAME[u.game]+' · '+when(u.startsAt))))));
+const miniAv=(name,user,preset)=>{let n=0;for(const c of String(user).toLowerCase())n=(n*31+c.charCodeAt(0))%360;
+  const d=h('div',{class:'mav','aria-hidden':'true'},String(name||user).charAt(0).toUpperCase());d.style.background=`linear-gradient(135deg,hsl(${n},65%,42%),hsl(${(n+45)%360},70%,52%))`;
+  if(/^a\d{2}$/.test(preset||'')){const i=h('img',{src:'/profiles/avatars/'+preset+'.svg',alt:''});i.onerror=()=>i.remove();d.append(i)}return d};
+let stQ='',stTimer=0,stSeq=0,stInit=false;
+async function loadStreamers(){
+  const H=$('#hosts'),q=stQ,seq=++stSeq;
+  if(!stInit)H.replaceChildren(h('div',{class:'card empty'},'Loading streamers...'));
+  const {data:d}=await api('profile/list'+(q?'?q='+encodeURIComponent(q):''));
+  if(seq!==stSeq)return;
+  stInit=true;
+  if(!d.ok){H.replaceChildren(h('div',{class:'card empty'},'Could not load streamers.'));return}
+  if(!d.streamers.length){H.replaceChildren(h('div',{class:'card empty'},q?'No streamers match your search.':'No streamers have a public profile yet.'));return}
+  H.replaceChildren(...d.streamers.map(s=>h('a',{class:'card host stlink',style:'margin:0',href:'/s/'+encodeURIComponent(s.tiktok)},
+    h('div',{style:'display:flex;gap:12px;align-items:center'},miniAv(s.name,s.tiktok,s.avatar),h('div',{style:'flex:1;min-width:0'},
+      h('div',{class:'row',style:'justify-content:space-between;gap:8px'},h('b',{},s.name),s.live?h('span',{class:'tag good'},'Live now'):null),
+      h('div',{class:'muted'},'@'+s.tiktok+' · '+(s.followers===1?'1 follower':(s.followers||0)+' followers')),s.bio?h('div',{class:'muted',style:'margin-top:4px'},s.bio):null)))));
 }
+function renderHosts(){if(!stInit)loadStreamers()}
+$('#stSearch').addEventListener('input',e=>{stQ=e.target.value.trim().slice(0,24);clearTimeout(stTimer);stTimer=setTimeout(loadStreamers,250)});
 const verifiedBadge=()=>{const N='http://www.w3.org/2000/svg',m=(t,o)=>{const e=document.createElementNS(N,t);for(const k in o)e.setAttribute(k,o[k]);return e};
   const s=m('svg',{viewBox:'0 0 24 24',class:'vbadge',role:'img','aria-label':'Verified'});
   s.append(m('circle',{cx:12,cy:12,r:11,fill:'#d54bf0'}),m('path',{d:'M7 12.5l3.2 3.2L17 9',fill:'none',stroke:'#fff','stroke-width':2.4,'stroke-linecap':'round','stroke-linejoin':'round'}));return s};
@@ -374,9 +425,10 @@ function renderPosts(){
   if(!d){P.replaceChildren(h('div',{class:'card empty'},S.homeErr?'Could not load posts.':'Loading posts...'));return}
   if(!d.posts.length){P.replaceChildren(h('div',{class:'card empty'},'No official posts yet. Check back soon.'));return}
   P.replaceChildren(...d.posts.map(p=>h('article',{class:'card post'+(p.pinned?' pin':'')},
-    h('div',{class:'author'},h('img',{src:'/images/logo.png',alt:'',width:'36',height:'36'}),h('div',{style:'flex:1;min-width:0'},h('b',{},'TikSpin Official',verifiedBadge()),h('div',{class:'muted',style:'margin:0'},fmtDate(p.createdAt))),p.pinned?h('span',{class:'tag'},'📌 Pinned'):null),
+    h('div',{class:'author'},h('img',{src:'/images/logo.png',alt:'',width:'36',height:'36'}),h('div',{style:'flex:1;min-width:0'},h('b',{},'TikSpin Official',verifiedBadge()),h('div',{class:'muted',style:'margin:2px 0 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap'},fmtDate(p.createdAt),p.pinned?h('span',{class:'tag'},'📌 Pinned'):null))),
     h('h3',{style:'margin:0 0 6px'},p.title),h('p',{style:'margin:0 0 6px'},p.body),
     /^https?:\/\//i.test(p.link)?h('a',{href:p.link,target:'_blank',rel:'noopener noreferrer'},'Read more'):null)));
+  if(window.updSync)updSync();
 }
 
 /* ---------- alerts: the player's own entry updates, from the existing /player/me data ---------- */
@@ -502,6 +554,34 @@ function renderMe(){
   mine.replaceChildren(...waiting,...rows);
   if(!rows.length&&!waiting.length)mine.append(h('p',{class:'muted',style:'margin:0'},'Nothing yet. Enter a code to join your first giveaway.'));
   pwForm('#pwForm');if(m.player.mustChangePassword)pwForm('#mustForm');
+  renderMyProf();
+}
+const ppApi=(p,o={})=>api('player-profile/'+p,{...o,token:store.get('ts_p')});
+async function renderMyProf(){
+  const box=$('#myProfBox');box.replaceChildren(h('p',{class:'muted',style:'margin:0'},'Loading...'));
+  const {data:d}=await ppApi('mine');
+  if(!d.ok){box.replaceChildren(h('p',{class:'err'},d.error||'Could not load your profile settings.'));return}
+  const st={isPublic:d.isPublic,avatar:d.avatar||''},busy={v:false};
+  const pub=h('input',{type:'checkbox',id:'mpPub'});pub.checked=d.isPublic;
+  const link=h('a',{href:d.url,target:'_blank',rel:'noopener'},'View my profile');link.hidden=!d.isPublic;
+  const msg=h('div',{class:'err',role:'status'}),list=h('div',{}),pick=h('div',{class:'avgrid',role:'group','aria-label':'Choose an avatar'});
+  const paint=()=>[...pick.children].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===st.avatar)));
+  const save=async(prev)=>{msg.textContent='';
+    const {data:r}=await ppApi('save',{method:'POST',body:st});
+    if(!r.ok){Object.assign(st,prev);msg.textContent=r.error||'Could not save that.';paint();return false}
+    st.isPublic=r.isPublic;st.avatar=r.avatar;link.hidden=!r.isPublic;paint();return true};
+  pub.addEventListener('change',async()=>{pub.disabled=true;const prev={...st};st.isPublic=pub.checked;if(!await save(prev))pub.checked=prev.isPublic;pub.disabled=false});
+  const choose=async(id)=>{if(busy.v)return;busy.v=true;const prev={...st};st.avatar=id;paint();await save(prev);busy.v=false};
+  pick.append(h('button',{type:'button',class:'avbtn','data-id':'','aria-label':'Default avatar, your initial','aria-pressed':'false',onclick:()=>choose('')},(d.name||'?').charAt(0).toUpperCase()));
+  for(let i=1;i<=12;i++){const id='a'+String(i).padStart(2,'0');pick.append(h('button',{type:'button',class:'avbtn','data-id':id,'aria-label':'Avatar '+i,'aria-pressed':'false',onclick:()=>choose(id)},h('img',{src:'/profiles/avatars/'+id+'.svg',alt:'',width:'52',height:'52'})))}
+  paint();
+  const draw=()=>list.replaceChildren(h('h3',{style:'margin:16px 0 6px;font-size:1rem'},'Streamers I follow ('+d.streamers.length+')'),
+    ...(d.streamers.length?d.streamers.map(s=>h('div',{class:'item'},h('div',{},h('a',{href:'/s/'+encodeURIComponent(s.tiktok)},h('b',{},s.name)),s.live?h('span',{class:'tag good',style:'margin-left:8px'},'Live now'):null),
+      h('button',{class:'ghost sm',type:'button',onclick:async()=>{const {data:r}=await ppApi('unfollow',{method:'POST',body:{handle:s.tiktok}});if(r.ok){d.streamers=d.streamers.filter(x=>x!==s);draw()}}},'Unfollow'))):
+      [h('p',{class:'muted',style:'margin:0'},"You are not following anyone yet. Open a streamer's profile and tap Follow.")]));
+  box.replaceChildren(h('div',{class:'muted',style:'margin-bottom:2px'},'Avatar'),pick,h('label',{class:'check',for:'mpPub'},pub,h('span',{},'Let others see my profile')),
+    h('p',{class:'muted',style:'margin:6px 0 8px'},'Off by default. When on, others see your avatar, display name and how many streamers you follow, nothing else.'),link,msg,list);
+  draw();
 }
 function pwForm(sel){
   const box=$(sel),cur=h('input',{type:'password',autocomplete:'current-password'}),nxt=h('input',{type:'password',autocomplete:'new-password'}),err=h('div',{class:'err'});
@@ -676,6 +756,27 @@ $('#fbForm').onsubmit=async e=>{
     const r=await startCode(code,$('#codeErr'));
     if(r==='bad')setUrl('/'); // invalid, expired or closed: do not leave a dead link in the address bar
   }
+})();
+
+/* ---- Official updates: drawer on phones, collapsible sidebar on wide screens ---- */
+(()=>{
+  const el=id=>document.getElementById(id),aside=el('updates'),tab=el('updTab'),scrim=el('updScrim'),close=el('updClose');
+  if(!aside||!tab||!scrim||!close)return;
+  const wide=matchMedia('(min-width:900px)'),SEEN='ts_upd_seen',OFF='ts_upd_off',B=document.body;
+  const get=k=>{try{return localStorage.getItem(k)}catch{return null}},put=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
+  const newest=()=>((S.home&&S.home.posts)||[]).reduce((m,p)=>Math.max(m,+new Date(p.createdAt)||+p.createdAt||0),0);
+  const shown=()=>wide.matches?!B.classList.contains('upd-off'):aside.classList.contains('open');
+  const sync=()=>{const n=newest();if(shown()&&n)put(SEEN,String(n));tab.classList.toggle('new',n>(+get(SEEN)||0));tab.setAttribute('aria-expanded',String(shown()))};
+  const open=()=>{if(wide.matches){B.classList.remove('upd-off');put(OFF,'0')}else{aside.classList.add('open');scrim.hidden=false;B.classList.add('upd-lock')}sync();close.focus()};
+  const shut=()=>{if(wide.matches){B.classList.add('upd-off');put(OFF,'1')}else{aside.classList.remove('open');scrim.hidden=true;B.classList.remove('upd-lock')}sync();tab.focus()};
+  B.classList.toggle('upd-off',get(OFF)==='1');
+  tab.addEventListener('click',open);close.addEventListener('click',shut);scrim.addEventListener('click',shut);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!wide.matches&&aside.classList.contains('open'))shut()});
+  let sx=null;
+  aside.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+  aside.addEventListener('touchend',e=>{if(sx!==null&&!wide.matches&&e.changedTouches[0].clientX-sx>70)shut();sx=null},{passive:true});
+  wide.addEventListener('change',()=>{aside.classList.remove('open');scrim.hidden=true;B.classList.remove('upd-lock');sync()});
+  window.updSync=sync;sync();
 })();
 </script>
 </body>

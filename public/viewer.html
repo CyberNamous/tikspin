@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TikSpin · Viewer profile</title>
+<link rel="icon" type="image/png" href="/images/logo.png">
+<link rel="apple-touch-icon" href="/images/logo.png">
+<meta name="theme-color" content="#0a0716">
+<meta name="referrer" content="no-referrer">
+<style>
+:root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9;--bad:#ff7a93;--ok:#7be0a4}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;background:radial-gradient(900px 420px at 50% -8%,#2a1250 0%,var(--bg) 72%) no-repeat,var(--bg);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;line-height:1.5;padding:calc(14px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}
+main{width:100%;max-width:960px;flex:1;min-width:0}
+main,main *{overflow-wrap:anywhere}
+a{color:var(--pink)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:8px;font-size:1.4rem;font-weight:900;text-decoration:none;color:var(--pink)}
+.brand img{width:28px;height:28px;border-radius:8px;object-fit:contain}
+.back{color:var(--muted);text-decoration:none;font-weight:600;font-size:.95rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.cover{height:120px;border-radius:16px 16px 0 0;background:linear-gradient(120deg,#3b1a6e,#a93bd6)}
+.head{background:var(--panel);border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:0 16px 16px;margin-bottom:12px}
+.av{width:88px;height:88px;border-radius:50%;border:4px solid var(--bg);margin-top:-44px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:900;color:#fff}
+.name{font-size:1.45rem;font-weight:900;margin:8px 0 0}
+.muted{color:var(--muted);font-size:.92rem}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-block;text-align:center;text-decoration:none;border:0;border-radius:10px;font:inherit;font-weight:800;padding:11px 18px;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--neon),var(--pink2))}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--pink)}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{flex:1;background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:10px;font:inherit;font-weight:700;padding:10px;cursor:pointer}
+.tabs button[aria-selected=true]{background:linear-gradient(135deg,var(--neon),var(--pink2));color:#fff;border-color:transparent}
+h2{font-size:1.05rem;margin:0 0 8px}
+.tag{font-size:.78rem;font-weight:800;border-radius:99px;padding:3px 10px;background:#2a1d4d;color:var(--pink);white-space:nowrap}
+.tag.good{background:#12392a;color:var(--ok)}
+.item{border-top:1px solid var(--line);padding:11px 0;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.item:first-of-type{border-top:0;padding-top:0}
+.empty{text-align:center;color:var(--muted);padding:12px 4px}
+.skel{height:14px;border-radius:8px;background:#241a45;margin:10px 0}
+.cols{display:block}
+footer{width:100%;max-width:960px;text-align:center;color:var(--muted);font-size:.88rem;padding-top:16px}
+footer a{margin:0 8px}
+footer p{margin:6px 0 0}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+[hidden]{display:none!important}
+@media(min-width:900px){
+  .cover{height:200px}
+  .av{width:132px;height:132px;font-size:3.2rem;margin-top:-66px}
+  .tabs{display:none}
+  .cols{display:grid;grid-template-columns:300px minmax(0,1fr);gap:0 24px;align-items:start}
+  .panel{display:block!important}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><a class="brand" href="/"><img src="/images/logo.png" alt="" width="28" height="28">TikSpin</a><a class="back" href="/#streamers">Find streamers &rarr;</a></div>
+  <div id="root" aria-live="polite"><div class="card"><div class="skel" style="width:60%"></div><div class="skel"></div></div></div>
+</main>
+<footer>
+  <div><a href="/terms">Terms of Use</a><a href="/privacy">Privacy Policy</a></div>
+  <p>TikSpin is an independent, free to use platform and is not affiliated with TikTok, Roblox or Mobile Legends.</p>
+</footer>
+<script>
+const h=(t,a,...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a||{}))x==='class'?e.className=v:x.startsWith('on')?e.addEventListener(x.slice(2),v):v!==false&&e.setAttribute(x,v===true?'':v);e.append(...k.filter(x=>x!=null&&x!==false));return e};
+const root=document.getElementById('root');
+const name=(()=>{try{return decodeURIComponent(location.pathname.split('/')[2]||'')}catch{return ''}})();
+const hue=s=>{let n=0;for(const c of s.toLowerCase())n=(n*31+c.charCodeAt(0))%360;return n};
+const avatar=(n,preset)=>{const a=hue(n),d=h('div',{class:'av','aria-hidden':'true'},n.charAt(0).toUpperCase());d.style.background=`linear-gradient(135deg,hsl(${a},65%,42%),hsl(${(a+45)%360},70%,52%))`;
+  if(/^a\d{2}$/.test(preset||'')){const i=h('img',{src:'/profiles/avatars/'+preset+'.svg',alt:''});i.onerror=()=>i.remove();d.append(i)}return d};
+function missing(){
+  document.title='Profile not available · TikSpin';
+  root.replaceChildren(h('div',{class:'card empty'},h('h2',{},'This profile is private or does not exist'),h('p',{class:'muted'},'Viewers choose whether their profile can be seen.'),h('a',{class:'btn',href:'/'},'Back to TikSpin')));
+}
+function render(d){
+  document.title=d.name+' · TikSpin';
+  root.replaceChildren(h('div',{},h('div',{class:'cover'}),h('div',{class:'head'},avatar(d.name,d.avatar),h('div',{class:'name'},d.name),h('div',{class:'muted'},'Viewer on TikSpin'),
+    h('div',{class:'card',style:'margin:14px 0 0'},h('h2',{style:'margin:0 0 4px'},d.following===1?'Following 1 streamer':'Following '+d.following+' streamers'),h('div',{class:'muted'},'Only this number is shown. Who they follow, their TikTok name and their entries stay private.')))));
+}
+if(!name)missing();
+else fetch('/api/viewer/get?u='+encodeURIComponent(name)).then(r=>r.json().catch(()=>({}))).then(d=>d&&d.ok?render(d):missing()).catch(()=>root.replaceChildren(h('div',{class:'card empty'},'Could not load this profile. Check your connection and try again.')));
+</script>
+</body>
+</html>

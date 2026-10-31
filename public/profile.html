@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TikSpin · Streamer profile</title>
+<link rel="icon" type="image/png" href="/images/logo.png">
+<link rel="apple-touch-icon" href="/images/logo.png">
+<meta name="theme-color" content="#0a0716">
+<meta name="referrer" content="no-referrer">
+<style>
+:root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9;--bad:#ff7a93;--ok:#7be0a4}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;background:radial-gradient(900px 420px at 50% -8%,#2a1250 0%,var(--bg) 72%) no-repeat,var(--bg);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;line-height:1.5;padding:calc(14px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}
+main{width:100%;max-width:960px;flex:1;min-width:0}
+main,main *{overflow-wrap:anywhere}
+a{color:var(--pink)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:8px;font-size:1.4rem;font-weight:900;text-decoration:none;color:var(--pink)}
+.brand img{width:28px;height:28px;border-radius:8px;object-fit:contain}
+.back{color:var(--muted);text-decoration:none;font-weight:600;font-size:.95rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.cover{height:120px;border-radius:16px 16px 0 0;background:linear-gradient(120deg,#3b1a6e,#a93bd6)}
+.head{background:var(--panel);border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:0 16px 16px;margin-bottom:12px}
+.av{position:relative;overflow:hidden;width:88px;height:88px;border-radius:50%;border:4px solid var(--bg);margin-top:-44px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:900;color:#fff}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.name{font-size:1.45rem;font-weight:900;margin:8px 0 0}
+.muted{color:var(--muted);font-size:.92rem}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-block;text-align:center;text-decoration:none;border:0;border-radius:10px;font:inherit;font-weight:800;padding:11px 18px;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--neon),var(--pink2))}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--pink)}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{flex:1;background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:10px;font:inherit;font-weight:700;padding:10px;cursor:pointer}
+.tabs button[aria-selected=true]{background:linear-gradient(135deg,var(--neon),var(--pink2));color:#fff;border-color:transparent}
+h2{font-size:1.05rem;margin:0 0 8px}
+.tag{font-size:.78rem;font-weight:800;border-radius:99px;padding:3px 10px;background:#2a1d4d;color:var(--pink);white-space:nowrap}
+.tag.good{background:#12392a;color:var(--ok)}
+.item{border-top:1px solid var(--line);padding:11px 0;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.item:first-of-type{border-top:0;padding-top:0}
+.empty{text-align:center;color:var(--muted);padding:12px 4px}
+.skel{height:14px;border-radius:8px;background:#241a45;margin:10px 0}
+.cols{display:block}
+footer{width:100%;max-width:960px;text-align:center;color:var(--muted);font-size:.88rem;padding-top:16px}
+footer a{margin:0 8px}
+footer p{margin:6px 0 0}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+[hidden]{display:none!important}
+@media(min-width:900px){
+  .cover{height:200px}
+  .av{width:132px;height:132px;font-size:3.2rem;margin-top:-66px}
+  .tabs{display:none}
+  .cols{display:grid;grid-template-columns:300px minmax(0,1fr);gap:0 24px;align-items:start}
+  .panel{display:block!important}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><a class="brand" href="/"><img src="/images/logo.png" alt="" width="28" height="28">TikSpin</a><a class="back" href="/#streamers">&larr; All streamers</a></div>
+  <div id="root" aria-live="polite"><div class="card"><div class="skel" style="width:60%"></div><div class="skel"></div><div class="skel" style="width:40%"></div></div></div>
+</main>
+<footer>
+  <div><a href="/terms">Terms of Use</a><a href="/privacy">Privacy Policy</a></div>
+  <p>TikSpin is an independent, free to use platform and is not affiliated with TikTok, Roblox or Mobile Legends.</p>
+</footer>
+<script>
+const $=s=>document.querySelector(s);
+const h=(t,a,...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a||{}))x==='class'?e.className=v:x.startsWith('on')?e.addEventListener(x.slice(2),v):v!==false&&e.setAttribute(x,v===true?'':v);e.append(...k.filter(x=>x!=null&&x!==false));return e};
+const GAME={roblox:'Roblox',ml:'Mobile Legends'};
+const when=ms=>new Date(ms).toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+const root=$('#root');
+const handle=(()=>{try{return decodeURIComponent(location.pathname.split('/')[2]||'')}catch{return ''}})();
+
+// Built-in look until the avatar pack arrives: a colour picked from the username, plus the first letter.
+const hue=s=>{let n=0;for(const c of s.toLowerCase())n=(n*31+c.charCodeAt(0))%360;return n};
+const avatar=(name,user,preset)=>{const a=hue(user),d=h('div',{class:'av','aria-hidden':'true'},(name||user).charAt(0).toUpperCase());d.style.background=`linear-gradient(135deg,hsl(${a},65%,42%),hsl(${(a+45)%360},70%,52%))`;
+  if(/^a\d{2}$/.test(preset||'')){const i=h('img',{src:'/profiles/avatars/'+preset+'.svg',alt:''});i.onerror=()=>i.remove();d.append(i)}return d};
+const cover=d=>{const c=h('div',{class:'cover'});if(/^c\d{2}$/.test(d.cover||''))c.style.background="url('/profiles/covers/"+d.cover+".svg') center/cover no-repeat, linear-gradient(120deg,#3b1a6e,#a93bd6)";return c};
+
+function missing(){
+  document.title='Profile not available · TikSpin';
+  root.replaceChildren(h('div',{class:'card empty'},h('h2',{},'This profile is not available'),h('p',{class:'muted'},'It may be private, or the streamer may not be on TikSpin.'),h('a',{class:'btn',href:'/#streamers'},'Browse streamers')));
+}
+
+function render(d){
+  document.title=d.name+' · TikSpin';
+  const since=new Date(d.since).toLocaleDateString([],{month:'long',year:'numeric'});
+  const msg=h('span',{class:'muted',role:'status'});
+  const share=h('button',{class:'btn ghost',type:'button',onclick:async()=>{try{await navigator.clipboard.writeText(location.href);msg.textContent='Link copied'}catch{msg.textContent='Copy the address from your browser bar'}setTimeout(()=>msg.textContent='',2500)}},'Share profile');
+
+  const tok=()=>{try{return localStorage.getItem('ts_p')||''}catch{return ''}};
+  const plural=n=>n===1?'1 follower':n+' followers';
+  let followers=d.followers||0,following=false,busy=false;
+  const fcount=h('span',{},plural(followers)),note=h('div',{class:'muted',role:'status',style:'margin-top:8px'});
+  const fbtn=h('button',{class:'btn',type:'button','aria-pressed':'false'},'Follow');
+  const paint=()=>{fbtn.textContent=following?'Following':'Follow';fbtn.setAttribute('aria-pressed',String(following));fbtn.classList.toggle('ghost',following);fcount.textContent=plural(followers)};
+  const call=(op)=>fetch('/api/player-profile/'+op,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+tok()},body:JSON.stringify({handle:d.tiktok})}).then(async r=>({status:r.status,...(await r.json().catch(()=>({})))})).catch(()=>({status:0}));
+  fbtn.onclick=async()=>{
+    if(!tok()){note.replaceChildren('Log in to follow. ',h('a',{href:'/'},'Open TikSpin'),' and use the Profile tab.');return}
+    if(busy)return;busy=true;fbtn.disabled=true;note.textContent='';
+    const r=await call(following?'unfollow':'follow');busy=false;fbtn.disabled=false;
+    if(r.ok){following=r.following;followers=r.followers;paint()}
+    else note.textContent=r.status===401?'Your session ended. Log in again on TikSpin.':(r.error||'That did not work. Try again.');
+  };
+
+  const give=h('section',{class:'panel',id:'pGive'},h('div',{class:'card'},h('h2',{},'Live now'),
+    ...(d.live.length?d.live.map(g=>h('div',{class:'item'},h('div',{},h('b',{},GAME[g.game]||g.game),h('div',{class:'muted'},g.players+' on the wheel · '+(g.status==='open'?'entries open':'entries closed'))),h('div',{},h('a',{href:'/wheel/'+encodeURIComponent(g.wheelCode)},'Watch the wheel')))):[h('div',{class:'empty'},'No public giveaway is running right now.')]),
+    d.live.some(g=>g.status==='open')?h('p',{class:'muted',style:'margin:10px 0 0'},'Have the code from their stream? ',h('a',{href:'/'},'Enter it on the TikSpin homepage'),'.'):null),
+    h('div',{class:'card'},h('h2',{},'Coming up'),...(d.upcoming.length?d.upcoming.map(u=>h('div',{class:'item'},h('div',{},h('b',{},GAME[u.game]||u.game),u.note?h('div',{class:'muted'},u.note):null),h('span',{class:'tag'},when(u.startsAt)))):[h('div',{class:'empty'},'Nothing scheduled yet.')])));
+
+  const about=h('section',{class:'panel',id:'pAbout',hidden:true},h('div',{class:'card'},h('h2',{},'About'),h('p',{style:'margin:0 0 10px'},d.bio||'This streamer has not added a bio yet.'),h('div',{class:'muted'},'On TikSpin since '+since)));
+
+  const tabs=h('div',{class:'tabs',role:'tablist'});
+  const sel=n=>{[['give',give],['about',about]].forEach(([k,p])=>{p.hidden=k!==n});[...tabs.children].forEach(b=>b.setAttribute('aria-selected',String(b.dataset.t===n)))};
+  [['give','Giveaways'],['about','About']].forEach(([k,l])=>tabs.append(h('button',{type:'button',role:'tab','data-t':k,'aria-selected':String(k==='give'),onclick:()=>sel(k)},l)));
+
+  root.replaceChildren(
+    h('div',{},cover(d),h('div',{class:'head'},avatar(d.name,d.tiktok,d.avatar),h('div',{class:'name'},d.name),h('div',{class:'muted'},'@'+d.tiktok+' · ',fcount),
+      h('div',{class:'acts'},fbtn,h('a',{class:'btn ghost',href:d.profileUrl,target:'_blank',rel:'noopener noreferrer'},'Visit TikTok'),share,msg),note)),
+    tabs,h('div',{class:'cols'},about,give));
+  about.hidden=true;
+  if(tok())fetch('/api/player-profile/status?h='+encodeURIComponent(d.tiktok),{headers:{authorization:'Bearer '+tok()}}).then(r=>r.json()).then(r=>{if(r&&r.ok){following=r.following;paint()}}).catch(()=>{});
+}
+
+if(!handle)missing();
+else fetch('/api/profile/get?h='+encodeURIComponent(handle)).then(r=>r.json().catch(()=>({}))).then(d=>d&&d.ok?render(d):missing()).catch(()=>root.replaceChildren(h('div',{class:'card empty'},'Could not load this profile. Check your connection and try again.')));
+</script>
+</body>
+</html>
