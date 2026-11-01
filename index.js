@@ -9,6 +9,7 @@
 //   routes/streamer.js  streamer registration, giveaways, entries, schedule, reports
 //   routes/profile.js   streamer profiles and streamer search (also creates the profile and follow tables)
 //   routes/follow.js    platform follows and viewer profiles
+//   routes/sitemode.js  maintenance mode: the on/off switch, read by this file
 //   routes/owner.js     invitations, approvals, suspensions, resets, reports, posts, feedback inbox
 //
 // Each routes module exports `actions`: { actionName: { h, ...options } }
@@ -29,6 +30,7 @@ import * as streamer from './routes/streamer.js';
 import * as owner from './routes/owner.js';
 import * as profile from './routes/profile.js';
 import * as follow from './routes/follow.js';
+import * as sitemode from './routes/sitemode.js';
 
 const DEFAULT_MAX_BODY = 20000;
 const OWNER_FAIL_MAX = 10;
@@ -44,6 +46,7 @@ const GROUPS = [
   { prefix: '/api/profile/', auth: 'none', actions: profile.publicActions },
   { prefix: '/api/player-profile/', auth: 'player', actions: follow.playerActions },
   { prefix: '/api/viewer/', auth: 'none', actions: follow.viewerActions },
+  { prefix: '/api/sitemode/', auth: 'none', actions: sitemode.actions },
   { prefix: '/api/', auth: 'none', actions: pub.actions }
 ];
 
@@ -58,6 +61,35 @@ const PAGES = [
   { re: /^\/s\/[^/]+$/, target: '/profile' },
   { re: /^\/u\/[^/]+$/, target: '/viewer' }
 ];
+
+// ---------- maintenance mode ----------
+// When the switch is on (see routes/sitemode.js), visitors get public/maintenance.html with status 503 and the API
+// answers 503, except for the paths below, so the owner can always turn it off again and the legal pages stay readable.
+const MAINTENANCE_OPEN = [
+  /^\/api\/sitemode\//,                 // the switch itself and its status
+  /^\/api\/owner\//,                    // owner panel API
+  /^\/(owner|admin)(\/|\.html)?$/,       // owner panel page
+  /^\/maintenance(-switch)?(\.html)?$/,  // the maintenance page and the owner's switch page
+  /^\/(terms|privacy)(\.html)?$/,        // legal pages
+  /^\/(images|profiles)\//               // logo and avatars used by those pages
+];
+
+async function serveMaintenance(request, env, url, state, now) {
+  const wait = state.until > now ? Math.min(Math.ceil((state.until - now) / 1000), 3600) : 300;
+  if (url.pathname.startsWith('/api/')) {
+    const res = fail(503, 'maintenance', state.message, { retryAfter: wait });
+    res.headers.set('retry-after', String(wait));
+    return res;
+  }
+  if (request.method !== 'GET' && request.method !== 'HEAD') return fail(503, 'maintenance', state.message, { retryAfter: wait });
+  const page = await env.ASSETS.fetch(new Request(new URL('/maintenance', url.origin), { method: 'GET' }));
+  const out = new Response(request.method === 'HEAD' ? null : page.body, { status: 503, headers: page.headers });
+  out.headers.set('retry-after', String(wait));
+  out.headers.set('cache-control', 'no-store');
+  out.headers.set('x-robots-tag', 'noindex, nofollow');
+  out.headers.set('x-content-type-options', 'nosniff');
+  return out;
+}
 
 // Messages the pages show for blocked accounts.
 const STREAMER_BLOCKS = {
@@ -167,6 +199,10 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
+      const maintenance = await sitemode.getMaintenance(env);
+      if (maintenance.on && !MAINTENANCE_OPEN.some((re) => re.test(url.pathname))) {
+        return await serveMaintenance(request, env, url, maintenance, Date.now());
+      }
       if (url.pathname.startsWith('/api/')) {
         await ensureSchema(env);   // creates the tables the first time, then does nothing
         return await handleApi(request, env, url);
