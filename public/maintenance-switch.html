@@ -3,80 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TikSpin · Maintenance switch</title>
+<title>TikSpin · Maintenance</title>
 <link rel="icon" type="image/png" href="/images/logo.png">
 <meta name="theme-color" content="#0a0716">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <style>
-:root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9;--ok:#7be0a4;--bad:#ff7a93}
+:root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{min-height:100vh;min-height:100dvh;background:radial-gradient(900px 420px at 50% -8%,#2a1250 0%,var(--bg) 72%) no-repeat,var(--bg);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;line-height:1.5;padding:calc(18px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));display:flex;justify-content:center}
-main{width:100%;max-width:520px}
+main{width:100%;max-width:560px}
 h1{font-size:1.4rem;margin:0 0 4px;color:var(--pink)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
-label{display:block;font-size:.85rem;color:var(--muted);margin:14px 0 5px}
-input{width:100%;border:1px solid var(--line);background:#0f0a20;border-radius:10px;padding:12px;font:inherit;color:var(--text)}
 .muted{color:var(--muted);font-size:.9rem}
-.row{display:flex;gap:10px;margin-top:16px}
-button{flex:1;border:0;border-radius:12px;font:inherit;font-weight:800;padding:13px;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--neon),var(--pink2))}
-button.off{background:#12392a;color:var(--ok);border:1px solid #1f6b4a}
-button:disabled{opacity:.6;cursor:wait}
-.pill{display:inline-block;border-radius:99px;padding:3px 12px;font-weight:800;font-size:.85rem}
-.pill.on{background:#3a1220;color:var(--bad)}
-.pill.off{background:#12392a;color:var(--ok)}
-.msg{margin-top:12px;min-height:1.4em;font-size:.92rem}
-.msg.bad{color:var(--bad)}.msg.good{color:var(--ok)}
 a{color:var(--pink)}
-:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
 </style>
 </head>
 <body>
 <main>
-  <h1>Maintenance switch</h1>
-  <p class="muted">Owner only. Turn the maintenance page on or off for the whole platform. You need your owner key.</p>
-  <div class="card">
-    <div>Right now: <span id="now" class="pill off">Checking...</span></div>
-    <div class="muted" id="detail" style="margin-top:6px"></div>
-  </div>
-  <div class="card">
-    <label for="key">Owner key</label>
-    <input id="key" type="password" autocomplete="off" spellcheck="false" placeholder="The same key as your owner panel">
-    <label for="text">Message visitors see (optional)</label>
-    <input id="text" type="text" maxlength="200" placeholder="We are updating TikSpin. Back soon!">
-    <label for="mins">Expected back in (minutes, optional)</label>
-    <input id="mins" type="number" inputmode="numeric" min="0" max="1440" placeholder="30">
-    <div class="row"><button id="on" type="button">Turn ON</button><button id="off" class="off" type="button">Turn OFF</button></div>
-    <div id="out" class="msg" role="status"></div>
-  </div>
-  <p class="muted">While maintenance is on, only the owner panel, this page, and the Terms and Privacy pages stay open. <a href="/">Back to TikSpin</a></p>
+  <h1>Maintenance</h1>
+  <p class="muted">Owner only. Put TikSpin into maintenance for a set time, or turn it off early. You need your owner key. <a href="/">Back to TikSpin</a></p>
+  <div id="mc"></div>
+  <p class="muted">While maintenance is on, only the owner panel, this page, and the Terms and Privacy pages stay open.</p>
 </main>
-<script>
-const $=id=>document.getElementById(id);
-async function load(){
-  try{
-    const s=await (await fetch('/api/sitemode/status',{cache:'no-store'})).json();
-    $('now').textContent=s.on?'Maintenance is ON':'TikSpin is open';$('now').className='pill '+(s.on?'on':'off');
-    $('detail').textContent=s.on?(s.message+(s.until?' · expected back '+new Date(s.until).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'')):'Visitors can use TikSpin normally.';
-  }catch{$('now').textContent='Could not load the status';$('now').className='pill on'}
-}
-async function send(on){
-  const out=$('out');out.className='msg';out.textContent='';
-  const key=$('key').value.trim();
-  if(!key){out.className='msg bad';out.textContent='Enter your owner key first.';return}
-  $('on').disabled=$('off').disabled=true;
-  try{
-    const r=await fetch('/api/sitemode/set',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+key},body:JSON.stringify({on,message:$('text').value,minutes:Number($('mins').value)||0})});
-    const d=await r.json().catch(()=>({}));
-    if(r.ok&&d.ok){out.className='msg good';out.textContent=on?'Maintenance is now ON.':'Maintenance is now OFF. TikSpin is open.';await load()}
-    else out.className='msg bad',out.textContent=r.status===401?'That key is not right.':r.status===429?'Too many tries. Wait a little and try again.':(d.error||'That did not work.');
-  }catch{out.className='msg bad';out.textContent='Could not reach TikSpin. Check your connection.'}
-  $('on').disabled=$('off').disabled=false;
-}
-$('on').addEventListener('click',()=>send(true));
-$('off').addEventListener('click',()=>send(false));
-load();
-</script>
+<script src="/maintenance-control.js"></script>
+<script>MaintenanceControl.mount('#mc');</script>
 </body>
 </html>

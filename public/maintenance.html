@@ -3,46 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TikSpin · Under maintenance</title>
+<title>TikSpin · Down for maintenance</title>
 <link rel="icon" type="image/png" href="/images/logo.png">
 <link rel="apple-touch-icon" href="/images/logo.png">
 <meta name="theme-color" content="#0a0716">
 <meta name="robots" content="noindex, nofollow">
 <style>
-:root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9;--ok:#7be0a4}
+:root{--bg:#0b0816;--panel:#16102a;--line:#33264f;--pink:#e58bff;--pink2:#d54bf0;--neon:#a23cf0;--text:#fff;--muted:#b3a9d9;--ok:#7be0a4;--bad:#ff7a93}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;background:radial-gradient(900px 420px at 50% -8%,#2a1250 0%,var(--bg) 72%) no-repeat,var(--bg);color:var(--text);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;line-height:1.55;padding:calc(18px + env(safe-area-inset-top)) 16px calc(22px + env(safe-area-inset-bottom))}
 main{flex:1;width:100%;max-width:520px;display:flex;align-items:center}
-.card{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px 22px;text-align:center}
-.logo{width:64px;height:64px;border-radius:16px;object-fit:contain;background:#130f26;margin-bottom:14px}
-h1{font-size:1.6rem;margin:0 0 8px;color:var(--pink)}
+.card{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 20px;text-align:center}
+.logo{width:64px;height:64px;border-radius:16px;object-fit:contain;background:#130f26;margin-bottom:12px}
+h1{font-size:1.55rem;margin:0 0 8px;color:var(--pink);line-height:1.25}
 p{margin:8px 0;overflow-wrap:anywhere}
 .muted{color:var(--muted);font-size:.93rem}
-.eta{display:inline-block;margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:8px 14px;background:#1d1636}
-.status{display:flex;align-items:center;justify-content:center;gap:8px;margin:18px 0 4px;color:var(--muted);font-size:.92rem}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--pink2);animation:pulse 1.6s ease-in-out infinite}
-.back .dot{background:var(--ok);animation:none}
+.timer{margin:18px 0 4px}
+.timer .lbl{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px}
+.clock{font-size:2.6rem;font-weight:900;letter-spacing:1px;font-variant-numeric:tabular-nums;line-height:1.15;margin:2px 0}
+.bar{height:8px;border-radius:99px;background:#241a45;overflow:hidden;margin:10px 0 6px}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--neon),var(--pink2));border-radius:99px;transition:width 1s linear}
+.board{list-style:none;margin:18px 0 6px;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left}
+.board li{display:flex;align-items:center;gap:10px;padding:11px 14px;border-top:1px solid var(--line);background:#130e26}
+.board li:first-child{border-top:0}
+.board .name{flex:1}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--bad)}
+.up .dot{background:var(--ok)}
+.state{font-size:.8rem;font-weight:800;border-radius:99px;padding:2px 10px;background:#3a1220;color:var(--bad)}
+.up .state{background:#12392a;color:var(--ok)}
+.status{display:flex;align-items:center;justify-content:center;gap:8px;margin:14px 0 2px;color:var(--muted);font-size:.9rem}
+.pulse{width:9px;height:9px;border-radius:50%;background:var(--pink2);animation:pulse 1.6s ease-in-out infinite}
+.back .pulse{background:var(--ok);animation:none}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
-.btn{display:inline-block;margin-top:14px;border:0;border-radius:12px;font:inherit;font-weight:800;padding:12px 22px;cursor:pointer;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--neon),var(--pink2))}
-.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--pink)}
+.btn{display:inline-block;margin-top:12px;border:0;border-radius:12px;font:inherit;font-weight:800;padding:12px 22px;cursor:pointer;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--neon),var(--pink2))}
 a{color:var(--pink)}
 :focus-visible{outline:2px solid var(--pink);outline-offset:2px}
 [hidden]{display:none!important}
 footer{width:100%;max-width:520px;text-align:center;color:var(--muted);font-size:.86rem;padding-top:14px}
 footer a{margin:0 8px}
 footer p{margin:6px 0 0}
-@media(prefers-reduced-motion:reduce){.dot{animation:none}}
+@media(prefers-reduced-motion:reduce){.pulse{animation:none}.bar span{transition:none}}
 </style>
 </head>
 <body>
 <main>
   <div class="card" id="card">
     <img class="logo" src="/images/logo.png" alt="" width="64" height="64">
-    <h1 id="title">TikSpin is under maintenance</h1>
+    <h1 id="title">TikSpin is down for maintenance</h1>
     <p id="msg">We are making some improvements. Please check back soon.</p>
-    <p id="eta" class="eta" hidden></p>
-    <div class="status" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span id="st">We check again automatically.</span></div>
+
+    <div class="timer" id="timer" hidden>
+      <div class="lbl" id="lbl">Back in</div>
+      <div class="clock" id="clock" role="timer" aria-live="off">--:--</div>
+      <div class="bar" aria-hidden="true"><span id="fill"></span></div>
+      <div class="muted" id="eta"></div>
+    </div>
+
+    <ul class="board" id="board" aria-label="Service status">
+      <li><span class="dot" aria-hidden="true"></span><span class="name">Website</span><span class="state">Down</span></li>
+      <li><span class="dot" aria-hidden="true"></span><span class="name">Giveaways and wheels</span><span class="state">Down</span></li>
+      <li><span class="dot" aria-hidden="true"></span><span class="name">Streamer panel</span><span class="state">Down</span></li>
+      <li><span class="dot" aria-hidden="true"></span><span class="name">Accounts and login</span><span class="state">Down</span></li>
+      <li class="up"><span class="dot" aria-hidden="true"></span><span class="name">Terms and Privacy</span><span class="state">Available</span></li>
+    </ul>
+
+    <div class="status" role="status" aria-live="polite"><span class="pulse" aria-hidden="true"></span><span id="st">We check again automatically.</span></div>
     <button class="btn" id="again" type="button">Check again</button>
     <a class="btn" id="open" href="/" hidden>Open TikSpin</a>
     <p class="muted" id="helpLine" hidden>Questions? <a id="mail" href="#"></a></p>
@@ -55,49 +81,74 @@ footer p{margin:6px 0 0}
 <script>
 const $=id=>document.getElementById(id);
 const direct=location.pathname.replace(/\/+$/,'')==='/maintenance';   // opened on purpose, not shown in place of another page
-const CHECK_MS=30000;
-let timer=0;
+let state=null,offset=0,timer=0,lastCheck=0,checking=false;   // offset = server time minus this device's time, so a wrong phone clock does not matter
+
+const pad=n=>(n<10?'0':'')+n;
+const fmt=ms=>{const s=Math.max(0,Math.ceil(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=s%60;return h?h+':'+pad(m)+':'+pad(r):m+':'+pad(r)};
+const at=ms=>new Date(ms).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
 
 function show(s){
+  state=s;
   $('msg').textContent=s.message;
-  const eta=$('eta'),late=s.until&&s.until<Date.now();
   if(s.until){
-    eta.hidden=false;
-    eta.textContent=late?'This is taking a little longer than expected.':'Expected back around '+new Date(s.until).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
-  }else eta.hidden=true;
+    $('timer').hidden=false;$('eta').textContent='Expected back around '+at(s.until);
+    tick();
+  }else{
+    $('timer').hidden=true;
+  }
   if(s.contact){$('helpLine').hidden=false;$('mail').textContent=s.contact;$('mail').href='mailto:'+s.contact}
+}
+
+function tick(){
+  if(!state||!state.on||!state.until)return;
+  const now=Date.now()+offset,left=state.until-now;
+  if(left<=0){
+    $('lbl').textContent='Almost there';$('clock').textContent='Finishing up...';$('fill').style.width='100%';
+    if(Date.now()-lastCheck>2500)check();      // the time is up: ask the server every couple of seconds until it says we are open
+    return;
+  }
+  $('lbl').textContent='Back in';$('clock').textContent=fmt(left);
+  if(state.since&&state.until>state.since)$('fill').style.width=Math.min(100,Math.max(0,(now-state.since)/(state.until-state.since)*100))+'%';
 }
 
 function backUp(){
   $('card').classList.add('back');
   $('title').textContent='We are back';
   $('msg').textContent='TikSpin is open again.';
-  $('eta').hidden=true;$('again').hidden=true;$('open').hidden=false;
+  $('timer').hidden=true;$('board').hidden=true;$('again').hidden=true;$('open').hidden=false;
   $('st').textContent='All done.';
   if(direct)return;
-  // The address is the page the visitor wanted, so reloading brings it back. The guard stops a quick reload loop.
+  // The address is the page the visitor wanted, so a reload brings it back. The guard stops a quick reload loop.
   let last=0;try{last=Number(sessionStorage.getItem('mntReload'))||0}catch{}
   if(Date.now()-last>10000){try{sessionStorage.setItem('mntReload',String(Date.now()))}catch{}setTimeout(()=>location.reload(),1200)}
   else timer=setTimeout(check,5000);
 }
 
 async function check(){
-  clearTimeout(timer);
+  if(checking)return;
+  checking=true;clearTimeout(timer);lastCheck=Date.now();
   $('st').textContent='Checking...';
   try{
     const r=await fetch('/api/sitemode/status',{cache:'no-store'});
     const s=await r.json();
     if(!s||!s.ok)throw new Error('bad');
-    if(s.on){show(s);$('st').textContent='We check again automatically.';timer=setTimeout(check,CHECK_MS)}
-    else backUp();
+    offset=(s.now||Date.now())-Date.now();
+    if(s.on){
+      show(s);$('st').textContent='We check again automatically.';
+      const left=s.until?s.until-(Date.now()+offset):Infinity;
+      // closer to the end, look more often. A little random spread keeps everyone from asking at the same instant.
+      timer=setTimeout(check,left<=0?2000+Math.random()*1000:left<30000?4000:30000);
+    }else backUp();
   }catch{
     $('st').textContent='Could not check just now. We will try again.';
-    timer=setTimeout(check,CHECK_MS);
+    timer=setTimeout(check,30000);
   }
+  checking=false;
 }
 $('again').addEventListener('click',check);
+setInterval(tick,1000);
 check();
 </script>
-<noscript><p class="muted" style="text-align:center">TikSpin is under maintenance. Please check back soon.</p></noscript>
+<noscript><p class="muted" style="text-align:center">TikSpin is down for maintenance. Please check back soon.</p></noscript>
 </body>
 </html>
