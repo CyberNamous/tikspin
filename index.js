@@ -69,7 +69,7 @@ const MAINTENANCE_OPEN = [
   /^\/api\/sitemode\//,                 // the switch itself and its status
   /^\/api\/owner\//,                    // owner panel API
   /^\/(owner|admin)(\/|\.html)?$/,       // owner panel page
-  /^\/maintenance(-switch)?(\.html)?$/,  // the maintenance page and the owner's switch page
+  /^\/maintenance(-switch|-control)?(\.html|\.js)?$/,  // the maintenance page, the owner's switch page and its script
   /^\/(terms|privacy)(\.html)?$/,        // legal pages
   /^\/(images|profiles)\//               // logo and avatars used by those pages
 ];
